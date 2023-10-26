@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang ="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="bootstrap(1).css" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        
+        <title>Register</title>
+    </head>
+
+    <body>
+        <div class="nav-tab-1">
+            <h3>VJULIB</h3>
+        </div>
+
+        <div class ="nav-tab-2">
+            <a href="#">Trang chủ</a>
+            <a href="#">Giới thiệu</a>
+            <a href="#">Nội quy</a>
+            <a href="#">Tủ sách</a>
+            <a href="#">Xu hướng</a>
+        </div>
+
+        <div class ="nav-tab-3">
+            <h5 class="search-container">
+                <input type="text" class="search-input" id="search" name="search"placeholder="Tìm kiếm sách">
+            </h5>
+            <a href="#" class="login">Đăng nhập</a>
+        </div>
+
+        <div class="my-element">
+            <h2 class="my-element-1">
+                Chào Mừng Bạn Đến Với Thư Viện VJULIB
+            </h2>
+            <h6 class="my-element-2">
+            Chào mừng bạn đến với <span class="vjulib">VJULIB</span>! Chúng tôi tự hào mang đến cho bạn một kho tài liệu đa dạng và phong phú, được tập hợp và curation một cách kỹ lưỡng để đáp ứng tốt nhất cho nhu cầu của bạn trong công việc học tập và nghiên cứu.</h5>
+            </h6>
+        </div>
+
+        <div class="register-input">
+            <form method="post" class="registration-form">
+                <div class="form-group-1">
+                    <div class="btn-outline-danger" id="error-firstName"></div>
+                    <div class="btn-outline-danger" id="error-lastName"></div>
+                    <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+                    <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+                </div>
+
+                <div class="form-group">
+                    <div class="btn-outline-danger" id="error-studentID"></div>
+                    <input type="text" id="studentID" name="studentID" placeholder="Student ID" required>
+                </div>
+        
+                <div class="form-group">
+                    <div class="btn-outline-danger" id="error-email"></div>
+                    <input type="text" id="email" name="email" placeholder="Email" required>
+                </div>
+        
+                <div class="form-group">
+                    <div class="btn-outline-danger" id="error-password"></div>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                </div>
+                
+                <div class="form-group">
+                    <div class="btn-outline-danger">
+                        <span class="btn-outline-danger" id="error-confirmPassword"></span>
+                    </div>
+                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Enter the password" required>
+                </div>
+
+                <div class="form-group-2">
+                    <a onclick="register()" >Register</a>
+                </div>
+                
+                <script>
+                    function register() {
+                        var firstName = document.getElementById('firstName').value;
+                        var lastName = document.getElementById('lastName').value;
+                        var studentID = document.getElementById('studentID').value;
+                        var email = document.getElementById('email').value;
+                        var password = document.getElementById('password').value;
+                        var confirmPassword = document.getElementById('confirmPassword').value;
+    
+                        var errorFirstName = document.getElementById('error-firstName');
+                        var errorLastName = document.getElementById('error-lastName');
+                        var errorStudentID = document.getElementById('error-studentID');
+                        var errorEmail = document.getElementById('error-email');
+                        var errorPassword = document.getElementById('error-password');
+                        var errorConfirmPassword = document.getElementById('error-confirmPassword');
+    
+                        errorFirstName.innerHTML = '';
+                        errorLastName.innerHTML = '';
+                        errorStudentID.innerHTML = '';
+                        errorEmail.innerHTML = '';
+                        errorPassword.innerHTML = '';
+                        errorConfirmPassword.innerHTML = '';
+
+                        if (!firstName && !lastName) {
+                            errorFirstName.innerHTML = 'Vui lòng nhập Họ Và Tên!';
+                        }
+
+                        else if (!firstName) {
+                            errorFirstName.innerHTML = 'Vui lòng nhập Họ!';
+                        }
+
+                        else if (!lastName) {
+                            errorLastName.innerHTML = 'Vui lòng nhập Tên!';
+                        }
+    
+                        if (!studentID) {
+                            errorStudentID.innerHTML = 'Vui lòng nhập Mã sinh viên!';
+                        }
+
+                        if (!email) {
+                            errorEmail.innerHTML = 'Vui lòng nhập Email!';
+                        }
+
+                        else if (!email.endsWith('@st.vju.ac.vn')) {
+                            errorEmail.innerHTML = 'Vui lòng nhập đúng đuôi "@st.vju.ac.vn"!';
+                            hasErrors = true;
+                        }
+
+                        if (!password) {
+                            errorPassword.innerHTML = 'Vui lòng nhập nhập Mật khẩu!';
+                        }
+
+                        if (!confirmPassword) {
+                            errorConfirmPassword.innerHTML = 'Vui lòng nhập lại Mật khẩu!';
+                        }
+    
+                        if (password !== confirmPassword) {
+                            errorConfirmPassword.innerHTML = 'Mật khẩu không khớp. Vui lòng nhập lại!';
+                        }
+    
+                        if (!firstName || !lastName || !studentID || !email || !password || !confirmPassword) {
+                            alert('Vui lòng nhập đầy đủ thông tin!');
+                        }
+                    }
+                </script>
+            </form>
+        </div>
+    </body>
+</html>
