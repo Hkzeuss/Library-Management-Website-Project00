@@ -209,6 +209,11 @@
   font-weight: 600;
 }
 
+.font-weight04{
+  font-weight: 800;
+}
+
+
 .display-flex01 {
   display: flex;
 }
@@ -217,8 +222,12 @@
   float: right;
 }
 
-.btn-block {
+.btn-block01 {
   width: 100%;
+}
+
+.btn-block02 {
+  width: 75%;
 }
 
 .custom-card-width {
@@ -246,8 +255,28 @@
   color:#FFFFFF !important;
 }
 
+.custom-button{
+  background-color:#0F62FE !important;
+}
+
+.custom-button01 {
+  background-color: #F02E2E;
+}
+
 .font-size01 {
   font-size: 25px;
+}
+
+.font-size02 {
+  font-size: 16px;
+}
+
+.font-color01{
+  color: #FFFFFF;
+}
+
+.text-align-center{
+  text-align: center;
 }
 
 
@@ -8092,6 +8121,10 @@ textarea.form-control-lg {
   margin-top: 3rem !important;
 }
 
+.mt-04 {
+  margin-top: 9rem !important;
+}
+
 .mt-01 { /*Thêm*/
   margin-top: 10rem !important;
 }
@@ -8163,10 +8196,14 @@ textarea.form-control-lg {
 .mb-5 {
   margin-bottom: 3rem !important;
 }
+.mb-06{
+  margin-bottom: 5rem !important;
+}
 
 .mb-auto {
   margin-bottom: auto !important;
 }
+
 
 .ms-0 {
   margin-left: 0 !important;
