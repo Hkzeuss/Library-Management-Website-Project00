@@ -162,20 +162,16 @@
     background-color: #FF0000; /* Màu khi nhấn */
     color: #fff; /* Màu font khi nhấn */
   }
-  .btn-custom-color-01 {
-    width: 250px;
-    height: 60px;
-    position: absolute;
-    top: 200px;
-    left: 840px;
-    background-color: #A5262E; /* Màu nền */
-    border-radius: 20px; /* Góc bo tròn */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
+
 
 .btn-font {
-    color: #fff; /* Màu chữ */
-    font-size: 15px;
+    color: #080808; /* Màu chữ */
+    font-size: 20px;
+    weight: 900;
+    height: 60px;
+    position: absolute;
+    top: 220px;
+    left: 890px;
+    line-height: 24.38px;
 }
