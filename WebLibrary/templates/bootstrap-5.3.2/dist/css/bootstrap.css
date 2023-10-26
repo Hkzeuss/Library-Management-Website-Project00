@@ -213,6 +213,7 @@
   font-weight: 800;
 }
 
+
 .display-flex01 {
   display: flex;
 }
@@ -256,6 +257,10 @@
 
 .font-size01 {
   font-size: 25px;
+}
+
+.font-size02 {
+  font-size: 16px;
 }
 
 .font-color01{
