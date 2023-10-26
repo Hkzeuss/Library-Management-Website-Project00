@@ -222,8 +222,12 @@
   float: right;
 }
 
-.btn-block {
+.btn-block01 {
   width: 100%;
+}
+
+.btn-block02 {
+  width: 75%;
 }
 
 .custom-card-width {
@@ -255,6 +259,10 @@
   background-color:#0F62FE !important;
 }
 
+.custom-button01 {
+  background-color: #F02E2E;
+}
+
 .font-size01 {
   font-size: 25px;
 }
@@ -270,6 +278,8 @@
 .text-align-center{
   text-align: center;
 }
+
+
 
 
 
@@ -8113,6 +8123,10 @@ textarea.form-control-lg {
 
 .mt-5 {
   margin-top: 3rem !important;
+}
+
+.mt-04 {
+  margin-top: 9rem !important;
 }
 
 .mt-01 { /*Thêm*/
