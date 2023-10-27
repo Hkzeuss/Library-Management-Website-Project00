@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap%27');
+
+body {
+    font-family: "Montserrat" ;
+      margin: 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #000000;
+    list-style: none;
+    padding: 10px;
+}
+
+.nav-tab-1{
+    position: absolute;
+    top: 17px;
+    left: 2%;
+    /* left: 20px; */
+    font-weight: bold;
+    line-height: 1.5px;
+    text-align: left;
+    padding: 4.9px 15.1px;
+    cursor: pointer;
+}
+
+.nav-tab-2 ,.nav-tab-3{
+    position: absolute;
+    top: 34px;
+    line-height: 16px;
+    /* text-align: left; */
+    cursor: pointer;
+    display: flex;
+}
+
+.nav-tab-2 a:hover, .nav-tab-3 a:hover{
+    text-decoration: none;
+}
+
+.nav-tab-2{
+    left: 35%
+    /* left: 400px; */
+}
+
+.nav-tab-3{
+    left: 70%;
+    /* left: 820px; */
+}
+
+.search-container {
+    display: flex;
+}
+
+.search-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 16px 16px 16px 16px;
+    outline: none;
+    margin-right: 20px;
+    margin-top: -4px;
+    width: 200px;
+    height: 30px;
+    text-align: center;
+    font-family: 'Montserrat';
+    font-size: 14px;
+}
+
+.search-input::placeholder {
+    color: black;
+}
+
+.search-button {
+    padding: 8px;
+    background-color: #007bff;
+    color: #fff;
+    border: 1px solid #007bff;
+    border-radius: 16px 16px 16px 16px;
+    cursor: pointer;
+    outline: none;
+}
+
+.login {
+    background-color: #0a95f2;
+    color: #fff;
+    padding: 8px 15px;
+    width: 110px;
+    height: 40px;
+    border-radius: 10px;
+    margin-top: -10px;
+    text-align: center;
+
+}
+
+.nav-tab-2 a ,.nav-tab-3 a{
+    margin-right: 20px;
+    text-decoration: none;
+}
+
+.nav-tab-2 a{
+    color: black;
+}
+
+.nav-tab-2 a:last-child ,.nav-tab-3 a:last-child{
+    margin-right: 0;
+}
+
+.my-element {
+    top: 250px;
+    left: 6%;
+    /* left: 70px; */
+    position: absolute; 
+}
+
+.my-element-1{
+    width: 390px;
+    margin-bottom: 25px;
+}
+
+.my-element-2 {
+    font-weight: normal;
+    width: 430px;
+    top: 700px;
+
+}
+
+.my-element-2 span {
+    font-weight: bold;
+}
+
+.my-element-2 .vjulib {
+    color: #007fff;
+}
+
+.register-input{
+    position: absolute;
+    top: 150px;
+    left: 60%;
+    /* left: 600px; */
+    width: 500px;
+    line-height: 16px;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    color: #cdfafa;
+    border-radius: 10px;
+}
+
+.registration-form{
+    box-shadow: 0.1rem 0.1rem 0.1rem 0 gray;
+    border-radius: 10px 10px 10px 10px;
+    padding: 50px 30px; 
+}
+
+.form-group>input{
+    width: 280px;
+    height: 40px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    color: #00000080;
+    background: #AEC8FB;
+    border: none;
+    padding-left: 10px;
+}
+
+.form-group-1>input{
+    width: 133px;
+    height: 40px;
+    border-radius: 10px;
+    margin-right: 7.5px;
+    margin-bottom: 20px;
+    color: #00000080;
+    background: #AEC8FB;
+    border: none;
+    padding-left: 10px;
+}
+
+.form-group-2{
+    background-color: #0a95f2;
+    color: #fff;
+    padding: 8px 15px;
+    width: 280px;
+    height: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    padding-top: 11px;
+    
+}
+
+.form-group-2 a:hover{
+    text-decoration: none;
+}
