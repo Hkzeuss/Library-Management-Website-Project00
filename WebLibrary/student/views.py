@@ -2,26 +2,33 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+from .forms import LoginForm
 
 
 def home(request):
     return render(request, 'student/home.html')
 
-def login(request):
-    if request.method =="POST":
-        username = request.POST.get("studentID")
-        password = request.POST.get("password")
+@login_required
+def loginPage(request):
+    if request.method == "POST":
+        form = LoginForm(request.POST)  
+        if form.is_valid():
+            username = form.cleaned_data["username"]
+            password = form.cleaned_data["password"]
 
-        user = authenticate(request, username=username, password=password)
+            user = authenticate(request, username=username, password=password)
 
-        if user is not None:
-            login(request, user)
-            firstName = user.first_name
-            return render(request, "student/home.html", {"firstName": firstName})
-        else:
-            messages.error(request, "Can't Login")
-            return render(request, 'student/login.html', {'error': True, 'studentID': username})
-    return render(request, "student/Login.html")
+            if user is not None:
+                login(request, user)
+                return redirect('home')  
+            else:
+                form.add_error(None, "Bạn đã nhập sai tài khoản hoặc mật khẩu. Xin vui lòng thử lại")
+
+    else:
+        form = LoginForm()
+
+    return render(request, "student/Login.html", {"form": form})
 
 def register(request):
     if request.method == 'POST':

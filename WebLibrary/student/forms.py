@@ -1,6 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from student.models import CustomUser
+from django import forms
 
 class RegistrationForm(forms.Form):
     first_name = forms.CharField(max_length=100)
@@ -32,3 +32,8 @@ class RegistrationForm(forms.Form):
         # Kiểm tra email không trùng
         if CustomUser.objects.filter(email=email).exists():
             raise ValidationError("Email đã tồn tại. Vui lòng chọn email khác.")
+        
+
+class LoginForm(forms.Form):
+    username = forms.CharField()
+    password = forms.CharField(widget=forms.PasswordInput)
