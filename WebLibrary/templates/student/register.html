@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'student/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'student/styles.css' %}">
     <title>Register</title>
 
   </head>
@@ -49,12 +50,7 @@
                   <li><a class="dropdown-item" href="#">Chính Trị</a></li>
                 </ul>
               </li>
-    
-              <li class="nav-item">
-                <a class="nav-link" aria-disabled="true">Xu Hướng</a>
-              </li>
             </ul>
-    
             <form class="d-flex" role="search">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button>
@@ -81,27 +77,46 @@
                             <div class="card-body text-center" style="background-color: #FFFBFB;">
                                 <h6 class="font-weight01">Đăng Ký Tài Khoản</h6>
                                   <form method="post" action="{% url 'register' %}">
-                                     {% if error %}
-                                      <div class =" aler aler-dager" role=""alert>
-                                        error
-                                      </div>
-                                      {% endif %}
-                                      {% csrf_token %}
+                                    {% csrf_token %}
                                       <div class="row mb-3">
                                           <div class="col-md-6">
-                                              <input class="form-control mb-0 mt-3 shadow-sm" name="firstName" type="text" placeholder="First Name">
+                                              <input class="form-control mb-0 mt-3 shadow-sm {% if error_messages.firstName %}is-invalid{% endif %}" name="firstName" type="text" placeholder="First Name" value="{{ input_data.firstName }}">
                                           </div>
                                           <div class="col-md-6">
-                                              <input class="form-control mb-0 mt-3 shadow-sm" name="lastName" type="text" placeholder="Last Name">
+                                              <input class="form-control mb-0 mt-3 shadow-sm {% if error_messages.lastName %}is-invalid{% endif %}" name="lastName" type="text" placeholder="Last Name" value="{{ input_data.lastName }}">
                                           </div>
                                       </div>
-                                     
-                                      <input class="form-control mb-3 shadow-sm" name="studentID" type="number" placeholder="Student ID">
-                                      <input class="form-control mb-3 shadow-sm" name="email" type="text" placeholder="Email">
-                                      <input class="form-control mb-3 shadow-sm" name="password" type="password" placeholder="Mật Khẩu">
-                                      <input class="form-control mb-3 shadow-sm" name="confirmPassword" type="password" placeholder="Nhập Lại Mật Khẩu">
+
+                                      {% if 'studentID_exists' in error_messages %}
+                                          <div class="invalid-feedback">
+                                            {{ error_messages.studentID_exists }}
+                                          </div>
+                                      {% endif %}
+                                      <input class="form-control mb-3 shadow-sm {% if error_messages.studentID %}is-invalid{% endif %}" name="studentID" type="number" placeholder="Student ID" value="{{ input_data.studentID }}">
+                                      
+                                      {% if error_messages.email_exists %}
+                                          <div class="invalid-feedback">
+                                              {{ error_messages.email_exists }}
+                                          </div>
+                                      {% endif %}
+
+                                      {% if error_messages.invalid_email %}
+                                          <div class="invalid-feedback">
+                                              {{ error_messages.invalid_email }}
+                                          </div>
+                                      {% endif %}
+                                      <input class="form-control mb-3 shadow-sm {% if error_messages.email %}is-invalid{% endif %}" name="email" type="text" placeholder="Email" value="{{ input_data.email }}">
+                                      <input class="form-control mb-3 shadow-sm {% if error_messages.password %}is-invalid{% endif %}" name="password" type="password" placeholder="Mật Khẩu" value="{{ input_data.password }}">
+                                      
+                                      {% if error_messages.password_mismatch %}
+                                          <div class="invalid-feedback">
+                                              {{ error_messages.password_mismatch }}
+                                          </div>
+                                      {% endif %}
+                                      <input class="form-control mb-3 shadow-sm {% if error_messages.confirmPassword %}is-invalid{% endif %}" name="confirmPassword" type="password" placeholder="Nhập Lại Mật Khẩu" value="{{ input_data.confirmPassword }}">
+                                      
                                       <button type="submit" class="btn btn-primary mt-3 mb-05 offset-5 shadow"><span class="font-weight03">Đăng Ký</span></button>
-                                  </form>
+                                    </form>
                               </div>
                           </div>
                       </div>

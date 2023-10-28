@@ -9,10 +9,10 @@ def home(request):
 
 def login(request):
     if request.method =="POST":
-        username = request.POST["username"]
-        password = request.POST["password"]
+        username = request.POST.get("studentID")
+        password = request.POST.get("password")
 
-        user = authenticate( username=username, password=password)
+        user = authenticate(request, username=username, password=password)
 
         if user is not None:
             login(request, user)
@@ -20,8 +20,7 @@ def login(request):
             return render(request, "student/home.html", {"firstName": firstName})
         else:
             messages.error(request, "Can't Login")
-            
-            return redirect('/') 
+            return render(request, 'student/login.html', {'error': True, 'studentID': username})
     return render(request, "student/Login.html")
 
 def register(request):
@@ -33,29 +32,42 @@ def register(request):
         password = request.POST.get('password')
         confirmPassword = request.POST.get('confirmPassword')
 
-        # Kiểm tra các trường dữ liệu đã được đưa nào chưa
-        if request.POST.get('firstName') == "":
-            return render(request, 'student/register.html', {'errror': True})
-        
-        if request.POST.get('lastName') == "":
-            return render(request, 'student/register.html', {'errror': True})
-        
-        if request.POST.get('studentID')  == "":
-            return render(request, 'student/register.html', {'errror': True})   
-            
-        if request.POST.get('email') == "":
-            return render(request, 'student/register.html', {'errror': True})
-        
-        if request.POST.get('password') == "":
-            return render(request, 'student/register.html', {'errror': True})
-        
-        if request.POST.get('confirmPassword') == "":
-            return render(request, 'student/register.html', {'errror': True})
+        # Tạo từ điển tróng
+        error_messages = {}
 
+        # Kiểm tra các trường dữ liệu để tìm ra dữ liệu đang bỏ trống
+        if not firstName:
+            error_messages['firstName'] = "None"
+        if not lastName:
+            error_messages['lastName'] = "None"
+        if not studentID:
+            error_messages['studentID'] = "None"
+        if not email:
+            error_messages['email'] = "None"
+        if not password:
+            error_messages['password'] = "None"
+        if not confirmPassword:
+            error_messages['confirmPassword'] = "None"
 
-        # Kiểm tra mật khẩu nhập lại
+        # Kiểm tra Student ID và email xem đã tồn tại chưa
+        if User.objects.filter(username=studentID).exists():
+            error_messages['studentID_exists'] = "Student ID đã tồn tại!"
+
+        if User.objects.filter(email=email).exists():
+            error_messages['email_exists'] = "Email đã tồn tại!"
+
+        # Kiểm tra định dạng email
+        if not email.endswith('@st.vju.ac.vn'):
+            error_messages['invalid_email'] = "'@st.vju.ac.vn'"
+
+        # Kiểm tra mật khẩu có khớp không
         if password != confirmPassword:
-            return render(request, 'student/register.html', {'errror': True})
+            error_messages['password_mismatch'] = "Mật khẩu không khớp!"
+
+        # Quay lại trang đăng ký nếu xảy ra lỗi và hiển thị lỗi
+        if error_messages:
+            return render(request, 'student/register.html', {'error_messages':  error_messages, 'input_data': request.POST})
+
 
         # Tạo người dùng mới
         new_user = User.objects.create_user(username=studentID, email=email, password=password)
@@ -65,7 +77,7 @@ def register(request):
     
         # Thông báo thành công và chuyển hướng
         messages.success(request, "Đăng ký thành công.")
-        return redirect('/')
+        return redirect('/login')
 
     return render(request, 'student/register.html')
 
