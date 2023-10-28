@@ -81,6 +81,11 @@
                             <div class="card-body text-center" style="background-color: #FFFBFB;">
                                 <h6 class="font-weight01">Đăng Ký Tài Khoản</h6>
                                   <form method="post" action="{% url 'register' %}">
+                                     {% if error %}
+                                      <div class =" aler aler-dager" role=""alert>
+                                        error
+                                      </div>
+                                      {% endif %}
                                       {% csrf_token %}
                                       <div class="row mb-3">
                                           <div class="col-md-6">
@@ -90,6 +95,7 @@
                                               <input class="form-control mb-0 mt-3 shadow-sm" name="lastName" type="text" placeholder="Last Name">
                                           </div>
                                       </div>
+                                     
                                       <input class="form-control mb-3 shadow-sm" name="studentID" type="number" placeholder="Student ID">
                                       <input class="form-control mb-3 shadow-sm" name="email" type="text" placeholder="Email">
                                       <input class="form-control mb-3 shadow-sm" name="password" type="password" placeholder="Mật Khẩu">

@@ -33,10 +33,29 @@ def register(request):
         password = request.POST.get('password')
         confirmPassword = request.POST.get('confirmPassword')
 
+        # Kiểm tra các trường dữ liệu đã được đưa nào chưa
+        if request.POST.get('firstName') == "":
+            return render(request, 'student/register.html', {'errror': True})
+        
+        if request.POST.get('lastName') == "":
+            return render(request, 'student/register.html', {'errror': True})
+        
+        if request.POST.get('studentID')  == "":
+            return render(request, 'student/register.html', {'errror': True})   
+            
+        if request.POST.get('email') == "":
+            return render(request, 'student/register.html', {'errror': True})
+        
+        if request.POST.get('password') == "":
+            return render(request, 'student/register.html', {'errror': True})
+        
+        if request.POST.get('confirmPassword') == "":
+            return render(request, 'student/register.html', {'errror': True})
+
+
         # Kiểm tra mật khẩu nhập lại
         if password != confirmPassword:
-            messages.error(request, "Mật khẩu không khớp.")
-            return redirect('register')
+            return render(request, 'student/register.html', {'errror': True})
 
         # Tạo người dùng mới
         new_user = User.objects.create_user(username=studentID, email=email, password=password)
@@ -47,6 +66,7 @@ def register(request):
         # Thông báo thành công và chuyển hướng
         messages.success(request, "Đăng ký thành công.")
         return redirect('/')
+
     return render(request, 'student/register.html')
 
 def forgot(request):
