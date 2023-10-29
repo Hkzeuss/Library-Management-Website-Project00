@@ -12,23 +12,20 @@ def home(request):
 @login_required
 def loginPage(request):
     if request.method == "POST":
-        form = LoginForm(request.POST)  
-        if form.is_valid():
-            username = form.cleaned_data["username"]
-            password = form.cleaned_data["password"]
+        username = request.POST["username"]
+        password = request.POST["password"]
 
-            user = authenticate(request, username=username, password=password)
+        user = authenticate(request, username=username, password=password)
 
-            if user is not None:
-                login(request, user)
-                return redirect('home')  
-            else:
-                form.add_error(None, "Bạn đã nhập sai tài khoản hoặc mật khẩu. Xin vui lòng thử lại")
+        if user is not None:
+            login(request, user)
+            return redirect('home')  # Redirect to the home page after successful login
 
-    else:
-        form = LoginForm()
-
-    return render(request, "student/Login.html", {"form": form})
+        else:
+            messages.error(request, "Can't Login")
+            return render(request, 'student/Login.html', {'error': True, 'studentID': username})
+    
+    return render(request, "student/Login.html")
 
 def register(request):
     if request.method == 'POST':
