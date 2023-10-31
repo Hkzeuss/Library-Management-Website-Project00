@@ -1,15 +1,19 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required, user_passes_test
+
 from .forms import LoginForm
 
 
 def home(request):
     return render(request, 'student/home.html')
 
-@login_required
+def homefanpage(request):
+    return render(request, 'student/homefanpage.html')
+
+@user_passes_test(lambda u: not u.is_authenticated, login_url='homefanpage')
 def loginPage(request):
     if request.method == "POST":
         form = LoginForm(request.POST)  
@@ -21,7 +25,7 @@ def loginPage(request):
 
             if user is not None:
                 login(request, user)
-                return redirect('home')  
+                return redirect('homefanpage') 
             else:
                 form.add_error(None, "Bạn đã nhập sai tài khoản hoặc mật khẩu. Xin vui lòng thử lại")
 
@@ -88,7 +92,12 @@ def register(request):
 
     return render(request, 'student/register.html')
 
+def signout(request):
+    logout(request)
+    return redirect('/')
+
 def forgot(request):
+
     return render(request, 'student/ForgotPassword.html')
 
 def confirm(request):
