@@ -36,6 +36,7 @@ body {
     text-decoration: none;
 }
 
+
 .nav-tab-2 a ,.nav-tab-3 a{
     margin-right: 16px;
     text-decoration: none;
@@ -110,6 +111,7 @@ header {
   }
 .rule{
     color:#f00b16; /*thêm*/
+    font-weight: bold;
 }
 .rule-01{
     padding-left: 60rem;
