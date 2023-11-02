@@ -77,6 +77,15 @@ def register(request):
         if not email.endswith('@st.vju.ac.vn'):
             error_messages['invalid_email'] = "'@st.vju.ac.vn'"
 
+        # Kiểm tra kích thước mật khẩu
+        if not 8 <= len(password) <=16:
+            if len(password) < 8:
+                error_messages['password_length_min'] = "Mật khẩu tối thiểu 8 ký tự"
+            elif len(password) > 16:
+                error_messages['password_length_max'] = "Mật khẩu tối đa 16 ký tự"
+                
+
+
         # Kiểm tra mật khẩu có khớp không
         if password != confirmPassword:
             error_messages['password_mismatch'] = "Mật khẩu không khớp!"
@@ -91,7 +100,7 @@ def register(request):
         new_user.first_name = firstName
         new_user.last_name = lastName
         new_user.save()
-    
+
         # Thông báo thành công và chuyển hướng
         messages.success(request, "Đăng ký thành công.")
         return redirect('/login')
