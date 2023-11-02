@@ -163,6 +163,7 @@
     background-color: #FF0000; /* Màu khi nhấn */
     color: #fff; /* Màu font khi nhấn */
   }
-  .fontsize{
-    color: red;
+  .fontcolor{
+    color: red !important;
+    text-align: center !important;
   }   

@@ -175,3 +175,7 @@
     left: 890px;
     line-height: 24.38px;
 }
+.fontcolor{
+  color: red !important;
+  text-align: center !important;
+}   

@@ -116,3 +116,7 @@ header {
 .rule-01{
     padding-left: 60rem;
 }
+.fontcolor{
+    color: red !important;
+    text-align: center !important;
+  }   
