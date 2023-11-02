@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'book',
     'myadmin',
     'category',
-    
 ]
 
 MIDDLEWARE = [
@@ -136,3 +135,12 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = "login"
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = 'joker12052020@gmail.com'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER ='vjulib@gmail.com'
+EMAIL_HOST_PASSWORD = 'qrce ylhp ybfx njsk'

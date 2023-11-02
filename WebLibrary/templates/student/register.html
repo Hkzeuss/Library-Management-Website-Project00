@@ -32,7 +32,7 @@
               </li>
     
               <li class="nav-item">
-                <a class="nav-link" href="#">Nội Quy</a>
+                <a class="nav-link" href="/tabrules">Nội Quy</a>
               </li>
     
               <li class="nav-item dropdown">
@@ -40,17 +40,14 @@
                   Tủ Sách
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Best Seller</a></li>
-                  <li><a class="dropdown-item" href="#">Lịch Sử</a></li>
-                  <li><a class="dropdown-item" href="#">Tiểu Thuyết</a></li>
-                  <li><a class="dropdown-item" href="#">Khoa Học</a></li>
-                  <li><a class="dropdown-item" href="#">Kinh Doanh</a></li>
-                  <li><a class="dropdown-item" href="#">Lịch Sử</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Chính Trị</a></li>
+                  <li><a class="dropdown-item" href="/hitstory">Lịch Sử</a></li>
+                  <li><a class="dropdown-item" href="/geography">Địa lý</a></li>
+                  <li><a class="dropdown-item" href="/education">Giáo dục công dân</a></li>
+                  <li><a class="dropdown-item" href="/english">Tiếng anh</a></li>
                 </ul>
               </li>
             </ul>
+    
             <form class="d-flex" role="search">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button>
@@ -69,7 +66,12 @@
                           <h2 class="font-weight01">Truy Cập Thư Viện VJULIB</h2>
                           <br>
                           <p class="font-weight03">Chào mừng bạn đến với <a class="no-underline font-weight01" href="/">VJULIB</a>! Chúng tôi tự hào mang đến cho bạn một kho tài liệu đa dạng và phong phú, được tập hợp và curation một cách kỹ lưỡng để đáp ứng tốt nhất cho nhu cầu của bạn trong việc học tập và nghiên cứu.</p>  
-                      </div>
+                        <p class="font-weight03">Vui lòng đọc thông tin dưới đây và tạo tài khoản hợp lệ.</p>  
+                        <ul class="font-weight03">
+                          <li>Đuôi email cần là: "@st.vju.ac.vn".</li>
+                          <li>Mật khẩu tối thiểu 8 ký tự, tối đa 16 ký tự.</li>
+                        </ul>
+                    </div>
                   </div>
                   <div class="container col-6 col-md-6 mt-5">
                     <div class="col-md-6 offset-md-3">
@@ -78,6 +80,11 @@
                                 <h6 class="font-weight01">Đăng Ký Tài Khoản</h6>
                                   <form method="post" action="{% url 'register' %}">
                                     {% csrf_token %}
+                                    {% if error_messages %}
+                                          <div class="alert alert-danger">
+                                              <strong>Xin vui lòng nhập lại</strong>
+                                          </div>
+                                      {% endif %}
                                       <div class="row mb-3">
                                           <div class="col-md-6">
                                               <input class="form-control mb-0 mt-3 shadow-sm {% if error_messages.firstName %}is-invalid{% endif %}" name="firstName" type="text" placeholder="First Name" value="{{ input_data.firstName }}">
@@ -86,15 +93,15 @@
                                               <input class="form-control mb-0 mt-3 shadow-sm {% if error_messages.lastName %}is-invalid{% endif %}" name="lastName" type="text" placeholder="Last Name" value="{{ input_data.lastName }}">
                                           </div>
                                       </div>
-
-                                      {% if 'studentID_exists' in error_messages %}
+                                      
+                                      <!-- {% if error_messages.studentID_exists %}
                                           <div class="invalid-feedback">
                                             {{ error_messages.studentID_exists }}
                                           </div>
-                                      {% endif %}
+                                      {% endif %} -->
                                       <input class="form-control mb-3 shadow-sm {% if error_messages.studentID %}is-invalid{% endif %}" name="studentID" type="number" placeholder="Student ID" value="{{ input_data.studentID }}">
                                       
-                                      {% if error_messages.email_exists %}
+                                      <!-- {% if error_messages.email_exists %}
                                           <div class="invalid-feedback">
                                               {{ error_messages.email_exists }}
                                           </div>
@@ -104,15 +111,28 @@
                                           <div class="invalid-feedback">
                                               {{ error_messages.invalid_email }}
                                           </div>
-                                      {% endif %}
+                                      {% endif %} -->
                                       <input class="form-control mb-3 shadow-sm {% if error_messages.email %}is-invalid{% endif %}" name="email" type="text" placeholder="Email" value="{{ input_data.email }}">
+                                      
+                                      <!-- {% if error_messages.password_length_min %}
+                                          <div class="invalid-feedback">
+                                              {{ error_messages.password_length_min }}
+                                          </div>
+                                      {% endif %}
+
+                                      {% if error_messages.password_length_max %}
+                                          <div class="invalid-feedback">
+                                              {{ error_messages.password_length_max }}
+                                          </div>
+                                      {% endif %} -->
+
                                       <input class="form-control mb-3 shadow-sm {% if error_messages.password %}is-invalid{% endif %}" name="password" type="password" placeholder="Mật Khẩu" value="{{ input_data.password }}">
                                       
-                                      {% if error_messages.password_mismatch %}
+                                      <!-- {% if error_messages.password_mismatch %}
                                           <div class="invalid-feedback">
                                               {{ error_messages.password_mismatch }}
                                           </div>
-                                      {% endif %}
+                                      {% endif %} -->
                                       <input class="form-control mb-3 shadow-sm {% if error_messages.confirmPassword %}is-invalid{% endif %}" name="confirmPassword" type="password" placeholder="Nhập Lại Mật Khẩu" value="{{ input_data.confirmPassword }}">
                                       
                                       <button type="submit" class="btn btn-primary mt-3 mb-05 offset-5 shadow"><span class="font-weight03">Đăng Ký</span></button>

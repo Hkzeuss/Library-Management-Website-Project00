@@ -16,7 +16,7 @@
 
     <nav class="navbar navbar-expand-lg ">
         <div class="container-fluid">
-          <h2 class="navbar-brand ms-5 me-5 font-weight01"> <a class="no-underline" style="color: black;" href="#">VJULIB</a></h2>
+          <h2 class="navbar-brand ms-5 me-5 font-weight01"> <a class="no-underline" style="color: black;" href="/bookcase">VJULIB</a></h2>
     
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -26,7 +26,7 @@
             <ul class="navbar-nav me-auto offset-4 mb-2 mb-lg-0 font-weight01 ">
     
               <li class="nav-item">
-                <a class="nav-link active " aria-current="page" href="#">Trang Chủ</a>
+                <a class="nav-link active " aria-current="page" href="/bookcase">Trang Chủ</a>
               </li>
     
               <li class="nav-item">
@@ -34,7 +34,7 @@
               </li>
     
               <li class="nav-item">
-                <a class="nav-link" href="#">Nội Quy</a>
+                <a class="nav-link" href="/tabrules">Nội Quy</a>
               </li>
     
               <li class="nav-item dropdown">
@@ -42,22 +42,18 @@
                   Tủ Sách
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Best Seller</a></li>
-                  <li><a class="dropdown-item" href="#">Lịch Sử</a></li>
-                  <li><a class="dropdown-item" href="#">Tiểu Thuyết</a></li>
-                  <li><a class="dropdown-item" href="#">Khoa Học</a></li>
-                  <li><a class="dropdown-item" href="#">Kinh Doanh</a></li>
-                  <li><a class="dropdown-item" href="#">Lịch Sử</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Chính Trị</a></li>
+                  <li><a class="dropdown-item" href="/hitstory">Lịch Sử</a></li>
+                  <li><a class="dropdown-item" href="/geography">Địa lý</a></li>
+                  <li><a class="dropdown-item" href="/education">Giáo dục công dân</a></li>
+                  <li><a class="dropdown-item" href="/english">Tiếng anh</a></li>
                 </ul>
               </li>
             </ul>
     
-              <div class ="nav-tab-3">
-                <a href="register" class="register">Đăng ký</a>
-                <a href="login" class="login">Đăng nhập</a>
-              </div>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
     
           </div>
         </div>
