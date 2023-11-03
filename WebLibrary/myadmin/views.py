@@ -4,7 +4,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from book.models import Book
 from django import forms
 from .forms import CreateBookForm, CreateCategoryForm
-from student.models import CustomUser
+# from student.models import CustomUser
 from category.models import Category
 # Create your views here.
 

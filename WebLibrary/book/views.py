@@ -4,7 +4,7 @@ from django.views.generic import ListView, DetailView
 from django.views import View
 from .models import Book
 from category.models import Category
-from student.models import CustomUser
+# from student.models import CustomUser
 
 # Create your views here.
 class BookListView(ListView):
@@ -24,7 +24,7 @@ class HomeListView(ListView):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.all()[
             :5]
-        context['students'] = CustomUser.objects.all()[:5]
+        # context['students'] = CustomUser.objects.all()[:5]
         # context['student1'] = student
         # print(student.books)
         return context
@@ -79,10 +79,10 @@ class Search(View):
         books = Book.objects.filter(title__startswith=searchname)
         books = books | Book.objects.filter(author__startswith=searchname)
         students = []
-        if request.user.is_staff:
-            students = CustomUser.objects.filter(
-                first_name__startswith=searchname)
-        return render(request, 'book/search.html', {'students': students, 'books': books})
+        # if request.user.is_staff:
+        #     # students = CustomUser.objects.filter(
+        #         # first_name__startswith=searchname)
+        # return render(request, 'book/search.html', {'students': students, 'books': books})
 
     def get(self, request, *args, **kwargs):
 

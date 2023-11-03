@@ -1,6 +1,10 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from .models import Profile
+from django.forms.models import ModelForm
+from django.forms.widgets import FileInput
 
 class RegistrationForm(forms.Form):
     first_name = forms.CharField(max_length=20)
@@ -20,3 +24,12 @@ class RegistrationForm(forms.Form):
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
+
+class ProfileForm(ModelForm):
+    class Meta:
+        model = Profile
+        fields = '__all__'
+        exclude = ['user']
+        widgets = {
+            'profile_img': FileInput()
+        }

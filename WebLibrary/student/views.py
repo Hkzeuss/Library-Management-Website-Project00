@@ -4,17 +4,19 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.mail import send_mail
-from .models import OTP
-from .forms import LoginForm
+from .models import OTP, Profile
+from .forms import LoginForm, ProfileForm
 import random
 from django.contrib.auth import get_user_model
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_decode
 from django.urls import reverse
+from django.contrib.auth.forms import UserCreationForm
 
 def home(request):
     return render(request, 'student/home.html')
 
+@login_required(login_url='login')
 def homefanpage(request):
     return render(request, 'student/homefanpage.html')
 
@@ -94,7 +96,6 @@ def register(request):
         if error_messages:
             return render(request, 'student/register.html', {'error_messages':  error_messages, 'input_data': request.POST})
 
-
         # Tạo người dùng mới
         new_user = User.objects.create_user(username=studentID, email=email, password=password)
         new_user.first_name = firstName
@@ -103,7 +104,7 @@ def register(request):
 
         # Thông báo thành công và chuyển hướng
         messages.success(request, "Đăng ký thành công.")
-        return redirect('/login')
+        return redirect('login')
 
     return render(request, 'student/register.html')
 
@@ -183,3 +184,17 @@ def reset(request, token):
 
 def success(request):
     return render(request, 'student/succsesforgotpassword.html')
+
+@login_required(login_url='login')
+def profile(request):
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            new_firstName = request.POST.get("firstName")
+            new_lastName = request.POST.get("lastName")
+            messages.success(request, f'{new_firstName} {new_lastName}, Hồ sơ của bạn đã được cập nhật!')
+    else:
+        form = ProfileForm(instance=request.user.profile)
+    context = {'form':form}
+    return render(request, 'student/Profile.html', context)
