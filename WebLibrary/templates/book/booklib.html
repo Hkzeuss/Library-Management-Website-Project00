@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% load static  %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'student/bootstrap.css' %}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'student/styles.css' %}">
-    <title>VJULIB</title>
-  
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'book/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'book/styles1.css' %}">
+  <title>Tủ sách</title>
+
 </head>
-<body class="p-3 m-0 border-0 bd-example m-0 border-0 font-farmily01 ">
+<body >
   <nav class="navbar navbar-expand-lg ">
     <div class="container-fluid">
       <h2 class="navbar-brand ms-5 me-5 font-weight01"> <a class="no-underline" style="color: black;" href="/booklib">VJULIB</a></h2>
@@ -86,79 +86,84 @@
             </ul>
           </li>
         </form>
-
+          
+        </div>
       </div>
     </div>
 </nav>
 
-<header data-jarallax data-speed=".8">
+  <header data-jarallax data-speed=".8">
     <div class="d-flex flex-column min-vh-100 bg-black-50 pt-10 pt-md-8 pb-7 pb-md-0">
       <div class="container my-auto">
         <div class="row justify-content-center">
           <div class="col-12 col-md-8 col-lg-6 text-center">
-
-            <!-- Preheading -->
-            <h6 class="text-xs text-white-75">
-              <span class="text-primary">Vju</span> <span class="text-white">/ Library</span>
-            </h6>
-
-            <!-- Heading -->
-            <h1 class="display-1 text-white mb-4 " style="font-weight: 500;"> <!-- class: text-white-->
-              VJULIB
-            </h1>
-
-            <!-- Subheading -->
-            <p class="text-center text-white-75 mb-7 text-white font-weight03" styles="">
-                Chào mừng bạn đến với VJULIB! Chúng tôi tự hào mang đến cho bạn một kho tài liệu đa dạng và phong phú, được tập hợp và curation một cách kỹ lưỡng
-                để đáp ứng tốt nhất cho nhu cầu của bạn trong việc học tập và nghiên cứu.
-            </p>
-
-            <!-- Button -->
-            <a class="btn btn-outline-primary text-white text-primary-hover mb-7 mb-md-0" href="/booklib">
-              <span class="font-weight03">Đọc Ngay</span>
-            </a>
-
-          </div>
+            <div>
+              <img src="{% static 'images/background/Background_1.jpg' %}" alt="..."  class="child-background"></img>
+            </div>
         </div>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md">
-
-            <!-- Social links -->
-            <ul class="list-inline text-center text-md-start mb-3 my-md-5">
-              <li class="list-inline-item">
-                <a class="text-white-75 text-primary-hover" href="#!">
-                  <i class="fab fa-twitter"></i>
-                </a>
-              </li>
-              <li class="list-inline-item ms-5">
-                <a class="text-white-75 text-primary-hover" href="#!">
-                  <i class="fab fa-facebook-f"></i>
-                </a>
-              </li>
-              <li class="list-inline-item ms-5">
-                <a class="text-white-75 text-primary-hover" href="#!">
-                  <i class="fab fa-instagram"></i>
-                </a>
-              </li>
-            </ul>
-
-          </div>
-          <div class="col-md">
-
-            <!-- Address -->
-            <p class="font-serif text-white-75 text-center text-md-end text-lg-end my-md-5">
-              <i class="fas fa-map-marker-alt text-primary me-3"></i> 1234 Dining Str., Los Angeles, CA 12345-0000
-            </p>
-
-          </div>
+        <div class="font-color01 position-absolute col-md-4 me-7">
+          <h4>Chào mừng bạn đến với <a class="no-underline font-weight01" href="/booklib">VJULIB</a>! Chúng tôi tự hào mang đến cho bạn một kho tài liệu đa dạng và phong phú, được tập hợp và curation một cách kỹ lưỡng để đáp ứng tốt nhất cho nhu cầu của bạn trong việc học tập và nghiên cứu.</h4>  
         </div>
       </div>
     </div>
   </header>
-    
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>   
+    <section class="mar-1">
+        <div>
+          <h1 class="co-0">Không gian thoáng mát</h1>
+          <div class="row row-cols-1 row-cols-md-3 g-4 ms-5 me-5">
+            <div class="col">
+              <div class="card h-100">
+                <img src="{% static 'images/background/Background_1.jpg' %}" class="card-img-top" alt="...">
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100">
+                <img src="{% static 'images/background/Background_2.jpg' %}" class="card-img-top" alt="...">
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card h-100">
+                <img src="{% static 'images/background/Background_3.jpg' %}" class="card-img-top" alt="...">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+        
+          <br><br>
+            <div class="te-de">
+              {% for category in latest_categories %}
+                  <a href="{% url 'category_detail' pk=category.pk %}">
+                      <h1 class="co-1">{{ category.category_id }}</h1>
+                  </a>
+              {% endfor %}
+
+              <div class="container">
+                <div class="row row-cols-1 row-cols-md-4 g-4 ms-3 me-3">
+                    {% for book in latest_books %}
+                        <div class="col">
+                            <div class="card h-100">
+                                <a href="{% url 'book_detail' pk=book.pk %}" style="height: 300px;">
+                                    <img src="{{ book.img.url }}" class="card-img-top" alt="{{ book.title }}" >
+                                </a>
+                                <div class="te-de">
+                                    <a href="{% url 'book_detail' pk=book.pk %}">
+                                        <h5 class="card-title">{{ book.title }}</h5>
+                                        <p class="card-text">{{ book.author }}</p>
+                                        <p class="card-text">{{ book.translater }}</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+              </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>  
 </body>
 </html>

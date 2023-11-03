@@ -20,7 +20,7 @@
 
   <nav class="navbar navbar-expand-lg ">
     <div class="container-fluid">
-      <h2 class="navbar-brand ms-5 me-5 font-weight01"> <a class="no-underline" style="color: black;" href="/bookcase">VJULIB</a></h2>
+      <h2 class="navbar-brand ms-5 me-5 font-weight01"> <a class="no-underline" style="color: black;" href="/booklib">VJULIB</a></h2>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -30,11 +30,11 @@
         <ul class="navbar-nav me-auto offset-4 mb-2 mb-lg-0 font-weight01 ">
 
           <li class="nav-item">
-            <a class="nav-link active " aria-current="page" href="/bookcase">Trang Chủ</a>
+            <a class="nav-link active " aria-current="page" href="/booklib">Trang Chủ</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="#">Giới Thiệu</a>
+            <a class="nav-link" href="/introduce">Giới Thiệu</a>
           </li>
 
           <li class="nav-item">
@@ -46,17 +46,49 @@
               Tủ Sách
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/hitstory">Lịch Sử</a></li>
-              <li><a class="dropdown-item" href="/geography">Địa lý</a></li>
-              <li><a class="dropdown-item" href="/education">Giáo dục công dân</a></li>
-              <li><a class="dropdown-item" href="/english">Tiếng anh</a></li>
+              <li><a class="dropdown-item" href="#">Lịch Sử</a></li>
+              <li><a class="dropdown-item" href="#">Địa lý</a></li>
+              <li><a class="dropdown-item" href="#">Giáo dục công dân</a></li>
+              <li><a class="dropdown-item" href="#">Tiếng anh</a></li>
             </ul>
           </li>
         </ul>
 
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+
+          <li class="nav-item dropdown list-unstyled btn-group">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="{% static 'images/background/library.jpg' %}" alt="..." style="border-radius: 25px; width: 40px; height: 40px; object-fit: cover;">
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" style="font-family: 'Montserrat' ">
+              
+              <li>
+                <a class="dropdown-item " href="#">
+                  <i class='bx bxs-user-circle' style="font-size: 30px; position: relative; top: 7px; color: #1C1E21;"></i>
+                  <span style="font-weight: 500;">Trang cá nhân</span>
+                  <span style=" width: 10px; height: 10px;border: solid #333; border-width: 0 2px 2px 0; display: inline-block; transform: rotate(-45deg); margin-left: 5px; margin-left: 5.25rem;">
+                  </span>
+                </a>
+              </li>
+
+              <li>
+                <a class="dropdown-item " href="#">
+                  <i class='bx bx-cog' style="font-size: 30px; position: relative; top: 7px; color: #1C1E21;"></i> 
+                  <span style="font-weight: 500;">Cài đặt & quyền riêng tư </span>
+                  <span style=" width: 10px; height: 10px;border: solid #333; border-width: 0 2px 2px 0; display: inline-block; transform: rotate(-45deg); margin-left: 5px;">
+                  </span>
+                </a>
+              </li>
+              
+              <li>
+                <a class="dropdown-item" href="/logout">
+                  <i class='bx bx-log-out bx-flip-horizontal' style="font-size: 30px; position: relative; top: 7px; color: #1C1E21;"></i>
+                  <span style="font-weight: 500;">Đăng xuất</span>
+                </a>
+              </li>
+            </ul>
+          </li>
         </form>
       </div>
     </div>
@@ -72,9 +104,9 @@
           </div>
       </div>
       <div class="font-color01 position-absolute col-md-4 me-7">
-        <h4>Chào mừng bạn đến với <a class="no-underline font-weight01" href="/bookcase">VJULIB</a>! Chúng tôi tự hào mang đến cho bạn một kho tài liệu đa dạng và phong phú, được tập hợp và curation một cách kỹ lưỡng để đáp ứng tốt nhất cho nhu cầu của bạn trong việc học tập và nghiên cứu.</h4>  
+        <h4>Chào mừng bạn đến với <a class="no-underline font-weight01" href="#">VJULIB</a>! Chúng tôi tự hào mang đến cho bạn một kho tài liệu đa dạng và phong phú, được tập hợp và curation một cách kỹ lưỡng để đáp ứng tốt nhất cho nhu cầu của bạn trong việc học tập và nghiên cứu.</h4>  
       </div>
-      
+
     </div>
   </div>
 </header>

@@ -39,9 +39,14 @@ class CreateBookForm(forms.ModelForm):
             'description': '',
             'category': '',
             'img': '',
-
-
         }
+
+        def __init__(self, *args, **kwargs):
+            super(CreateBookForm, self).__init__(*args, **kwargs)
+            try:
+                self.fields['category'].queryset = Category.objects.all()
+            except:
+                self.fields['category'].queryset = Category.objects.none()
 
 
 class CreateCategoryForm(forms.ModelForm):
@@ -64,6 +69,4 @@ class CreateCategoryForm(forms.ModelForm):
         labels = {
             'title': '',
             'img': '',
-
-
         }

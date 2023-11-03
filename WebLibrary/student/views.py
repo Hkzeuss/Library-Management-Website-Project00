@@ -107,7 +107,7 @@ def register(request):
 
         # Thông báo thành công và chuyển hướng
         messages.success(request, "Đăng ký thành công.")
-        return redirect('/login')
+        return redirect('login')
 
     return render(request, 'student/register.html')
 
