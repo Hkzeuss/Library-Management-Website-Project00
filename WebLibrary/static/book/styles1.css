@@ -170,3 +170,17 @@ text-decoration: none;
 .me-7{
 margin-right: 50%;
 }
+
+.next-icon{
+  width: 10px;
+  height: 10px;
+  border: solid #333;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  transform: rotate(-45deg);
+  margin-left: 5px;
+}
+
+.next-icon-ma{
+  margin-left: 5.25rem;
+}

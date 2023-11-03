@@ -78,6 +78,10 @@ def register(request):
         # Kiểm tra định dạng email
         if not email.endswith('@st.vju.ac.vn'):
             error_messages['invalid_email'] = "'@st.vju.ac.vn'"
+        
+        email_prefix = email.split('@')[0]
+        if email_prefix != studentID:
+            error_messages['email_prefix_mismatch'] = "Đầu email phải giống với Student ID"
 
         # Kiểm tra kích thước mật khẩu
         if not 8 <= len(password) <=16:

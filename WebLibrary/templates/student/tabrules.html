@@ -1,86 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="/Library-Management-Website-Project00/WebLibrary/static/student/bootstrap.css">
-    <link rel="stylesheet" href="/Library-Management-Website-Project00/WebLibrary/static/student/styles.css">
+    <!-- <link rel="stylesheet" href="/Library-Management-Website-Project00/WebLibrary/static/student/bootstrap.css">
+    <link rel="stylesheet" href="/Library-Management-Website-Project00/WebLibrary/static/student/styles.css"> -->
+    <link rel="stylesheet" href="{% static 'student/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'student/styles1.css' %}">
+
     <title>Tab Rules </title>
 
 </head>
 <body class="p-3 m-0 border-0 bd-example m-0 border-0 font-farmily01 ">
 
-    <nav class="navbar navbar-expand-lg ">
-        <div class="container-fluid">
-          <h2 class="navbar-brand ms-5 me-5 font-weight01"> <a class="no-underline" style="color: black;" href="/bookcase">VJULIB</a></h2>
-    
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-    
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto offset-4 mb-2 mb-lg-0 font-weight01 ">
-    
-              <li class="nav-item">
-                <a class="nav-link active " aria-current="page" href="/bookcase">Trang Chủ</a>
-              </li>
-    
-              <li class="nav-item">
-                <a class="nav-link" href="#">Giới Thiệu</a>
-              </li>
-    
-              <li class="nav-item">
-                <a class="nav-link" href="/tabrules">Nội Quy</a>
-              </li>
-    
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Tủ Sách
+  <nav class="navbar navbar-expand-lg ">
+    <div class="container-fluid">
+      <h2 class="navbar-brand ms-5 me-5 font-weight01"> <a class="no-underline" style="color: black;" href="/booklib">VJULIB</a></h2>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto offset-4 mb-2 mb-lg-0 font-weight01 ">
+
+          <li class="nav-item">
+            <a class="nav-link active " aria-current="page" href="/booklib">Trang Chủ</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/introduce">Giới Thiệu</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/tabrules">Nội Quy</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Tủ Sách
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Lịch Sử</a></li>
+              <li><a class="dropdown-item" href="#">Địa lý</a></li>
+              <li><a class="dropdown-item" href="#">Giáo dục công dân</a></li>
+              <li><a class="dropdown-item" href="#">Tiếng anh</a></li>
+            </ul>
+          </li>
+        </ul>
+
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+
+          <li class="nav-item dropdown list-unstyled btn-group">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="{% static 'images/background/library.jpg' %}" alt="..." style="border-radius: 25px; width: 40px; height: 40px; object-fit: cover;">
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" style="font-family: 'Montserrat' ">
+              
+              <li>
+                <a class="dropdown-item " href="#">
+                  <i class='bx bxs-user-circle' style="font-size: 30px; position: relative; top: 7px; color: #1C1E21;"></i>
+                  <span style="font-weight: 500;">Trang cá nhân</span>
+                  <span style=" width: 10px; height: 10px;border: solid #333; border-width: 0 2px 2px 0; display: inline-block; transform: rotate(-45deg); margin-left: 5px; margin-left: 5.25rem;">
+                  </span>
                 </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="/hitstory">Lịch Sử</a></li>
-                  <li><a class="dropdown-item" href="/geography">Địa lý</a></li>
-                  <li><a class="dropdown-item" href="/education">Giáo dục công dân</a></li>
-                  <li><a class="dropdown-item" href="/english">Tiếng anh</a></li>
-                </ul>
+              </li>
+
+              <li>
+                <a class="dropdown-item " href="#">
+                  <i class='bx bx-cog' style="font-size: 30px; position: relative; top: 7px; color: #1C1E21;"></i> 
+                  <span style="font-weight: 500;">Cài đặt & quyền riêng tư </span>
+                  <span style=" width: 10px; height: 10px;border: solid #333; border-width: 0 2px 2px 0; display: inline-block; transform: rotate(-45deg); margin-left: 5px;">
+                  </span>
+                </a>
+              </li>
+              
+              <li>
+                <a class="dropdown-item" href="/logout">
+                  <i class='bx bx-log-out bx-flip-horizontal' style="font-size: 30px; position: relative; top: 7px; color: #1C1E21;"></i>
+                  <span style="font-weight: 500;">Đăng xuất</span>
+                </a>
               </li>
             </ul>
-    
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-    
+          </li>
+        </form>
+      </div>
+    </div>
+</nav>
+
+<header data-jarallax data-speed=".8">
+  <div class="d-flex flex-column min-vh-100 bg-black-50 pt-10 pt-md-8 pb-7 pb-md-0">
+    <div class="container my-auto">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6 text-center">
+          <div>
+            <img src="{% static 'images/background/Background_1.jpg' %}" alt="..."  class="child-background"></img>
           </div>
-        </div>
-    </nav>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
-    <nav>
-      <img src="/Library-Management-Website-Project00/WebLibrary/static/images/tải xuống.jpg" width="1300" height="600" >
-    </nav>
-    <nav>
-        <h2 class="text-align-center ">Nội Quy Thư Viện Trường Đại Học Việt Nhật </h2>
-        <div>
-        <p class="rule">Điều 1: Thẻ thư viện (Library card)</p>
-            <dt class="font-farmily01">Thẻ sinh viên / nhân viên đồng thời là thẻ thư viện để sử dụng các dịch vụ của thư viện.</dt>
-        <p class="rule">Điều 2: Giờ mở cửa
+      </div>
+      <div class="font-color01 position-absolute col-md-4 me-7">
+        <h4>Chào mừng bạn đến với <a class="no-underline font-weight01" href="#">VJULIB</a>! Chúng tôi tự hào mang đến cho bạn một kho tài liệu đa dạng và phong phú, được tập hợp và curation một cách kỹ lưỡng để đáp ứng tốt nhất cho nhu cầu của bạn trong việc học tập và nghiên cứu.</h4>  
+      </div>
+
+    </div>
+  </div>
+</header>
+<section>
+    <br><br>
+    <div>
+        <h1 class="text-align-center ">Nội Quy Thư Viện Trường Đại Học Việt Nhật </h1>
+        <div class="co-1 font-weight04 ms-6 ms-7">
+        <p>Điều 1: Thẻ thư viện (Library card)</p>
+            <dt class="font-farmily01 ">Thẻ sinh viên / nhân viên đồng thời là thẻ thư viện để sử dụng các dịch vụ của thư viện.</dt>
+        <p  >Điều 2: Giờ mở cửa
             <dt class="font-farmily01">Thứ Hai – Thứ Sáu: 8h15 – 18h30</dt>
             <dt class="font-farmily01">Cuối tuần: 8h00 – 12h00, 13h00 – 17h00 </dt>
         </p>
-        <p class="rule">Điều 3: Các dịch vụ của Thư viện
+        <p>Điều 3: Các dịch vụ của Thư viện
             <dt class="font-farmily01">3.1. Mượn, trả, gia hạn tài liệu;</dt> 
             <dt lass="font-farmily01">3.2. Hướng dẫn tìm tin và sử dụng thư viện;</dt>
             <dt class="font-farmily01">3.3. Tìm kiếm và tư vấn thông tin;</dt>
-            <dt class="font-farmily01"> 3.4. Truy cập nguồn tài nguyên điện tử;</dt>
+            <dt class="font-farmily01"> 3.4. Truy cập nguồn tài nguyên điện tửrulecl;</dt>
             <dt class="font-farmily01">3.5. Tiếp nhận đề nghị đặt mua tài liệu;</dt>
             <dt class="font-farmily01"> 3.6. Mượn liên thư viện;</dt>
             <dt class="font-farmily01"> 3.7. Phòng học nhóm.</dt>
         </p>    
-        <p class="rule">Điều 4: Các quy định chung khi vào thư viện
+        <p>Điều 4: Các quy định chung khi vào thư viện
             <dt class="font-farmily01">4.1. Xuất trình thẻ thư viện khi giao dịch với Thư viện. Không dùng thẻ của người khác và không cho người khác mượn thẻ của mình;</dt>
             <dt class="font-farmily01"> 4.2. Giữ gìn trật tự, đi nhẹ, nói khẽ;</dt>
             <dt class="font-farmily01">4.3. Giữ gìn vệ sinh chung: không hút thuốc lá, không viết, vẽ lên mặt bàn, không ngồi gác chân lên ghế, bỏ rác đúng nơi quy định;</dt>
@@ -90,7 +140,7 @@
             <dt class="font-farmily01"> 4.7. Không gập hoặc làm nhàu nát, rách sách;</li>
             <dt class="font-farmily01">4.8. Không để sách bị ẩm ướt, mốc hoặc hư hỏng dưới bất kỳ hình thức nào.</dt>
         </p>    
-        <p class="rule">Điều 5: Quy định khi mượn/trả tài liệu
+        <p>Điều 5: Quy định khi mượn/trả tài liệu
             <dt class="">5.1. Sau khi đọc sách xong, bạn đọc đặt sách về khu vực đã được quy định, không tự ý xếp sách lên giá;</dt>
             <dt class="font-farmily01">5.2. Không mang bất cứ tài liệu nào ra khỏi thư viện khi chưa làm thủ tục mượn về;</dt>
             <dt class="font-farmily01">5.3. Đối với giáo trình, tài liệu học tập: Mỗi sinh viên được mượn 1 bộ giáo trình, tài liệu dùng cho kỳ học hiện tại theo danh sách lớp của phòng Đào tạo. Những tài liệu giáo trình này, bạn đọc được gia hạn tối đa 1 tuần khi có lý do hợp lý;</dt>
@@ -100,25 +150,27 @@
             <dt class="font-farmily01">5.6.1 Kiểm tra và xác nhận quá trình giao dịch với thủ thư ngay tại quầy;</dt>
             <dt class="font-farmily01">5.6.2 Kiểm tra tình trạng thực tế của tài liệu đã được ghi mượn trước khi mang ra khỏi thư viện, đồng thời giữ gìn, bảo quản tài liệu trong thời gian mượn. Khi phát hiện hư hỏng, người mượn cuối cùng của tài liệu đó sẽ chịu trách nhiệm bồi thường theo quy định.</dt>
         </p>    
-        <p class="rule">Điều 6: Xử lý vi phạm nội quy thư viện
+        <p  >Điều 6: Xử lý vi phạm nội quy thư viện
             <dt class="font-farmily01"> 6.1 Bạn đọc vi phạm các quy định tại Điều 4, 5 tùy theo mức độ và lần vi phạm có thể bị nhắc nhở, khiển trách và mời ra khỏi thư viện; lập biên bản cảnh cáo, tạm ngừng sử dụng các dịch vụ thư viện hoặc sẽ bị tước quyền sử dụng các dịch vụ thư viện vĩnh viễn, tạm thời đình chỉ học tập hoặc buộc thôi học;</dt>
             <dt class="font-farmily01">6.2 Trường hợp làm hư hại (như long bìa, nhàu nát, bôi bẩn, viết, vẽ, mất trang...) hoặc mất tài liệu, bạn đọc phải bồi thường thiệt hại tương đương với giá trị của tài liệu;</dt>
             <dt class="font-farmily01">6.3 Trường hợp mượn tài liệu quá hạn sẽ phải chịu tiền phạt là: 5.000 đồng/ngày/1 cuốn kể cả ngày nghỉ</dt>
             <dt class="font-farmily01">6.4 Trong bất cứ trường hợp vi phạm nào, bạn đọc phải đền bù thiệt hại theo quy định.</dt>
         </p>
-        <dd class="rule-01 rule">PHÒNG THÔNG TIN - THƯ VIỆN</dd>
+        <dd class="offset-9">PHÒNG THÔNG TIN - THƯ VIỆN</dd>
       
     </div>
-    </nav>
-    <nav>
-      <h2 class="text-align-center "> LIBRARY REGULATIONS </h2>
+    </div>
+
+    <br><br>
     <div>
-      <p class="rule">Article 1: How to get library card? </p>
+      <h1 class="text-align-center "> LIBRARY REGULATIONS </h1>
+    <div class="co-1 font-weight04 ms-6 ms-7">
+      <p>Article 1: How to get library card? </p>
           <dt class="font-farmily01">Your student ID card is your Library card. Use your Student or Staff ID card to access Library services and resources.</dt>
-      <p class="rule">Article 2: Opening hours </p>
+      <p>Article 2: Opening hours </p>
           <dt class="font-farmily01"> Monday - Friday: 8:15 – 18:30</dt>
           <dt class="font-farmily01">Weekend: 8:00 – 12:00, 13:00 – 17:00 </dt>
-      <p class="rule">Article 3: Library services: </p>
+      <p>Article 3: Library services: </p>
           <dt class="font-farmily01">3.1 Circulation; </dt>
           <dt class="font-farmily01"> 3.2 Seeking information;</dt>
           <dt class="font-farmily01">3.3 Information consulting; </dt>
@@ -126,7 +178,7 @@
           <dt class="font-farmily01">3.5 Request materials; </dt>
           <dt class="font-farmily01">3.6 Interlibrary loan; </dt>
           <dt class="font-farmily01">3.7 Group work rooms. </dt>
-      <p class="rule">Article 4: General regulations </p>
+      <p>Article 4: General regulations </p>
           <dt class="font-farmily01">4.1 Patrons must present a valid card to enter library. Cards are non-transferrable; </dt>
           <dt class="font-farmily01"> 4.2 Loud conversation is forbidden throughout the Library; </dt>
           <dt class="font-farmily01">4.3 Please consciously keep the library clean, no smoking, no graffiti, no littering ...; </dt>
@@ -135,7 +187,7 @@
           <dt class="font-farmily01"> 4.6 Do not use pencils, pens or highlighters in the book; </dt>
           <dt class="font-farmily01"> 4.7 Do not bend or tear the pages of the book; </dt>
           <dt class="font-farmily01">4.8 Do not let it get wet or mouldy or damaged in any way. </dt>
-      <p class="rule">Article 5: Circulation policies </p>
+      <p>Article 5: Circulation policies </p>
           <dt class="font-farmily01">5.1 Place books on designed area after finishing. Do not arrange books on shelf freely; </dt>
           <dt class="font-farmily01">5.2 Materials may not be taken out of the FPT university library without permission of the Librarian; </dt>
           <dt class="font-farmily01">5.3 Textbook for semester/block: Textbook are delivered according to academic calendar. Textbooks can only be renewed up to 1 week when you having suitable reasons; </dt>
@@ -144,14 +196,18 @@
           <dt class="font-farmily01">5.6 Patrons should: </dt>
           <dt class="font-farmily01"> 5.6.1 Check list of books borrowed and confirm with librarian; </dt>
           <dt class="font-farmily01">5.6.2 Make sure book condition notes at the end of your borrowed books are updated. You are responsible for the condition of everything while it is on loan to you. Please take good care of books or you pay for the damage according to the regulation.</dt>
-      <p class="rule">Article 6: Fines and penalty </p>
+      <p>Article 6: Fines and penalty </p>
       
           <dt class="font-farmily01">6.1 Patrons who violate regulations mentioned in article 4 and 5 may get reminded, punished or requested to leave the library based on the violation level. Librarian may take the initial to write violation report, stop providing library services to those who break the law. In the worst situation, those students may get expelled from the university; </dt>
           <dt class="font-farmily01"> 6.2 Damaged items which can be used will occur an amount depend on how serious of damage. The book is lost or damaged beyond repair, you have to buy this book;</dt>
           <dt class="font-farmily01">6.3 Overdue books will be fined 5000 VNĐ/1 item/1 day including day off;</dt>
           <dt class="font-farmily01">6.4 In any situation, patrons have to compensate for damage as prescribed </dt>
+          <dd class="offset-8">INFORMATION AND LIBRARY CENTER</dd>
+        </div>
+          
     </div>
-          <dd class="rule-01 rule">INFORMATION AND LIBRARY CENTER</dd>
-    </nav>
+</section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
+
 </body>
 </html>

@@ -18,9 +18,10 @@ class RegistrationForm(forms.Form):
         cleaned_data = super().clean()
         password = cleaned_data.get('password')
         confirm_password = cleaned_data.get('confirm_password')
-        student_id = cleaned_data.get('student_id')
-        email = cleaned_data.get('email')
 
+        if password and confirm_password and password != confirm_password:
+            raise ValidationError('Passwords do not match')
+ 
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
