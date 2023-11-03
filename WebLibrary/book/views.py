@@ -158,3 +158,6 @@ def english_8(request):
 
 def english_9(request):
     return render(request, "book/english_9.html")
+
+def introduce(request):
+    return render(request, "student/introduce.html")

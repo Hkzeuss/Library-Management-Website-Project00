@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'book/bootstrap.css' %}">
   <link rel="stylesheet" href="{% static 'book/styles1.css' %}">
@@ -29,7 +30,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="#">Giới Thiệu</a>
+            <a class="nav-link" href="/introduce">Giới Thiệu</a>
           </li>
 
           <li class="nav-item">
@@ -49,11 +50,43 @@
           </li>
         </ul>
 
-        <div class ="nav-tab-3">
-          <!-- <form class="d-flex" role="search">
-          <input class="form-control me-" type="search" placeholder="Search" aria-label="Search"> -->
-          <a href="{% url 'logout' %}" class="login">Đăng xuất</a>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+
+          <li class="nav-item dropdown list-unstyled btn-group">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="{% static 'images/background/library.jpg' %}" alt="..." style="border-radius: 25px; width: 40px; height: 40px; object-fit: cover;">
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" style="font-family: 'Montserrat' ">
+              
+              <li>
+                <a class="dropdown-item " href="#">
+                  <i class='bx bxs-user-circle' style="font-size: 30px; position: relative; top: 7px; color: #1C1E21;"></i>
+                  <span style="font-weight: 500;">Trang cá nhân</span>
+                  <span style=" width: 10px; height: 10px;border: solid #333; border-width: 0 2px 2px 0; display: inline-block; transform: rotate(-45deg); margin-left: 5px; margin-left: 5.25rem;">
+                  </span>
+                </a>
+              </li>
+
+              <li>
+                <a class="dropdown-item " href="#">
+                  <i class='bx bx-cog' style="font-size: 30px; position: relative; top: 7px; color: #1C1E21;"></i> 
+                  <span style="font-weight: 500;">Cài đặt & quyền riêng tư </span>
+                  <span style=" width: 10px; height: 10px;border: solid #333; border-width: 0 2px 2px 0; display: inline-block; transform: rotate(-45deg); margin-left: 5px;">
+                  </span>
+                </a>
+              </li>
+              
+              <li>
+                <a class="dropdown-item" href="/logout">
+                  <i class='bx bx-log-out bx-flip-horizontal' style="font-size: 30px; position: relative; top: 7px; color: #1C1E21;"></i>
+                  <span style="font-weight: 500;">Đăng xuất</span>
+                </a>
+              </li>
+            </ul>
+          </li>
         </form>
+
           
         </div>
       </div>

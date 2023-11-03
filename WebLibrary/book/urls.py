@@ -32,7 +32,7 @@ urlpatterns = [
     path('english_6/',views.english_6, name='english_6'),
     path('english_7/',views.english_7, name='english_7'),
     path('english_8/',views.english_8, name='english_8'),
-    path('english_9/',views.english_9, name='english_9')
-
+    path('english_9/',views.english_9, name='english_9'),
+    path('introduce/',views.introduce, name='introduce')
 
 ]
