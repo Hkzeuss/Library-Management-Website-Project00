@@ -120,6 +120,36 @@ header {
     color: red !important;
     text-align: center !important;
     margin-bottom: 10px !important;
+  }   
+.profile-name{
+    color:black;
+    padding: 8px 15px;
+    top: -5px;
+    width: 200px;
+    height: 20px;
+}
+.profile-avatar{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.next-icon{
+    width: 10px;
+    height: 10px;
+    border: solid #333;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    transform: rotate(-45deg);
+    margin-left: 5px;
+  }
+  
+  .next-icon-ma{
+    margin-left: 5.25rem;
+  }
+  .profile-content {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Khoảng cách giữa các phần tử con */
   }
   .rounded-circle {
     width: 100px; /* Điều chỉnh kích thước theo nhu cầu của bạn */

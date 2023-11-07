@@ -88,10 +88,10 @@
                                       {% endif %}
                                       <div class="row mb-3">
                                           <div class="col-md-6">
-                                              <input class="form-control mb-0 mt-3 shadow-sm {% if error_messages.firstName %}is-invalid{% endif %}" name="firstName" type="text" placeholder="First Name" value="{{ input_data.firstName }}">
+                                              <input class="form-control mb-0 mt-3 shadow-sm {% if error_messages.firstName %}is-invalid{% endif %}" name="firstName" type="text" placeholder="Họ" value="{{ input_data.firstName }}">
                                           </div>
                                           <div class="col-md-6">
-                                              <input class="form-control mb-0 mt-3 shadow-sm {% if error_messages.lastName %}is-invalid{% endif %}" name="lastName" type="text" placeholder="Last Name" value="{{ input_data.lastName }}">
+                                              <input class="form-control mb-0 mt-3 shadow-sm {% if error_messages.lastName %}is-invalid{% endif %}" name="lastName" type="text" placeholder="Tên" value="{{ input_data.lastName }}">
                                           </div>
                                       </div>
                                       
@@ -100,7 +100,7 @@
                                             {{ error_messages.studentID_exists }}
                                           </div>
                                       {% endif %} -->
-                                      <input class="form-control mb-3 shadow-sm {% if error_messages.studentID %}is-invalid{% endif %}" name="studentID" type="number" placeholder="Student ID" value="{{ input_data.studentID }}">
+                                      <input class="form-control mb-3 shadow-sm {% if error_messages.studentID %}is-invalid{% endif %}" name="studentID" type="number" placeholder="Mã sinh viên" value="{{ input_data.studentID }}">
                                       
                                       <!-- {% if error_messages.email_exists %}
                                           <div class="invalid-feedback">
