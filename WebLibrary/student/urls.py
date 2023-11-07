@@ -11,5 +11,7 @@ urlpatterns = [
     path('forgot/', views.forgot, name="forgot"),
     path('confirm/', views.confirm, name="confirm"),
     path('reset/<str:token>/', views.reset, name="reset"),
-    path('success/', views.success, name="success")
+    path('success/', views.success, name="success"),
+    path('profile', views.profile, name="profile"),
+    path('editprofile', views.edit_profile, name="editprofile")
 ]

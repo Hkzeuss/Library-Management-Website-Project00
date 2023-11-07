@@ -3,10 +3,12 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 from category.models import Category
 from WebLibrary import settings
+from django.contrib.auth.models import User
 # Create your models here.
 
 
 class Book(models.Model):
+    student = models.OneToOneField(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     author = models.CharField(max_length=200)
     translater = models.CharField(max_length=200,null=True)
@@ -20,7 +22,7 @@ class Book(models.Model):
     student = models.ForeignKey(
         get_user_model(), on_delete=models.SET_NULL, related_name="books", null=True, blank=True)
     description = models.TextField()
-    img = models.ImageField(upload_to='book/images/', )
+    img = models.ImageField(default='book/images/Background_1.jpg', upload_to='book/images/', null=True, blank=True)
     status = models.CharField(
         max_length=10,
         choices=[

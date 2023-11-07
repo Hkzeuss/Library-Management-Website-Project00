@@ -147,7 +147,7 @@
                         <div class="col">
                             <div class="card h-100">
                                 <a href="{% url 'book_detail' pk=book.pk %}" style="height: 300px;">
-                                    <img src="{{ book.img.url }}" class="card-img-top" alt="{{ book.title }}" >
+                                    <img src="{{ user.book.img.url }}" class="card-img-top" alt="{{ book.title }}" >
                                 </a>
                                 <div class="te-de">
                                     <a href="{% url 'book_detail' pk=book.pk %}">

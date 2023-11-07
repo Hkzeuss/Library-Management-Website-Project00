@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'book',
     'myadmin',
     'category',
+    'userprofile',
 ]
 
 MIDDLEWARE = [
@@ -84,7 +85,10 @@ DATABASES = {
         'NAME':'student',
         'USER':'root',
         'HOST':'localhost',
-        'PORT':'3306'
+        'PORT':'3306',
+        'OPTIONS': {
+            'sql_mode': 'STRICT_TRANS_TABLES',
+        },
     }
 }
 

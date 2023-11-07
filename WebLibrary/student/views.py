@@ -11,6 +11,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_decode
 from django.urls import reverse
+from userprofile.views import profile, edit_profile
 
 def home(request):
     return render(request, 'student/home.html')
@@ -187,3 +188,4 @@ def reset(request, token):
 
 def success(request):
     return render(request, 'student/succsesforgotpassword.html')
+

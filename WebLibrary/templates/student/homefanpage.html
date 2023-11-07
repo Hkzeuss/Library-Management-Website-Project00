@@ -51,16 +51,15 @@
         </ul>
 
         <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-
           <li class="nav-item dropdown list-unstyled btn-group">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="{% static 'images/background/library.jpg' %}" alt="..." style="border-radius: 25px; width: 40px; height: 40px; object-fit: cover;">
+            <p style="margin-left:40px" class="profile-name font-weight03">{{request.user.first_name}} {{request.user.last_name}}</p>
+            <a class="profile-content nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="{{ user.profile.profile_img.url }}" alt="..." style="border-radius: 25px; width: 30px; height: 30px; object-fit: cover; margin-right:-5px">
             </a>
             <ul class="dropdown-menu dropdown-menu-end" style="font-family: 'Montserrat' ">
               
               <li>
-                <a class="dropdown-item " href="#">
+                <a class="dropdown-item " href="/profile">
                   <i class='bx bxs-user-circle' style="font-size: 30px; position: relative; top: 7px; color: #1C1E21;"></i>
                   <span style="font-weight: 500;">Trang cá nhân</span>
                   <span style=" width: 10px; height: 10px;border: solid #333; border-width: 0 2px 2px 0; display: inline-block; transform: rotate(-45deg); margin-left: 5px; margin-left: 5.25rem;">
@@ -69,7 +68,7 @@
               </li>
 
               <li>
-                <a class="dropdown-item " href="#">
+                <a class="dropdown-item " href="/editprofile">
                   <i class='bx bx-cog' style="font-size: 30px; position: relative; top: 7px; color: #1C1E21;"></i> 
                   <span style="font-weight: 500;">Cài đặt & quyền riêng tư </span>
                   <span style=" width: 10px; height: 10px;border: solid #333; border-width: 0 2px 2px 0; display: inline-block; transform: rotate(-45deg); margin-left: 5px;">
