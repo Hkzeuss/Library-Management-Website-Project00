@@ -42,10 +42,13 @@
               Tủ Sách
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Lịch Sử</a></li>
-              <li><a class="dropdown-item" href="#">Địa lý</a></li>
-              <li><a class="dropdown-item" href="#">Giáo dục công dân</a></li>
-              <li><a class="dropdown-item" href="#">Tiếng anh</a></li>
+              {% for category in latest_categories %}
+              <li>
+                <a class="dropdown-item" href="{% url 'category_detail' pk=category.pk %}">
+                  {{ category.title }}
+                </a>
+              </li>
+              {% endfor %}
             </ul>
           </li>
         </ul>
@@ -110,27 +113,36 @@
 
   <section class="py-5">
 
-    <div class="container">
+    <html class="container">
     <div class="row">
         <div class="col-md-5 mb-06">
 
             <div class="user-image me-06">
-                <img src="{{ selected_book.img.url }}" alt="{{ selected_book.title }}" style=" height: 450px; width: 400px; margin-right: 0;">
+                <img src="{{ selected_book.img.url }}" alt="{{ selected_book.title }}" style=" height: 500px; width: 400px; margin-right: 0;">
             </div>
         </div>
         
         <div class=" col-md-7">
             <div class=" me-5" style="text-align: left; padding-left: 50px;">
               <h1>{{ selected_book.title }}</h1>
-              <h4>By {{ selected_book.author }}</h4>
+              {% if related_author %}
+                  <h4>By: 
+                      <a href="{% url 'author_detail' pk=related_author.pk %}" style="text-decoration: none;">{{ related_author.title }}</a>
+                  </h4>
+              {% endif %}
               <h4>Tóm tắt</h4>
               <p>{{ selected_book.description }}</p>
-      
+
               <h4>Thông tin sách</h4>
-              <p>Tác giả: {{ selected_book.author }}</p>
+              {% if related_author %}
+                  <p>Tác giả: 
+                      <a href="{% url 'author_detail' pk=related_author.pk %}" style="text-decoration: none;">{{ related_author.title }}</a>
+                  </p>
+              {% endif %}
               <p>Dịch giả: {{ selected_book.translater }}</p>
               <p>Nhà xuất bản: {{ selected_book.publisher }}</p>
               <p>Số trang: {{ selected_book.page }}</p>
+              <p>Số lượng: {{ selected_book.amount }}</p>
               <p>Ngày xuất bản: {{ selected_book.Publication_date }}</p>
               <button style="background-color: #0283FA; color: white; width: 100px; border-radius: 5px;">Mượn</button>
               <button style="background-color: white; color: black; width: 100px; border-radius: 5px;">Xem</button>
@@ -148,29 +160,80 @@
                 {% for book in related_books %}
                     <div class="col">
                         <div class="card h-100">
-                            <a href="{% url 'book_detail' pk=book.pk %}" style="height: 300px; ">
-                                <img src="{{ book.img.url }}" class="card-img-top" alt="{{ book.title }}">
+                            <a href="{% url 'book_detail' pk=book.pk %}" >
+                                <img src="{{ book.img.url }}" class="card-img-top" alt="{{ book.title }}" style="height: 350px;">
                             </a>
-                            <div class="te-de">
-                                <a href="{% url 'book_detail' pk=book.pk %}">
-                                    <h5 class="card-title">{{ book.title }}</h5>
-                                    <p class="card-text">Tác giả:{{ book.author }}</p>
-                                </a>
-                            </div>
+                            <div class="te-de" style="margin-top: 80px; margin-bottom: 20px;">
+                              <a href="{% url 'book_detail' pk=book.pk %}">
+                                  <h5 class="card-title" style="color: black;">{{ book.title }}</h5>
+                                  {% for author in latest_authors %}
+                                      <p class="card-text" style="text-align: left; margin-left: 10px; color: black;">
+                                        Tác giả: <a href="{% url 'author_detail' pk=author.pk %}">{{ book.author }}</a>
+                                      </p>
+                                  {% endfor %}
+                                  
+                                  <p class="card-text" style="text-align: right; margin-right: 10px; font-size: 14px; color: black;">
+                                    Trạng thái: {{ book.status }}
+                                  </p>
+                              </a>
+                          </div>
                         </div>
                     </div>
+                    
                 {% endfor %}
             </div>
         </div>
-    
-          {% for category in latest_categories %}
-              <div class="add">
-                  <a href="{% url 'category_detail' pk=category.pk %}">Xem thêm </a>
-              </div>
-          {% endfor %}
         </div>
   </section>
+  <div id="layoutDefault_footer">
+    <footer class="footer pt-5 pb-5 mt-5 " style="background-color: #D9D9D9;">
+        <div class="container ">
+
+            <div class="row gx-5">
+                <div class="col-lg-3">
+                    <h5 class="footer-brand font-weight03">VJU LIBRARY</h5>
+                    <div class="icon-list-social mb-5 mt-3 ">
+                        <a class="icon-list-social-link " href="#!"><i class='bx bxl-instagram-alt' style="font-size: 25px;" ></i></a>
+                        <a class="icon-list-social-link p-xxl-4 " href="#!"><i class='bx bxl-facebook-circle' style="font-size: 25px;"></i></a>
+                        <a class="icon-list-social-link " href="#!"><i class='bx bxl-discord-alt' style="font-size:25px" ></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="row gx-5 font-weight03">
+                        <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+                            <a href="/booklib" class="text-uppercase-expanded text-xs mb-4 no-underline">Trang Chủ</a>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+                            <a href="/introduce" class="text-uppercase-expanded text-xs mb-4 no-underline">Giới Thiệu</a>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+                            <a href="/tabrules" class="text-uppercase-expanded text-xs mb-4 no-underline">Nội Quy</a>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6">
+                            <div class="text-uppercase-expanded text-xs mb-4"><a class="no-underline" href="#">Tủ Sách</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-4" />
+
+            <div class="row gx-5 align-items-center">
+                <div class="col-md-6 small font-weight03">Copyright © LIBVJU 2023</div>
+                <div class="col-md-6 text-md-end small">
+                    <a class="no-underline font-weight03" href="#!">Privacy Policy</a>
+                    ·
+                    <a class="no-underline font-weight03" href="#!">Terms &amp; Conditions</a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+</div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>  
 </body>
-</div>
+</html>
 

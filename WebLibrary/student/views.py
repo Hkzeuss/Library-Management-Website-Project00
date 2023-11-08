@@ -12,12 +12,23 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_decode
 from django.urls import reverse
 from userprofile.views import profile, edit_profile
+from category.models import Category
 
 def home(request):
-    return render(request, 'student/home.html')
+    categories = Category.objects.all()
+    print(categories)
+    context = {
+        'latest_categories': categories,
+    }
+    return render(request, 'student/home.html', context)
 
 def homefanpage(request):
-    return render(request, 'student/homefanpage.html')
+    categories = Category.objects.all()
+    print(categories)
+    context = {
+        'latest_categories': categories,
+    }
+    return render(request, 'student/homefanpage.html', context)
 
 @user_passes_test(lambda u: not u.is_authenticated, login_url='homefanpage')
 def loginPage(request):
@@ -109,8 +120,14 @@ def register(request):
         # Thông báo thành công và chuyển hướng
         messages.success(request, "Đăng ký thành công.")
         return redirect('login')
+    
+    categories = Category.objects.all()
+    print(categories)
+    context = {
+        'latest_categories': categories,
+    }
 
-    return render(request, 'student/register.html')
+    return render(request, 'student/register.html', context)
 
 def signout(request):
     logout(request)

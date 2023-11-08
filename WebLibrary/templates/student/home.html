@@ -42,17 +42,24 @@
               Tủ Sách
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Lịch Sử</a></li>
-              <li><a class="dropdown-item" href="#">Địa lý</a></li>
-              <li><a class="dropdown-item" href="#">Giáo dục công dân</a></li>
-              <li><a class="dropdown-item" href="#">Tiếng anh</a></li>
+              {% for category in latest_categories %}
+              <li>
+                <a class="dropdown-item" href="{% url 'category_detail' pk=category.pk %}">
+                  {{ category.title }}
+                </a>
+              </li>
+              {% endfor %}
             </ul>
           </li>
         </ul>
 
-          <div class ="nav-tab-3">
-            <a href="register" class="register">Đăng ký</a>
-            <a href="{% url 'login' %}" class="login">Đăng nhập</a>
+          <div style="text-align: right; margin-right: 20px;">
+            <button class="btn btn-primary" type="submit">
+              <a href="register" style="text-decoration: none; color: white;">Đăng ký</a>
+            </button>
+            <button class="btn btn-primary" type="submit">
+              <a href="{% url 'login' %}" style="text-decoration: none; color: white;">Đăng nhập</a>
+            </button>
           </div>
 
       </div>
@@ -85,40 +92,6 @@
             <a class="btn btn-outline-primary text-white text-primary-hover mb-7 mb-md-0" href="/login">
               <span class="font-weight03">Đọc Ngay</span>
             </a>
-
-          </div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md">
-
-            <!-- Social links -->
-            <ul class="list-inline text-center text-md-start mb-3 my-md-5">
-              <li class="list-inline-item">
-                <a class="text-white-75 text-primary-hover" href="#!">
-                  <i class="fab fa-twitter"></i>
-                </a>
-              </li>
-              <li class="list-inline-item ms-5">
-                <a class="text-white-75 text-primary-hover" href="#!">
-                  <i class="fab fa-facebook-f"></i>
-                </a>
-              </li>
-              <li class="list-inline-item ms-5">
-                <a class="text-white-75 text-primary-hover" href="#!">
-                  <i class="fab fa-instagram"></i>
-                </a>
-              </li>
-            </ul>
-
-          </div>
-          <div class="col-md">
-
-            <!-- Address -->
-            <p class="font-serif text-white-75 text-center text-md-end text-lg-end my-md-5">
-              <i class="fas fa-map-marker-alt text-primary me-3"></i> 1234 Dining Str., Los Angeles, CA 12345-0000
-            </p>
 
           </div>
         </div>
