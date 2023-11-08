@@ -5,7 +5,7 @@ from django.views import View
 from .models import Book
 from category.models import Category
 from book.models import Book
-
+from author.models import Author
 
 def tabrules(request):
     return render(request, 'student/tabrules.html')
@@ -62,3 +62,18 @@ def book_detail(request, pk):
     }
 
     return render(request, 'book/book_detail.html', context)
+
+def author_detail(request, pk):
+    # Lấy thông tin chi tiết của loại sách với primary key là pk
+    author = get_object_or_404(Author , pk=pk)
+
+    # Lọc các sách thuộc loại sách này
+    books = Book.objects.filter(author=author)
+
+    context = {
+        'author': author,
+        'books': books,
+    }
+
+    return render(request, 'book/author_detail.html', context)
+

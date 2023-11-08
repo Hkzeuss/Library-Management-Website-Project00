@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'myadmin',
     'category',
     'userprofile',
+    'author',
 ]
 
 MIDDLEWARE = [
