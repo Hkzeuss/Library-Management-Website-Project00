@@ -53,7 +53,7 @@
           <form class="d-flex" role="search">
             {% csrf_token %}
             <li class="nav-item dropdown list-unstyled btn-group">
-              <p style="margin-left:40px" class="profile-name font-weight03">{{user.profile.first_name}} {{user.profile.last_name}}</p>
+              <p style="margin-left:40px" class="profile-name font-weight03">{{request.user.first_name}} {{request.user.last_name}}</p>
               <a class="profile-content nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="{{ user.profile.profile_img.url }}" alt="..." style="border-radius: 25px; width: 30px; height: 30px; object-fit: cover; margin-right:-5px">
               </a>
@@ -69,7 +69,7 @@
                 </li>
   
                 <li>
-                  <a class="dropdown-item " href="#">
+                  <a class="dropdown-item " href="/editprofile">
                     <i class='bx bx-cog' style="font-size: 30px; position: relative; top: 7px; color: #1C1E21;"></i> 
                     <span style="font-weight: 500;">Cài đặt & quyền riêng tư </span>
                     <span style=" width: 10px; height: 10px;border: solid #333; border-width: 0 2px 2px 0; display: inline-block; transform: rotate(-45deg); margin-left: 5px;">
@@ -96,20 +96,23 @@
 
             <div class="user-image me-06">
                 <div class="rounded-circle">
-                    <img src="{{ user.profile.profile_img.url }}" alt="User Image" class="img-fit">
-                    <button>{{form.profile_img}}</button>
                 </div>
             </div>
         </div>
         
         <div class=" col-md-8">
             <div class="user-details me-5">
-                <p>Họ: {{form.first_name}}</p>
-                <p>Tên: {{form.last_name}}</p>
-                <p>Giới thiệu bản thân: {{form.desc}}</p>
+              <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <img src="{{ user.profile.profile_img.url }}" alt="User Image" class="img-fit">
+                {{form.profile_img.label_tag}} {{form.profile_img}}
+                {{ form.first_name.label_tag }} {{ form.first_name }}
+                {{ form.last_name.label_tag }} {{ form.last_name }}
+                {{ form.description.label_tag }} {{ form.desc }}
+                <button type="submit" class="mt-2">Cập nhật</button>
+                <button class="mt-2"><a href="/forgot" class="mt-2">Đổi Mật Khẩu</a></button>
+              </form>
             </div>
-            <button type="submit" class="mt-2"><a href="/profile">Cập Nhật</a></button>
-            <button><a href="/forgot">Đổi Mật Khẩu</a></button>
         </div>
     </div>
   </div>
