@@ -27,7 +27,7 @@
           <ul class="navbar-nav me-auto offset-4 mb-2 mb-lg-0 font-weight01 ">
   
             <li class="nav-item">
-              <a class="nav-link active " aria-current="page" href="home1">Trang Chủ</a>
+              <a class="nav-link active " aria-current="page" href="/home1/">Trang Chủ</a>
             </li>
   
             <li class="nav-item">
@@ -50,10 +50,11 @@
               </ul>
             </li>
           </ul>
-          <form class="d-flex" role="search">
+          <form class="d-flex" role="search" method="post" action="{% url 'profile' %}" >
             {% csrf_token %}
+            
             <li class="nav-item dropdown list-unstyled btn-group">
-              <p style="margin-left:40px" class="profile-name font-weight03">{{user.profile.first_name}} {{user.profile.last_name}}</p>
+              <p style="margin-left:40px" class="profile-name font-weight03">{{request.user.first_name}} {{request.user.last_name}}</p>
               <a class="profile-content nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="{{ user.profile.profile_img.url }}" alt="..." style="border-radius: 25px; width: 30px; height: 30px; object-fit: cover; margin-right:-5px">
               </a>
@@ -69,7 +70,7 @@
                 </li>
   
                 <li>
-                  <a class="dropdown-item " href="editprofile">
+                  <a class="dropdown-item " href="/editprofile">
                     <i class='bx bx-cog' style="font-size: 30px; position: relative; top: 7px; color: #1C1E21;"></i> 
                     <span style="font-weight: 500;">Cài đặt & quyền riêng tư </span>
                     <span style=" width: 10px; height: 10px;border: solid #333; border-width: 0 2px 2px 0; display: inline-block; transform: rotate(-45deg); margin-left: 5px;">
@@ -102,9 +103,12 @@
         <div class=" col-md-8">
             <div class="user-details me-5">
                 <p>Mã sinh viên: {{request.user.username}}</p>
-                <p>Họ và tên: {{user.profile.first_name}} {{user.profile.last_name}}</p>
+                <p>Họ và tên: {{request.user.first_name}} {{request.user.last_name}}</p>
                 <p>Email: {{request.user.email}}</p>
-                <p>Về bản thân: {{request.user.desc}}</p>
+                <p>Về bản thân: {{user.profile.desc}}</p>
+                {% for message in messages %}
+                <div class="fontcolor">{{message}}</div>
+                {% endfor %}
             </div>
         </div>
     </div>

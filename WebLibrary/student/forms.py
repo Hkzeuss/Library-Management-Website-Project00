@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.forms.models import ModelForm
 from django.forms.widgets import FileInput
+from .models import Student
 
 class RegistrationForm(forms.Form):
     first_name = forms.CharField(max_length=20)
@@ -25,3 +26,7 @@ class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
 
+class StudentForm(ModelForm):
+    class Meta:
+        model = Student
+        fields = '__all__'
