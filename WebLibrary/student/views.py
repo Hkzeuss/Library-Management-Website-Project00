@@ -160,7 +160,12 @@ def forgot(request):
         except User.DoesNotExist:
             messages.error(request, "Không tìm thấy tài khoản với thông tin bạn nhập.")
             return redirect("forgot")
-    return render(request, "student/ForgotPassword.html")
+    categories = Category.objects.all()
+    print(categories)
+    context = {
+        'latest_categories': categories,
+    }
+    return render(request, "student/ForgotPassword.html", context)
 
 def confirm(request):
     if request.method == "POST":
@@ -174,10 +179,17 @@ def confirm(request):
         except OTP.DoesNotExist:
             messages.error(request, "Mã OTP không hợp lệ.")
     
-    return render(request, 'student/ConfirmForgotPassword.html')
+    categories = Category.objects.all()
+    print(categories)
+    context = {
+        'latest_categories': categories,
+    }
+    return render(request, 'student/ConfirmForgotPassword.html', context)
 
 
 def reset(request, token):
+    categories = Category.objects.all()
+    print(categories)
     context={}
     try:
         OTP_user = OTP.objects.filter(token = token).first()
@@ -198,11 +210,19 @@ def reset(request, token):
             User_obj.set_password(new_password)
             User_obj.save()
             return redirect('success')
-        context = {'user_id': OTP_user.user.id}
+        context = {
+            'user_id': OTP_user.user.id,
+            'latest_categories': categories,
+            }
     except Exception as e:
         print(e)
     return render(request, 'student/ResetPassword.html', context)
 
 def success(request):
-    return render(request, 'student/succsesforgotpassword.html')
+    categories = Category.objects.all()
+    print(categories)
+    context = {
+        'latest_categories': categories,
+    }
+    return render(request, 'student/succsesforgotpassword.html', context)
 

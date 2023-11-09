@@ -33,7 +33,7 @@ class Book(models.Model):
             ("Borrowed", "Borrowed")
         ], default="Available"
     )
-    amount = models.CharField(max_length=200,null=True)
+    amount = models.IntegerField(null=True)
     return_date = models.DateField(
         auto_now=False, auto_now_add=False, null=True, blank=True)
 

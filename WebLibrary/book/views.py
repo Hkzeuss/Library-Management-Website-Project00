@@ -1,11 +1,10 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import ListView, DetailView
-from django.views import View
+from django.shortcuts import render, get_object_or_404
 from .models import Book
 from category.models import Category
 from book.models import Book
 from author.models import Author
+from django.db.models import Q
+
 
 def tabrules(request):
     categories = Category.objects.all()
@@ -28,15 +27,23 @@ def booklib(request):
     books = Book.objects.all()
     categories = Category.objects.all()
 
-    # In ra console để kiểm tra
-    print(books)
-    print(categories)
-
-    # Truyền dữ liệu vào template
-    context = {
-        'latest_categories': categories,
-        'books': books,
-    }
+    search_book = request.GET.get('search', '')
+    if search_book:
+        # Tìm kiếm theo tên sách hoặc tác giả
+        books = books.filter(Q(title__icontains=search_book) | Q(author__title__icontains=search_book))
+        # Truyền dữ liệu tìm kiếm vào template
+        context = {
+            
+            'search_results': books,
+            'search_book': search_book,
+            'latest_categories': categories,
+        }
+    else:
+        # Truyền dữ liệu danh mục vào template nếu không có tìm kiếm
+        context = {
+            'books': books,
+            'latest_categories': categories,
+        }
 
     # Render template với dữ liệu đã lấy
     return render(request, 'book/home.html', context)
@@ -47,16 +54,25 @@ def category_detail(request, pk):
     category = get_object_or_404(Category, pk=pk)
     categories = Category.objects.all()
 
-    print(categories)
-
-    # Lọc các sách thuộc loại sách này
     books = Book.objects.filter(category=category)
 
-    context = {
-        'category': category,
-        'books': books,
-        'latest_categories': categories,
-    }
+    search_book = request.GET.get('search', '')
+    if search_book:
+        # Tìm kiếm theo tên sách hoặc tác giả
+        books = books.filter(Q(title__icontains=search_book) | Q(author__title__icontains=search_book))
+        # Truyền dữ liệu tìm kiếm vào template
+        context = {
+            
+            'search_results': books,
+            'search_book': search_book,
+            'latest_categories': categories,
+        }
+    else:
+        context = {
+            'category': category,
+            'books': books,
+            'latest_categories': categories,
+        }
 
     return render(request, 'book/category_detail.html', context)
 
@@ -77,14 +93,13 @@ def book_detail(request, pk):
 
     print(categories)
     print(authors)
-
+          
     context = {
         'selected_book': selected_book,
         'related_books': related_books,
         'latest_categories': categories,
         'latest_authors': authors,
         'related_author': related_author,
-
     }
 
     return render(request, 'book/book_detail.html', context)
@@ -93,13 +108,26 @@ def author_detail(request, pk):
     author = get_object_or_404(Author, pk=pk)
     authors = Author.objects.all()
     books = Book.objects.filter(author=author)
+    categories = Category.objects.all()
 
-    print(authors)
+    search_book = request.GET.get('search', '')
+    if search_book:
+        # Tìm kiếm theo tên sách hoặc tác giả
+        books = books.filter(Q(title__icontains=search_book) | Q(author__title__icontains=search_book))
+        # Truyền dữ liệu tìm kiếm vào template
+        context = {
+            
+            'search_results': books,
+            'search_book': search_book,
+            'latest_categories': categories,
+        }
 
-    context = {
-        'author': author,
-        'books': books,
-        'latest_authors': authors
-    }
+    else:
+        context = {
+            'author': author,
+            'books': books,
+            'latest_authors': authors,
+            'latest_categories': categories,
+        }
 
     return render(request, 'book/author_detail.html', context)
