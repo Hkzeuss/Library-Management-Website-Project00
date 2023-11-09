@@ -40,10 +40,13 @@
                   Tủ Sách
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Lịch Sử</a></li>
-                  <li><a class="dropdown-item" href="#">Địa lý</a></li>
-                  <li><a class="dropdown-item" href="#">Giáo dục công dân</a></li>
-                  <li><a class="dropdown-item" href="#">Tiếng anh</a></li>
+                  {% for category in latest_categories %}
+                  <li>
+                    <a class="dropdown-item" href="{% url 'category_detail' pk=category.pk %}">
+                      {{ category.title }}
+                    </a>
+                  </li>
+                  {% endfor %}
                 </ul>
               </li>
             </ul>

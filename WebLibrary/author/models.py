@@ -14,3 +14,4 @@ class Author(models.Model):
 
     def get_absolute_url(self):  # new
         return reverse('author:detail', args=[str(self.id)])
+    
