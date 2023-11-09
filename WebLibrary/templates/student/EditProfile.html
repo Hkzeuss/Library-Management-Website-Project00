@@ -105,10 +105,10 @@
               <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <img src="{{ user.profile.profile_img.url }}" alt="User Image" class="img-fit">
-                {{form.profile_img.label_tag}} {{form.profile_img}}
-                {{ form.first_name.label_tag }} {{ form.first_name }}
-                {{ form.last_name.label_tag }} {{ form.last_name }}
-                {{ form.description.label_tag }} {{ form.desc }}
+                <label for="id_profile_img">Ảnh:</label> {{form.profile_img}}
+                <label for="id_first_name">Họ: </label><input type="text" name="first_name" value="{{ first_name }}" placeholder="Nhập họ của bạn!">
+                <label for="id_last_name">Tên: </label><input type="text" name="first_name" value="{{ last_name }}" placeholder="Nhập tên của bạn!">
+                <label for="id_desc">Giới thiệu bản thân: </label><input type="text" name="desc" value="{{ desc }}" placeholder="Hãy giới thiệu thêm về bản thân nhé!">
                 <button type="submit" class="mt-2">Cập nhật</button>
                 <button class="mt-2"><a href="/forgot" class="mt-2">Đổi Mật Khẩu</a></button>
               </form>
