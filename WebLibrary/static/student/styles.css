@@ -168,3 +168,22 @@ header {
     width: 100%;
     height: 100%;
 }
+.centered-content {
+    display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    min-height: 100vh; /* Đảm bảo căn giữa trên toàn bộ chiều cao của màn hình */
+  }
+  .small-avatar {
+    width: 100px; /* Đặt chiều rộng theo ý muốn */
+    height: 100px; /* Đặt chiều cao theo ý muốn */
+}
+.mt-g {
+    margin-top: -180px;
+}
+.mt-x {
+    margin-top: -20px;
+}
+.mt-c {
+    margin-top: -15px;
+}

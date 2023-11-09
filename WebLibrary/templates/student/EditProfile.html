@@ -90,27 +90,34 @@
       </div>
   </nav>
 
-  <div class="container">
+  <div class="container centered-content mt-g">
     <div class="row">
         <div class="col-md-01 mb-06">
-
             <div class="user-image me-06">
                 <div class="rounded-circle">
                 </div>
             </div>
         </div>
-        
         <div class=" col-md-8">
             <div class="user-details me-5">
               <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                <img src="{{ user.profile.profile_img.url }}" alt="User Image" class="img-fit">
-                {{form.profile_img.label_tag}} {{form.profile_img}}
-                {{ form.first_name.label_tag }} {{ form.first_name }}
-                {{ form.last_name.label_tag }} {{ form.last_name }}
-                {{ form.description.label_tag }} {{ form.desc }}
-                <button type="submit" class="mt-2">Cập nhật</button>
-                <button class="mt-2"><a href="/forgot" class="mt-2">Đổi Mật Khẩu</a></button>
+                <p class="text-center"><img src="{{ user.profile.profile_img.url }}" alt="User Image" class="img-fit rounded-circle small-avatar"></p>
+                <p class="edit-text font-weight01 text-align-center">Chỉnh sửa</p>
+                <div class="d-flex justify-content-between mt-x">
+                  <div class="mb-3">
+                    <label class="form-label"></label>
+                    <input type="text" placeholder="First name" style="width: 150px; height: 45px; background-color: #AEC8FB;" class="form-control" id="first_name" name="first_name">
+                  </div>
+                  <div class="mb-3 ms-1" style="width: 150px; height: 45px;">
+                    <label for="last_name" class="form-label"></label>
+                    <input type="text" placeholder="Last name" style="width: 150px; height: 45px; background-color: #AEC8FB;" class="form-control" id="last_name" name="last_name">
+                  </div>
+                </div>
+                <div class="d-inline-flex justify-content-between mt-c">
+                  <button type="submit" class="mt-2 btn btn-primary" style="width: 150px; height: 45px;">Cập nhật</button>
+                <button class="mt-2 btn btn-primary ms-1" style="width: 150px; height: 45px; background-color: red;"><a href="/forgot" class="mt-2" style="color: white; text-decoration: none;">Đổi Mật Khẩu</a></button>
+                </div>
               </form>
             </div>
         </div>
