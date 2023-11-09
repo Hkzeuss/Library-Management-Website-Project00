@@ -13,7 +13,7 @@
     <title>VJULIB</title>
   
 </head>
-<body class="p-3 m-0 border-0 bd-example m-0 border-0 font-farmily01 ">
+<body class="p-3 m-0 border-0 bd-example m-0 border-0 font-farmily01 " style=" overflow:hidden">
   <nav class="navbar navbar-expand-lg ">
     <div class="container-fluid">
       <h2 class="navbar-brand ms-5 me-5 font-weight01"> <a class="no-underline" style="color: black;" href="/">VJULIB</a></h2>
@@ -50,9 +50,13 @@
           </li>
         </ul>
 
-          <div class ="nav-tab-3">
-            <a href="register" class="register">Đăng ký</a>
-            <a href="{% url 'login' %}" class="login">Đăng nhập</a>
+          <div style="text-align: right; margin-right: 30px;">
+            
+              <a href="{% url 'register' %}" style="color: #0F62FE; text-decoration: none; font-weight:600;margin-right: 20px; ">Đăng kí</a>
+            
+            <button class="btn shadow-lg " type="submit">
+              <a href="{% url 'login' %}" style="color: #0F62FE; text-decoration: none; font-weight:600; ">Đăng nhập</a>
+            </button>
           </div>
 
       </div>
@@ -93,32 +97,9 @@
         <div class="row">
           <div class="col-md">
 
-            <!-- Social links -->
-            <ul class="list-inline text-center text-md-start mb-3 my-md-5">
-              <li class="list-inline-item">
-                <a class="text-white-75 text-primary-hover" href="#!">
-                  <i class="fab fa-twitter"></i>
-                </a>
-              </li>
-              <li class="list-inline-item ms-5">
-                <a class="text-white-75 text-primary-hover" href="#!">
-                  <i class="fab fa-facebook-f"></i>
-                </a>
-              </li>
-              <li class="list-inline-item ms-5">
-                <a class="text-white-75 text-primary-hover" href="#!">
-                  <i class="fab fa-instagram"></i>
-                </a>
-              </li>
-            </ul>
+           
 
-          </div>
-          <div class="col-md">
-
-            <!-- Address -->
-            <p class="font-serif text-white-75 text-center text-md-end text-lg-end my-md-5">
-              <i class="fas fa-map-marker-alt text-primary me-3"></i> 1234 Dining Str., Los Angeles, CA 12345-0000
-            </p>
+            
 
           </div>
         </div>
