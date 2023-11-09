@@ -103,19 +103,19 @@
               <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <p class="text-center"><img src="{{ user.profile.profile_img.url }}" alt="User Image" class="img-fit rounded-circle small-avatar"></p>
-                <p class="edit-text font-weight01 text-align-center">Chỉnh sửa</p>
+                
                 <div class="d-flex justify-content-between mt-x">
                   <div class="mb-3">
                     <label class="form-label"></label>
-                    <input type="text" placeholder="First name" style="width: 150px; height: 45px; background-color: #AEC8FB;" class="form-control" id="first_name" name="first_name">
+                    <input type="text" placeholder="Nhập Họ" style="width: 150px; height: 45px; background-color: #AEC8FB;" class="form-control" id="first_name" name="first_name">
                   </div>
                   <div class="mb-3 ms-1" style="width: 150px; height: 45px;">
                     <label for="last_name" class="form-label"></label>
-                    <input type="text" placeholder="Last name" style="width: 150px; height: 45px; background-color: #AEC8FB;" class="form-control" id="last_name" name="last_name">
+                    <input type="text" placeholder="Nhập Tên" style="width: 150px; height: 45px; background-color: #AEC8FB;" class="form-control" id="last_name" name="last_name">
                   </div>
                 </div>
                 <div class="d-inline-flex justify-content-between mt-c">
-                  <button type="submit" class="mt-2 btn btn-primary" style="width: 150px; height: 45px;">Cập nhật</button>
+                  <button type="submit" class="mt-2 btn btn-primary" style="width: 150px; height: 45px;">Cập Nhật</button>
                 <button class="mt-2 btn btn-primary ms-1" style="width: 150px; height: 45px; background-color: red;"><a href="/forgot" class="mt-2" style="color: white; text-decoration: none;">Đổi Mật Khẩu</a></button>
                 </div>
               </form>
