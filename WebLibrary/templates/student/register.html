@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static  %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'student/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'student/styles.css' %}">
+    <title>Register</title>
+
+  </head>
+<body class="p-3 m-0 border-0 bd-example m-0 border-0 font-farmily01 ">
+  <nav class="navbar navbar-expand-lg ">
+      <div class="container-fluid">
+          <h2 class="navbar-brand ms-5 me-5 font-weight01"> <a class="no-underline" style="color: black;" href="/">VJULIB</a></h2>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto offset-4 mb-2 mb-lg-0 font-weight01 ">
+    
+              <li class="nav-item">
+                <a class="nav-link active " aria-current="page" href="/">Trang Chủ</a>
+              </li>
+    
+              <li class="nav-item">
+                <a class="nav-link" href="#">Giới Thiệu</a>
+              </li>
+    
+              <li class="nav-item">
+                <a class="nav-link" href="/tabrules">Nội Quy</a>
+              </li>
+    
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Tủ Sách
+                </a>
+                <ul class="dropdown-menu">
+                  {% for category in latest_categories %}
+                  <li>
+                    <a class="dropdown-item" href="{% url 'category_detail' pk=category.pk %}">
+                      {{ category.title }}
+                    </a>
+                  </li>
+                  {% endfor %}
+                </ul>
+              </li>
+            </ul>
+    
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+    
+          </div>
+        </div>
+  </nav>
+  <div>
+      <div class="container">
+          <div class="container">
+              <div class="row flex-column flex-md-row">
+                  <div class="mt-01 col-6 col-md-6">
+                      <div> 
+                          <h2 class="font-weight01">Đăng Nhập Để</h2>
+                          <h2 class="font-weight01">Truy Cập Thư Viện VJULIB</h2>
+                          <br>
+                          <p class="font-weight03">Chào mừng bạn đến với <a class="no-underline font-weight01" href="/">VJULIB</a>! Chúng tôi tự hào mang đến cho bạn một kho tài liệu đa dạng và phong phú, được tập hợp và curation một cách kỹ lưỡng để đáp ứng tốt nhất cho nhu cầu của bạn trong việc học tập và nghiên cứu.</p>  
+                        <p class="font-weight03">Vui lòng đọc thông tin dưới đây và tạo tài khoản hợp lệ.</p>  
+                        <ul class="font-weight03">
+                          <li>Đuôi email cần là: "@st.vju.ac.vn".</li>
+                          <li>Mật khẩu tối thiểu 8 ký tự, tối đa 16 ký tự.</li>
+                          <li>Đầu email phải giống với Student ID</li>
+                        </ul>
+                    </div>
+                  </div>
+                  <div class="container col-6 col-md-6 mt-5">
+                    <div class="col-md-6 offset-md-3">
+                        <div class="card shadow custom-card-width">
+                            <div class="card-body text-center" style="background-color: #FFFBFB;">
+                                <h6 class="font-weight01">Đăng Ký Tài Khoản</h6>
+                                  <form method="post" action="{% url 'register' %}">
+                                    {% csrf_token %}
+                                    {% if error_messages %}
+                                          <div class="alert alert-danger">
+                                              <strong>Xin vui lòng nhập lại</strong>
+                                          </div>
+                                      {% endif %}
+                                      <div class="row mb-3">
+                                          <div class="col-md-6">
+                                              <input class="form-control mb-0 mt-3 shadow-sm {% if error_messages.firstName %}is-invalid{% endif %}" name="firstName" type="text" placeholder="Họ" value="{{ input_data.firstName }}">
+                                          </div>
+                                          <div class="col-md-6">
+                                              <input class="form-control mb-0 mt-3 shadow-sm {% if error_messages.lastName %}is-invalid{% endif %}" name="lastName" type="text" placeholder="Tên" value="{{ input_data.lastName }}">
+                                          </div>
+                                      </div>
+                                      
+                                      <!-- {% if error_messages.studentID_exists %}
+                                          <div class="invalid-feedback">
+                                            {{ error_messages.studentID_exists }}
+                                          </div>
+                                      {% endif %} -->
+                                      <input class="form-control mb-3 shadow-sm {% if error_messages.studentID %}is-invalid{% endif %}" name="studentID" type="number" placeholder="Mã sinh viên" value="{{ input_data.studentID }}">
+                                      
+                                      <!-- {% if error_messages.email_exists %}
+                                          <div class="invalid-feedback">
+                                              {{ error_messages.email_exists }}
+                                          </div>
+                                      {% endif %}
+
+                                      {% if error_messages.invalid_email %}
+                                          <div class="invalid-feedback">
+                                              {{ error_messages.invalid_email }}
+                                          </div>
+                                      {% endif %} -->
+                                      <input class="form-control mb-3 shadow-sm {% if error_messages.email %}is-invalid{% endif %}" name="email" type="text" placeholder="Email" value="{{ input_data.email }}">
+                                      
+                                      <!-- {% if error_messages.password_length_min %}
+                                          <div class="invalid-feedback">
+                                              {{ error_messages.password_length_min }}
+                                          </div>
+                                      {% endif %}
+
+                                      {% if error_messages.password_length_max %}
+                                          <div class="invalid-feedback">
+                                              {{ error_messages.password_length_max }}
+                                          </div>
+                                      {% endif %} -->
+
+                                      <input class="form-control mb-3 shadow-sm {% if error_messages.password %}is-invalid{% endif %}" name="password" type="password" placeholder="Mật Khẩu" value="{{ input_data.password }}">
+                                      
+                                      <!-- {% if error_messages.password_mismatch %}
+                                          <div class="invalid-feedback">
+                                              {{ error_messages.password_mismatch }}
+                                          </div>
+                                      {% endif %} -->
+                                      <input class="form-control mb-3 shadow-sm {% if error_messages.confirmPassword %}is-invalid{% endif %}" name="confirmPassword" type="password" placeholder="Nhập Lại Mật Khẩu" value="{{ input_data.confirmPassword }}">
+                                      
+                                      <button type="submit" class="btn btn-primary mt-3 mb-05 offset-5 shadow"><span class="font-weight03">Đăng Ký</a></span></button>
+                                    </form>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
