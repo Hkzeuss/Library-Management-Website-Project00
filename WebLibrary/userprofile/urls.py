@@ -5,7 +5,8 @@ from django.conf.urls.static import static
 
 app_name = 'profiles'
 urlpatterns = [
-    path('profile', views.profile, name="profile")
+    path('profile', views.profile, name="profile"),
+    path('editprofile', views.edit_profile, name="editprofile")
 ]
 
 if settings.DEBUG:
