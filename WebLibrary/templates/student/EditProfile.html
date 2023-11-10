@@ -91,20 +91,13 @@
   </nav>
 
   <div class="container centered-content mt-g">
-    <div class="row">
-        <div class="col-md-01 mb-06">
-            <div class="user-image me-06">
-                <div class="rounded-circle">
-                </div>
-            </div>
-        </div>
+    <div>
         <div class=" col-md-8">
             <div class="user-details me-5">
               <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                <p class="text-center"><img src="{{ user.profile.profile_img.url }}" alt="User Image" class="img-fit rounded-circle small-avatar"></p>
-                
-                <div class="d-flex justify-content-between mt-x">
+                <p class="text-center"><img src="{{ user.profile.profile_img.url }}" alt="User Image" class="img-fit rounded-circle small-avatar offset-md-8"></p>
+                <div class="d-flex justify-content-between mt-x offset-md-1">
                   <div class="mb-3">
                     <label class="form-label"></label>
                     <input type="text" placeholder="Nhập Họ" style="width: 150px; height: 45px; background-color: #AEC8FB;" class="form-control" id="first_name" name="first_name">
@@ -114,7 +107,11 @@
                     <input type="text" placeholder="Nhập Tên" style="width: 150px; height: 45px; background-color: #AEC8FB;" class="form-control" id="last_name" name="last_name">
                   </div>
                 </div>
-                <div class="d-inline-flex justify-content-between mt-c">
+                <div class="mb-3 offset-md-1" style="margin-top: -31px">
+                  <label for="introduction" class="form-label"></label>
+                  <textarea placeholder="Giới Thiệu Bản Thân" style="width: 305px; height: 45px; background-color: #FFFFFF;" class="form-control" id="introduction" name="introduction"></textarea>
+                </div>
+                <div class="d-inline-flex justify-content-between mt-c offset-md-1">
                   <button type="submit" class="mt-2 btn btn-primary" style="width: 150px; height: 45px;">Cập Nhật</button>
                 <button class="mt-2 btn btn-primary ms-1" style="width: 150px; height: 45px; background-color: red;"><a href="/forgot" class="mt-2" style="color: white; text-decoration: none;">Đổi Mật Khẩu</a></button>
                 </div>
