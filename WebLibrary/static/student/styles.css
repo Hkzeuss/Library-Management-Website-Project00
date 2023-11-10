@@ -179,11 +179,20 @@ header {
     height: 100px; /* Đặt chiều cao theo ý muốn */
 }
 .mt-g {
-    margin-top: -180px;
+    margin-top: 100px;
 }
 .mt-x {
-    margin-top: -20px;
+    margin-top: -10px;
 }
 .mt-c {
     margin-top: -15px;
+}
+.ml-x {
+    margin-left: 36%;
+}
+.ml-y {
+    margin-left: 12%;
+}
+.mt-a {
+    margin-top: 200px;
 }
