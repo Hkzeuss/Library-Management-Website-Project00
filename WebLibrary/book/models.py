@@ -26,6 +26,7 @@ class Book(models.Model):
         get_user_model(), on_delete=models.SET_NULL, related_name="books", null=True, blank=True)
     description = models.TextField()
     img = models.ImageField(default='book/images/Background_1.jpg', upload_to='book/images/', null=True, blank=True)
+    pdf = models.FileField(upload_to='book/pdfs/', null=True, blank=True)
     status = models.CharField(
         max_length=10,
         choices=[
