@@ -30,6 +30,9 @@ class CreateBookForm(forms.ModelForm):
             'img': forms.FileInput(attrs={
                 'class': 'email text_box',
                 'id': 'username'}),
+            'pdf': forms.FileInput(attrs={
+                'class': 'email text_box',
+                'id': 'pdf-input'}),
             'category': forms.Select(choices=categories, attrs={'class': 'text_box  email', 'placeholder': 'Title '}),
 
         }
@@ -39,6 +42,7 @@ class CreateBookForm(forms.ModelForm):
             'description': '',
             'category': '',
             'img': '',
+            'pdf': 'PDF File',
         }
 
         def __init__(self, *args, **kwargs):

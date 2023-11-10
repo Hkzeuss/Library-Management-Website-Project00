@@ -142,8 +142,10 @@
                 <p>Số lượng: {{ selected_book.amount }}</p>
                 <p>Ngày xuất bản: {{ selected_book.Publication_date }}</p>
                 <button style="background-color: #0283FA; color: white; width: 100px; border-radius: 5px;">Mượn</button>
-                <button style="background-color: white; color: black; width: 100px; border-radius: 5px;">Xem</button>
-              
+                <!-- <button style="background-color: white; color: black; width: 100px; border-radius: 5px;">Xem</button> -->
+                <a href="{{ pdf_url }}" target="_blank">
+                  <button style="background-color: white; color: black; width: 100px; border-radius: 5px;">Xem</button>
+                </a>
             </div>
         </div>
       </div>

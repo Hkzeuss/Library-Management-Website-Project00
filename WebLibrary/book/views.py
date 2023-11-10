@@ -93,6 +93,8 @@ def book_detail(request, pk):
 
     print(categories)
     print(authors)
+     # Lấy đường dẫn tới file PDF
+    pdf_url = selected_book.pdf.url
           
     context = {
         'selected_book': selected_book,
@@ -100,6 +102,7 @@ def book_detail(request, pk):
         'latest_categories': categories,
         'latest_authors': authors,
         'related_author': related_author,
+        'pdf_url': pdf_url,
     }
 
     return render(request, 'book/book_detail.html', context)
@@ -131,3 +134,15 @@ def author_detail(request, pk):
         }
 
     return render(request, 'book/author_detail.html', context)
+def view_pdf(request, pk):
+    # Lấy thông tin chi tiết của sách với primary key là pk
+    selected_book = get_object_or_404(Book, pk=pk)
+
+    # Lấy đường dẫn tới file PDF
+    pdf_path = selected_book.pdf.path
+
+    # Đọc file PDF
+    with open(pdf_path, 'rb') as pdf_file:
+        response = HttpResponse(pdf_file.read(), content_type='application/pdf')
+        response['Content-Disposition'] = f'filename="{selected_book.title}.pdf"'
+        return response
