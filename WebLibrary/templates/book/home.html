@@ -138,83 +138,85 @@
     
     <div>
       {% if search_results %}
+      <br><br>
         <h1 style="color: black;">Kết quả tìm kiếm cho "{{ search_book }}"</h1>
+        <br>
         <div class="container">
           <div class="row row-cols-1 row-cols-md-4 g-4 ms-3 me-3">
             {% for result in search_results %}
-                <div class="col">
-                    <div class="card h-100">
-                        <a href="{% url 'book_detail' pk=result.pk %}" style="height: 300px;">
-                            <img src="{{ result.img.url }}" class="card-img-top" alt="{{ result.title }}">
-                        </a>
-                        <div class="te-de" style="margin-top: 80px; margin-bottom: 20px;">
-                            <a href="{% url 'book_detail' pk=result.pk %}">
-                                <h5 class="card-title" style="color: black;">{{ result.title }}</h5>
-                                <p class="card-text" style="text-align: left; margin-left: 10px; color: black;">
-                                  Tác giả: {{ result.author }}
-                                </p>
-                                <p class="card-text" style="text-align: right; margin-right: 10px; font-size: 14px;font-weight: 600;">
-                                  <span style="color: black; ">Số lượng còn lại: </span>
-                                  {% if book.amount == 0  %}
-                                    <span style="color: red !important;">{{ book.amount }}</span>
-                                  {% else %}
-                                    <span style="color: green !important;">{{ book.amount }}</span>
-                                  {% endif %}
-                                </p>
-                            </a>
-                        </div>
-                    </div>
+              <div class="col">
+                <div class="card h-100">
+                  <a href="{% url 'book_detail' pk=result.pk %}" style="height: 300px;">
+                    <img src="{{ result.img.url }}" class="card-img-top" alt="{{ result.title }}">
+                  </a>
+                  <div class="te-de" style="margin-top: 80px; margin-bottom: 20px;">
+                    <a href="{% url 'book_detail' pk=result.pk %}">
+                      <h5 class="card-title" style="color: black;">{{ result.title }}</h5>
+                      <p class="card-text" style="text-align: left; margin-left: 10px; color: black;">
+                        Tác giả: {{ result.author }}
+                      </p>
+                      <p class="card-text" style="text-align: right; margin-right: 10px; font-size: 14px;font-weight: 600;">
+                        <span style="color: black; ">Số lượng còn lại: </span>
+                        {% if result.amount == 0 %}
+                          <span style="color: red !important;">{{ result.amount }}</span>
+                        {% else %}
+                          <span style="color: green !important;">{{ result.amount }}</span>
+                        {% endif %}
+                      </p>
+                    </a>
+                  </div>
                 </div>
+              </div>
             {% endfor %}
           </div>
         </div>
         {% else %}
-          {% for category in latest_categories %}
-            <br><br>
-              <div class="te-de">
-                  <a href="{% url 'category_detail' pk=category.pk %}">
-                      <h1 style="color: black;">{{ category.title }}</h1>
-                  </a>
+        {% for category in latest_categories %}
+          <br><br>
+          <div class="te-de">
+            <a href="{% url 'category_detail' pk=category.pk %}">
+              <h1 style="color: black;">{{ category.title }}</h1>
+            </a>
 
-                  {% if category.books.all %}
-                    <div class="container" >
-                        <div class="row row-cols-1 row-cols-md-4 g-4 ms-3 me-3" >
-                          {% for book in category.books.all|slice:":4" %}
-                            <div class="col">
-                                <div class="card h-100">
-                                    <a href="{% url 'book_detail' pk=book.pk %}" style="height: 300px;">
-                                        <img src="{{ book.img.url }}" class="card-img-top" alt="{{ book.title }}">
-                                    </a>
-                                    <div class="te-de" style="margin-top: 80px; margin-bottom: 20px;">
-                                        <a href="{% url 'book_detail' pk=book.pk %}">
-                                            <h5 class="card-title" style="color: black;">{{ book.title }}</h5>
-                                            <p class="card-text" style="text-align: left; margin-left: 10px; color: black;">
-                                              Tác giả: {{ book.author }}
-                                            </p>
-                                            <p class="card-text" style="text-align: right; margin-right: 10px; font-size: 14px;font-weight: 600;">
-                                              <span style="color: black; ">Số lượng còn lại: </span>
-                                              {% if book.amount == 0  %}
-                                                <span style="color: red !important;">{{ book.amount }}</span>
-                                              {% else %}
-                                                <span style="color: green !important;">{{ book.amount }}</span>
-                                              {% endif %}
-                                            </p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                          {% endfor %}
+            {% if category.books.all %}
+              <div class="container">
+                <div class="row row-cols-1 row-cols-md-4 g-4 ms-3 me-3">
+                  {% for book in category.books.all|slice:":4" %}
+                    <div class="col">
+                      <div class="card h-100">
+                        <a href="{% url 'book_detail' pk=book.pk %}" style="height: 300px;">
+                          <img src="{{ book.img.url }}" class="card-img-top" alt="{{ book.title }}">
+                        </a>
+                        <div class="te-de" style="margin-top: 80px; margin-bottom: 20px;">
+                          <a href="{% url 'book_detail' pk=book.pk %}">
+                            <h5 class="card-title" style="color: black;">{{ book.title }}</h5>
+                            <p class="card-text" style="text-align: left; margin-left: 10px; color: black;">
+                              Tác giả: {{ book.author }}
+                            </p>
+                            <p class="card-text" style="text-align: right; margin-right: 10px; font-size: 14px;font-weight: 600;">
+                              <span style="color: black; ">Số lượng còn lại: </span>
+                              {% if book.amount == 0 %}
+                                <span style="color: red !important;">{{ book.amount }}</span>
+                              {% else %}
+                                <span style="color: green !important;">{{ book.amount }}</span>
+                              {% endif %}
+                            </p>
+                          </a>
                         </div>
+                      </div>
                     </div>
-
-                    <div class="add" style="margin-top: 20px;">
-                        <a href="{% url 'category_detail' pk=category.pk %}" style="color: black;">Xem thêm </a>
-                    </div>
-                  {% else %}
-                    <p>Không có sách nào trong thể loại này.</p>
-                  {% endif %}
+                  {% endfor %}
+                </div>
               </div>
-          {% endfor %}
+
+              <div class="add" style="margin-top: 20px;">
+                <a href="{% url 'category_detail' pk=category.pk %}" style="color: black;">Xem thêm </a>
+              </div>
+            {% else %}
+              <p>Không có sách nào trong thể loại này.</p>
+            {% endif %}
+          </div>
+        {% endfor %}
       {% endif %}
   </div>
 </section>

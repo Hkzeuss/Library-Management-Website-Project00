@@ -141,9 +141,55 @@
                 <p>Số trang: {{ selected_book.page }}</p>
                 <p>Số lượng: {{ selected_book.amount }}</p>
                 <p>Ngày xuất bản: {{ selected_book.Publication_date }}</p>
-                <button style="background-color: #0283FA; color: white; width: 100px; border-radius: 5px;">Mượn</button>
-                <button style="background-color: white; color: black; width: 100px; border-radius: 5px;">Xem</button>
-              
+                {% if not is_book_available %}
+                    <div class="alert alert-danger" role="alert">
+                        Sách đã hết. Không thể mượn.
+                    </div>
+                {% endif %}
+                <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" _msttexthash="5148819" _msthash="338" {% if not is_book_available %}disabled style="background-color: #F02E2E;"{% endif %}>Mượn Sách</button>
+                
+                <div class="modal fade" id="exampleModalToggle" aria-labelledby="exampleModalToggleLabel" tabindex="-1" style="display: none;" _mstvisible="0" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" _mstvisible="1">
+                    <div class="modal-content" _mstvisible="2">
+                      <div class="modal-header" _mstvisible="3">
+                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel" _msttexthash="1767636" _msthash="330" _mstvisible="4">Vui Lòng Lên Lịch Mượn Sách</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng" _mstaria-label="59709" _msthash="331" _mstvisible="4"></button>
+                      </div>
+                      <div class="modal-body" _msttexthash="28926456" _msthash="332" _mstvisible="3">Nhập Thời Gian Trả Sách: <input type="date" style="float: right; margin-right: 50px;"></div>
+                      <div class="modal-body" _msttexthash="28926456" _msthash="332" _mstvisible="3">Nhập Thời Gian Mượn Sách: <input type="date" style="float: right; margin-right: 50px;"></div>
+                      <div class="modal-footer" _mstvisible="3">
+                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" _msttexthash="5143346" _msthash="333" _mstvisible="4">Xác Nhận</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1" _msthidden="4">
+                  <div class="modal-dialog modal-dialog-centered" _msthidden="4">
+                    <div class="modal-content" _msthidden="4">
+                      <div class="modal-header" _msthidden="2">
+                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2" _msttexthash="66105" _msthidden="1" _msthash="334">Đặt Lịch Mượn Sách Thành Công</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" _msthidden="A" _mstaria-label="59709" _msthash="335"></button>
+                      </div>
+                      <div class="modal-body" _msttexthash="1948674" _msthidden="1" _msthash="336">
+                        Họ Và Tên: {{request.user.first_name}} {{request.user.last_name}}
+                        <form>
+                        Mã Sinh Viên: {{ request.user.username }}
+                        <br>
+                        Email: {{request.user.email}}
+                        <br>
+                        Tên Sách - Tác Giả: {{ selected_book.title }} - {{ selected_book.author }}
+                        <br>
+                        Thời Gian Mượn Sách:
+                        <br>
+                        Thời Gian Trả Sách:
+                      </div>
+                      <div class="modal-footer" _msthidden="1">
+                        <button class="btn btn-primary" id="btnOK">OK</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button style="background-color: white; color: black; width: 100px; border-radius: 5px; height: 38px;">Xem sách</button>                
             </div>
         </div>
       </div>
@@ -234,4 +280,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>  
 </body>
 </br>
-

@@ -205,6 +205,14 @@ def reset(request, token):
             if new_password != confirm_password:
                 messages.error(request, "Xin vui lòng nhập lại")
                 return redirect('reset', token=token)
+            
+            # Kiểm tra kích thước mật khẩu
+            if not 8 <= len(new_password) <= 16:
+                if len(new_password) < 8:
+                    messages.error(request, "Mật khẩu tối thiểu 8 ký tự")
+                elif len(new_password) > 16:
+                    messages.error(request, "Mật khẩu tối đa 16 ký tự")
+                return redirect('reset', token=token)
         
             User_obj = User.objects.get(id=user_id)
             User_obj.set_password(new_password)

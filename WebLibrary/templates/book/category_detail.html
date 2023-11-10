@@ -136,7 +136,9 @@
   </div>
   <div>
     {% if search_results %}
+    <br><br>
       <h1 style="color: black;">Kết quả tìm kiếm cho "{{ search_book }}"</h1>
+      <br>
       <div class="container">
         <div class="row row-cols-1 row-cols-md-4 g-4 ms-3 me-3">
           {% for result in search_results %}
@@ -153,10 +155,10 @@
                               </p>
                               <p class="card-text" style="text-align: right; margin-right: 10px; font-size: 14px;font-weight: 600;">
                                 <span style="color: black; ">Số lượng còn lại: </span>
-                                {% if book.amount == 0  %}
-                                  <span style="color: red !important;">{{ book.amount }}</span>
+                                {% if result.amount == 0 %}
+                                  <span style="color: red !important;">{{ result.amount }}</span>
                                 {% else %}
-                                  <span style="color: green !important;">{{ book.amount }}</span>
+                                  <span style="color: green !important;">{{ result.amount }}</span>
                                 {% endif %}
                               </p>
                           </a>

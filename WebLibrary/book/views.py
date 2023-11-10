@@ -4,6 +4,11 @@ from category.models import Category
 from book.models import Book
 from author.models import Author
 from django.db.models import Q
+from django.contrib import messages
+from student.forms import Student
+from student.models import Student
+from userprofile.models import Profile
+from userprofile.forms import ProfileForm
 
 
 def tabrules(request):
@@ -80,6 +85,13 @@ def book_detail(request, pk):
     # Lấy thông tin chi tiết của sách với primary key là pk
     selected_book = get_object_or_404(Book, pk=pk)
     related_author = selected_book.author
+    user = request.user
+    
+    if selected_book.amount == 0:
+        is_book_available = False
+        messages.error(request, 'Sách đã hết. Không thể mượn.')
+    else:
+        is_book_available = True
 
     # Lấy thông tin chi tiết của thể loại của sách đã chọn
     category = selected_book.category
@@ -100,6 +112,7 @@ def book_detail(request, pk):
         'latest_categories': categories,
         'latest_authors': authors,
         'related_author': related_author,
+        'is_book_available': is_book_available,
     }
 
     return render(request, 'book/book_detail.html', context)
