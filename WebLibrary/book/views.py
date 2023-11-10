@@ -9,6 +9,7 @@ from student.forms import Student
 from student.models import Student
 from userprofile.models import Profile
 from userprofile.forms import ProfileForm
+from django.http import HttpResponse
 
 
 def tabrules(request):
@@ -105,8 +106,9 @@ def book_detail(request, pk):
 
     print(categories)
     print(authors)
-   
     pdf_url = selected_book.pdf.url     
+
+ 
     context = {
         'selected_book': selected_book,
         'related_books': related_books,

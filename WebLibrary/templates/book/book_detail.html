@@ -91,7 +91,6 @@
       </div>
     </div>
 </nav>
-
   <header data-jarallax data-speed=".8">
     <div class="d-flex flex-column min-vh-100 bg-black-50 pt-10 pt-md-8 pb-7 pb-md-0">
       <div class="container my-auto">
@@ -141,6 +140,7 @@
                 <p>Số trang: {{ selected_book.page }}</p>
                 <p>Số lượng: {{ selected_book.amount }}</p>
                 <p>Ngày xuất bản: {{ selected_book.Publication_date }}</p>
+
                 {% if not is_book_available %}
                     <div class="alert alert-danger" role="alert">
                         Sách đã hết. Không thể mượn.
@@ -189,8 +189,7 @@
                     </div>
                   </div>
                 </div>
-                <!-- <button style="background-color: white; color: black; width: 100px; border-radius: 5px; height: 38px;">Xem sách</button>                 -->
-                <button style="background-color: white; color: black; width: 100px; border-radius: 5px; height: 38px;"><a href="{{ pdf_url }}" target="_blank" style="text-decoration: none;">Xem sách</a></button>
+                <button style="background-color: white; color: black; width: 100px; border-radius: 5px; height: 38px;"><a href="{{ pdf_url }}" target="_blank" style="text-decoration: none;">Xem sách</a></button>  
             </div>
         </div>
       </div>
