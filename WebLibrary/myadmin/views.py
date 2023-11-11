@@ -3,10 +3,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin  
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from book.models import Book
 from django import forms
-from .forms import CreateBookForm, CreateCategoryForm
+from .forms import CreateBookForm, CreateCategoryForm, CreateAuthorForm
 # from student.models import CustomUser
 from category.models import Category
 # Create your views here.
+from author.models import Author
 
 
 class BookCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
@@ -57,6 +58,32 @@ class CategoryUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class CategoryDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Category
     template_name = "myadmin/delete_Category.html"
+    success_url = reverse_lazy('book:book')
+
+    def test_func(self):
+        return self.request.user.is_staff
+    
+class AuthorCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+    model = Author
+    form_class = CreateAuthorForm
+    template_name = "myadmin/add_Author.html"
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+
+class AuthorUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Author
+    form_class = CreateAuthorForm
+    template_name = "myadmin/edit_Author.html"
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+
+class AuthorDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Author
+    template_name = "myadmin/delete_Author.html"
     success_url = reverse_lazy('book:book')
 
     def test_func(self):

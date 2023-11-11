@@ -141,6 +141,7 @@ def author_detail(request, pk):
 
     else:
         context = {
+            'latest_authors': authors,
             'author': author,
             'books': books,
             'latest_authors': authors,
@@ -160,3 +161,29 @@ def view_pdf(request, pk):
         response = HttpResponse(pdf_file.read(), content_type='application/pdf')
         response['Content-Disposition'] = f'filename="{selected_book.title}.pdf"'
         return response
+    
+def author(request):
+    # Lấy tất cả các sách và các danh mục từ database
+    authors = Author.objects.all()
+    categories = Category.objects.all()
+
+    search_author = request.GET.get('search', '')
+    if search_author:
+        # Tìm kiếm theo tiêu đề của tác giả
+        authors = authors.filter(title__icontains=search_author)
+        # Truyền dữ liệu tìm kiếm vào template
+        context = {
+            'search_results': authors,
+            'search_author': search_author,
+            'latest_authors': authors,
+            'latest_categories': categories,
+        }
+    else:
+        # Truyền dữ liệu danh mục vào template nếu không có tìm kiếm
+        context = {
+            'latest_authors': authors,
+            'latest_categories': categories,
+        }
+
+    # Render template với dữ liệu đã lấy
+    return render(request, 'book/author.html', context)

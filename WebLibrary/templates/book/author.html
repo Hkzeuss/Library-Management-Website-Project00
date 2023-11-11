@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'book/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'book/styles1.css' %}">
+  <title>Trang chủ</title>
+
+</head>
+<body style="font-family: Montserrat;">
+  <nav class="navbar navbar-expand-lg ">
+    <div class="container-fluid">
+      <h2 class="navbar-brand ms-5 me-5 font-weight01"> <a class="no-underline" style="color: black;" href="/booklib/">VJULIB</a></h2>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto offset-4 mb-2 mb-lg-0 font-weight01 ">
+
+          <li class="nav-item">
+            <a class="nav-link active " aria-current="page" href="/booklib/">Trang Chủ</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/introduce/">Giới Thiệu</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/tabrules/">Nội Quy</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Thể loại sách
+            </a>
+            <ul class="dropdown-menu">
+              {% for category in latest_categories %}
+              <li>
+                <a class="dropdown-item" href="{% url 'category_detail' pk=category.pk %}">
+                  {{ category.title }}
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/author/">Tác giả</a>
+          </li>
+        </ul>
+
+        <form class="d-flex" role="search" method="GET" action="{% url 'booklib' %}">
+          <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search" value="{{ search_author }}">
+        </form>
+
+          <li class="nav-item dropdown list-unstyled btn-group">
+            <a class="profile-content nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="{{ user.profile.profile_img.url }}" alt="..." style="border-radius: 25px; width: 30px; height: 30px; object-fit: cover; margin-right:-5px">
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" style="font-family: 'Montserrat' ">
+              
+              <li>
+                <a class="dropdown-item " href="/profile/">
+                  <i class='bx bxs-user-circle' style="font-size: 30px; position: relative; top: 7px; color: #1C1E21;"></i>
+                  <span style="font-weight: 500;">Trang cá nhân</span>
+                  <span style=" width: 10px; height: 10px;border: solid #333; border-width: 0 2px 2px 0; display: inline-block; transform: rotate(-45deg); margin-left: 5px; margin-left: 5.25rem;">
+                  </span>
+                </a>
+              </li>
+
+              <li>
+                <a class="dropdown-item " href="/editprofile/">
+                  <i class='bx bx-cog' style="font-size: 30px; position: relative; top: 7px; color: #1C1E21;"></i> 
+                  <span style="font-weight: 500;">Cài đặt & quyền riêng tư </span>
+                  <span style=" width: 10px; height: 10px;border: solid #333; border-width: 0 2px 2px 0; display: inline-block; transform: rotate(-45deg); margin-left: 5px;">
+                  </span>
+                </a>
+              </li>
+              
+              <li>
+                <a class="dropdown-item" href="/logout/">
+                  <i class='bx bx-log-out bx-flip-horizontal' style="font-size: 30px; position: relative; top: 7px; color: #1C1E21;"></i>
+                  <span style="font-weight: 500;">Đăng xuất</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          
+        </div>
+      </div>
+    </div>
+</nav>
+
+<header data-jarallax data-speed=".8">
+  <div class="d-flex flex-column min-vh-100 bg-black-50 pt-10 pt-md-8 pb-7 pb-md-0">
+    <div class="container my-auto">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6 text-center">
+          <div>
+            <img src="{% static 'images/background/Background_1.jpg' %}" alt="..."  class="child-background"></img>
+          </div>
+      </div>
+        <div class="font-color01 position-absolute col-md-4 me-7">
+          <h4>Chào mừng bạn đến với <a class="no-underline font-weight01" href="/booklib/">VJULIB</a>! Chúng tôi tự hào mang đến cho bạn một kho tài liệu đa dạng và phong phú, được tập hợp và curation một cách kỹ lưỡng để đáp ứng tốt nhất cho nhu cầu của bạn trong việc học tập và nghiên cứu.</h4>  
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+  <section class="mar-1">
+    <div>
+      <h1 class="co-0">Không gian thoáng mát</h1>
+      <div class="row row-cols-1 row-cols-md-3 g-4 ms-5 me-5">
+        <div class="col">
+          <div class="card h-100">
+            <img src="{% static 'images/background/Background_1.jpg' %}" class="card-img-top" alt="...">
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card h-100">
+            <img src="{% static 'images/background/Background_2.jpg' %}" class="card-img-top" alt="...">
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card h-100">
+            <img src="{% static 'images/background/Background_3.jpg' %}" class="card-img-top" alt="...">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div>
+      {% if search_results %}
+        <h1 style="color: black;">Kết quả tìm kiếm cho "{{ search_author }}"</h1>
+        <div class="container">
+          <div class="row row-cols-1 row-cols-md-4 g-4 ms-3 me-3">
+            {% for result in search_results %}
+                <div class="col">
+                    <div class="card h-100">
+                        <a href="{% url 'author_detail' pk=result.pk %}" style="height: 300px;">
+                            <img src="{{ result.img.url }}" class="card-img-top" alt="{{ result.title }}">
+                        </a>
+                        <div class="te-de" style="margin-top: 80px; margin-bottom: 20px;">
+                            <a href="{% url 'author_detail' pk=result.pk %}">
+                                <h5 class="card-title" style="color: black;">{{ result.title }}</h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% elif search_author and not search_results %}
+          <br><br>
+          <h1 style="color: black;">Không tìm thấy kết quả cho "{{ search_author }}"</h1>
+        {% else %}
+            <br><br>
+              <div class="container" >
+                    <div class="row">
+                      {% for author in latest_authors %}
+                      <div class="col-md-2 col-12">
+                        
+                          <div>
+                            <a href="{% url 'author_detail' pk=author.pk %}">
+                            <img src="{{ author.img.url }}" alt="{{ author.title }}" style="border-radius: 50%; width: 120px; height: 120px;">
+                          </a> 
+                          </div>
+
+                          <div style="text-decoration: none !important; color: black !important; font-size: 14px; justify-content: center;">
+                            <a href="{% url 'author_detail' pk=author.pk %}">
+                              {{ author.title }}
+                            </a>
+                             
+                          </div>
+                        
+                      </div>
+                  {% endfor %}    
+                </div>
+              </div>
+          
+      {% endif %}
+  </div>
+</section>
+
+<div id="layoutDefault_footer">
+  <footer class="footer pt-5 pb-5 mt-5 " style="background-color: #D9D9D9;">
+      <div class="container ">
+
+          <div class="row gx-5">
+              <div class="col-lg-3">
+                  <h5 class="footer-brand font-weight03">VJU LIBRARY</h5>
+                  <div class="icon-list-social mb-5 mt-3 ">
+                      <a class="icon-list-social-link " href="#!"><i class='bx bxl-instagram-alt' style="font-size: 25px;" ></i></a>
+                      <a class="icon-list-social-link p-xxl-4 " href="#!"><i class='bx bxl-facebook-circle' style="font-size: 25px;"></i></a>
+                      <a class="icon-list-social-link " href="#!"><i class='bx bxl-discord-alt' style="font-size:25px" ></i></a>
+                  </div>
+              </div>
+              <div class="col-lg-9">
+                  <div class="row gx-5 font-weight03">
+                      <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+                          <a href="/booklib/" class="text-uppercase-expanded text-xs mb-4 no-underline">Trang Chủ</a>
+                      </div>
+
+                      <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+                          <a href="/introduce/" class="text-uppercase-expanded text-xs mb-4 no-underline">Giới Thiệu</a>
+                      </div>
+
+                      <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+                          <a href="/tabrules/" class="text-uppercase-expanded text-xs mb-4 no-underline">Nội Quy</a>
+                      </div>
+
+                      <div class="col-lg-3 col-md-6">
+                          <div class="text-uppercase-expanded text-xs mb-4"><a class="no-underline" href="#">Tủ Sách</a></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <hr class="my-4" />
+
+          <div class="row gx-5 align-items-center">
+              <div class="col-md-6 small font-weight03">Copyright © LIBVJU 2023</div>
+              <div class="col-md-6 text-md-end small">
+                  <a class="no-underline font-weight03" href="#!">Privacy Policy</a>
+                  ·
+                  <a class="no-underline font-weight03" href="#!">Terms &amp; Conditions</a>
+              </div>
+          </div>
+
+      </div>
+  </footer>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>  
+</body>
+</html>
