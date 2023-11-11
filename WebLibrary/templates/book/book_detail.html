@@ -151,7 +151,6 @@
                     </div>
                 {% endif %}
                 <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" _msttexthash="5148819" _msthash="338" {% if not is_book_available %}disabled style="background-color: #F02E2E;"{% endif %}>Mượn Sách</button>
-                
                 <div class="modal fade" id="exampleModalToggle" aria-labelledby="exampleModalToggleLabel" tabindex="-1" style="display: none;" _mstvisible="0" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" _mstvisible="1">
                     <div class="modal-content" _mstvisible="2">
@@ -159,11 +158,28 @@
                         <h1 class="modal-title fs-5" id="exampleModalToggleLabel" _msttexthash="1767636" _msthash="330" _mstvisible="4">Vui Lòng Lên Lịch Mượn Sách</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng" _mstaria-label="59709" _msthash="331" _mstvisible="4"></button>
                       </div>
-                      <div class="modal-body" _msttexthash="28926456" _msthash="332" _mstvisible="3">Nhập Thời Gian Trả Sách: <input type="date" style="float: right; margin-right: 50px;"></div>
-                      <div class="modal-body" _msttexthash="28926456" _msthash="332" _mstvisible="3">Nhập Thời Gian Mượn Sách: <input type="date" style="float: right; margin-right: 50px;"></div>
-                      <div class="modal-footer" _mstvisible="3">
-                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" _msttexthash="5143346" _msthash="333" _mstvisible="4">Xác Nhận</button>
-                      </div>
+                      <form method="post" action="">
+                        {% csrf_token %}
+                        <div class="modal-body" _msttexthash="28926456" _msthash="332" _mstvisible="3">
+                            Nhập Thời Gian Mượn Sách:
+                            <input type="date" name="borrow_date" style="float: right; margin-right: 50px;" value="{% if form.is_bound %}{{ form.data.borrow_date }}{% endif %}" placeholder="YYYY-MM-DD">
+                            {% for error in form.borrow_date.errors %}
+                                <span class="text-danger">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="modal-body" _msttexthash="28926456" _msthash="332" _mstvisible="3">
+                            Nhập Thời Gian Trả Sách:
+                            <input type="date" name="return_date" style="float: right; margin-right: 50px;" value="{% if form.is_bound %}{{ form.data.return_date }}{% endif %}" placeholder="YYYY-MM-DD">
+                            {% for error in form.return_date.errors %}
+                                <span class="text-danger">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="modal-footer" _mstvisible="3">
+                            <button class="btn btn-primary" type="submit" _msttexthash="5143346" _msthash="333" _mstvisible="4">
+                                Xác Nhận
+                            </button>
+                        </div>
+                    </form>
                     </div>
                   </div>
                 </div>
@@ -176,16 +192,15 @@
                       </div>
                       <div class="modal-body" _msttexthash="1948674" _msthidden="1" _msthash="336">
                         Họ Và Tên: {{request.user.first_name}} {{request.user.last_name}}
-                        <form>
                         Mã Sinh Viên: {{ request.user.username }}
                         <br>
                         Email: {{request.user.email}}
                         <br>
                         Tên Sách - Tác Giả: {{ selected_book.title }} - {{ selected_book.author }}
                         <br>
-                        Thời Gian Mượn Sách:
+                        Thời Gian Mượn Sách: {{ borrow_instance.borrow_date }}
                         <br>
-                        Thời Gian Trả Sách:
+                        Thời Gian Trả Sách: {{ borrow_instance.return_date }}
                       </div>
                       <div class="modal-footer" _msthidden="1">
                         <button class="btn btn-primary" id="btnOK">OK</button>

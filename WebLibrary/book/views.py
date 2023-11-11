@@ -1,15 +1,14 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Book
 from category.models import Category
 from book.models import Book
 from author.models import Author
 from django.db.models import Q
 from django.contrib import messages
-from student.forms import Student
-from student.models import Student
-from userprofile.models import Profile
-from userprofile.forms import ProfileForm
 from django.http import HttpResponse
+from borrow.forms import Borrow
+from django.contrib import messages
+from datetime import datetime, timedelta
 
 
 def tabrules(request):
@@ -106,7 +105,7 @@ def book_detail(request, pk):
 
     print(categories)
     print(authors)
-    pdf_url = selected_book.pdf.url     
+    pdf_url = selected_book.pdf.url
 
  
     context = {
@@ -118,6 +117,30 @@ def book_detail(request, pk):
         'is_book_available': is_book_available,
         'pdf_url': pdf_url,
     }
+
+    if request.method == 'POST':
+        form = Borrow(request.POST)
+        if form.is_valid():
+            borrow_instance = form.save(commit=False)
+            borrow_instance.book = selected_book
+
+            # Lấy dữ liệu từ form
+            borrow_date = form.cleaned_data['borrow_date']
+            return_date = form.cleaned_data['return_date']
+
+            # Kiểm tra điều kiện ngày trả lớn hơn ngày mượn và không cách nhau quá 7 ngày
+            if return_date <= borrow_date or return_date - borrow_date > timedelta(days=7):
+                messages.error(request, 'Ngày trả không hợp lệ. Vui lòng kiểm tra lại.')
+            else:
+                selected_book.amount -= 1
+                selected_book.save()
+                borrow_instance.save()
+                return redirect('book_detail', pk=pk)
+            
+    else:
+        form = Borrow()
+
+    context['form'] = form
 
     return render(request, 'book/book_detail.html', context)
 
