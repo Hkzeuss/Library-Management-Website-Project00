@@ -170,6 +170,8 @@
             {% endfor %}
           </div>
         </div>
+        {% elif search_book and not search_results%}
+        <p>Không có sách nào trong thể loại này.</p>
         {% else %}
         {% for category in latest_categories %}
           <br><br>
@@ -213,7 +215,6 @@
                 <a href="{% url 'category_detail' pk=category.pk %}" style="color: black;">Xem thêm </a>
               </div>
             {% else %}
-              <p>Không có sách nào trong thể loại này.</p>
             {% endif %}
           </div>
         {% endfor %}
