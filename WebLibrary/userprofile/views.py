@@ -42,6 +42,8 @@ def edit_profile(request):
             # Lưu thông tin mới của Profile
             if 'profile_img' in request.FILES:
                 profile_instance.profile_img = request.FILES['profile_img']
+            elif 'desc' in request.FILES:
+                profile_instance.desc = request.FILES['desc']
                 
             profile_instance.save()
             student_instance.save()
