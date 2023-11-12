@@ -39,7 +39,7 @@
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Tủ Sách
+              Thể loại sách
             </a>
             <ul class="dropdown-menu">
               {% for category in latest_categories %}
@@ -50,6 +50,10 @@
               </li>
               {% endfor %}
             </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/author/">Tác giả</a>
           </li>
         </ul>
 
@@ -170,8 +174,9 @@
             {% endfor %}
           </div>
         </div>
-        {% elif search_book and not search_results%}
-        <p>Không có sách nào trong thể loại này.</p>
+        {% elif search_book and not search_results %}
+          <br><br>
+          <h1 style="color: black;">Không tìm thấy kết quả cho "{{ search_book }}"</h1>
         {% else %}
         {% for category in latest_categories %}
           <br><br>
@@ -214,7 +219,6 @@
               <div class="add" style="margin-top: 20px;">
                 <a href="{% url 'category_detail' pk=category.pk %}" style="color: black;">Xem thêm </a>
               </div>
-            {% else %}
             {% endif %}
           </div>
         {% endfor %}
