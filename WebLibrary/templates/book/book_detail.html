@@ -145,11 +145,7 @@
                 <p>Số lượng: {{ selected_book.amount }}</p>
                 <p>Ngày xuất bản: {{ selected_book.Publication_date }}</p>
 
-                {% if not is_book_available %}
-                    <div class="alert alert-danger" role="alert">
-                        Sách đã hết. Không thể mượn.
-                    </div>
-                {% endif %}
+                
                 <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" _msttexthash="5148819" _msthash="338" {% if not is_book_available %}disabled style="background-color: #F02E2E;"{% endif %}>Mượn Sách</button>
                 <div class="modal fade" id="exampleModalToggle" aria-labelledby="exampleModalToggleLabel" tabindex="-1" style="display: none;" _mstvisible="0" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" _mstvisible="1">
@@ -160,20 +156,27 @@
                       </div>
                       <form method="post" action="">
                         {% csrf_token %}
+                        {% if not is_book_available %}
+                            <div class="alert alert-danger" role="alert">
+                              {% for message in messages %}
+                              <div class="fontcolor">{{message}}</div>
+                              {% endfor %}
+                            </div>
+                        {% endif %}
                         <div class="modal-body" _msttexthash="28926456" _msthash="332" _mstvisible="3">
-                            Nhập Thời Gian Mượn Sách:
-                            <input type="date" name="borrow_date" style="float: right; margin-right: 50px;" value="{% if form.is_bound %}{{ form.data.borrow_date }}{% endif %}" placeholder="YYYY-MM-DD">
-                            {% for error in form.borrow_date.errors %}
-                                <span class="text-danger">{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                        <div class="modal-body" _msttexthash="28926456" _msthash="332" _mstvisible="3">
-                            Nhập Thời Gian Trả Sách:
-                            <input type="date" name="return_date" style="float: right; margin-right: 50px;" value="{% if form.is_bound %}{{ form.data.return_date }}{% endif %}" placeholder="YYYY-MM-DD">
-                            {% for error in form.return_date.errors %}
-                                <span class="text-danger">{{ error }}</span>
-                            {% endfor %}
-                        </div>
+                          Nhập Thời Gian Mượn Sách:
+                          <input type="date" name="borrow_date" style="float: right; margin-right: 50px;" value="{% if form.is_bound %}{{ form.data.borrow_date }}{% endif %}" placeholder="YYYY-MM-DD">
+                          {% for error in form.borrow_date.errors %}
+                              <div class="text-danger">{{ error }}</div>
+                          {% endfor %}
+                      </div>
+                      <div class="modal-body" _msttexthash="28926456" _msthash="332" _mstvisible="3">
+                          Nhập Thời Gian Trả Sách:
+                          <input type="date" name="return_date" style="float: right; margin-right: 50px;" value="{% if form.is_bound %}{{ form.data.return_date }}{% endif %}" placeholder="YYYY-MM-DD">
+                          {% for error in form.return_date.errors %}
+                              <div class="text-danger">{{ error }}</div>
+                          {% endfor %}
+                      </div>
                         <div class="modal-footer" _mstvisible="3">
                             <button class="btn btn-primary" type="submit" _msttexthash="5143346" _msthash="333" _mstvisible="4">
                                 Xác Nhận
