@@ -16,14 +16,14 @@
 <body class="p-3 m-0 border-0 bd-example m-0 border-0 font-farmily01 " style=" overflow:hidden">
   <nav class="navbar navbar-expand-lg ">
     <div class="container-fluid">
-      <h2 class="navbar-brand ms-5 me-5 font-weight01"> <a class="no-underline" style="color: black;" href="/">VJULIB</a></h2>
+      <h2 class="navbar-brand ms-5 font-weight01"> <a class="no-underline" style="color: black;" href="/">VJULIB</a></h2>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto offset-4 mb-2 mb-lg-0 font-weight01 ">
+        <ul class="navbar-nav offset-3 mb-2 mb-lg-0 font-weight01 ">
 
           <li class="nav-item">
             <a class="nav-link active " aria-current="page" href="/">Trang Chủ</a>
@@ -57,18 +57,15 @@
           </li>
         </ul>
 
-
-          <div style="text-align: right; margin-right: 30px;">
+      </div>
+      <div style="text-align: right; margin-right: 30px;">
             
-              <a href="{% url 'register' %}" style="color: #0F62FE; text-decoration: none; font-weight:600;margin-right: 20px; ">Đăng kí</a>
-            
-            <button class="btn shadow-lg " type="submit">
-              <a href="{% url 'login' %}" style="color: #0F62FE; text-decoration: none; font-weight:600; ">Đăng nhập</a>
+          <a href="{% url 'register' %}" style="color: #0F62FE; text-decoration: none; font-weight:600;margin-right: 20px; ">Đăng kí</a>
+        
+        <button class="btn shadow-lg " type="submit">
+          <a href="{% url 'login' %}" style="color: #0F62FE; text-decoration: none; font-weight:600; ">Đăng nhập</a>
 
-
-            </button>
-          </div>
-
+        </button>
       </div>
     </div>
 </nav>
