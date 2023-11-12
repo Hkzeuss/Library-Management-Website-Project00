@@ -51,8 +51,8 @@ body {
 }
 
 .register {
-    background-color: #0a95f2;
-    color: #fff;
+    background-color: #fff;
+    color: #0a95ff;
     padding: 8px 15px;
     top: -5px;
     width: 110px;
@@ -62,8 +62,8 @@ body {
 }
 
 .login {
-    background-color: #0a95f2;
-    color: #fff;
+    background-color: #fff;
+    color: #0a95ff;
     padding: 8px 15px;
     width: 110px;
     height: 20px;

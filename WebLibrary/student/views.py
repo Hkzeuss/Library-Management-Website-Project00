@@ -160,7 +160,12 @@ def forgot(request):
         except User.DoesNotExist:
             messages.error(request, "Không tìm thấy tài khoản với thông tin bạn nhập.")
             return redirect("forgot")
-    return render(request, "student/ForgotPassword.html")
+    categories = Category.objects.all()
+    print(categories)
+    context = {
+        'latest_categories': categories,
+    }
+    return render(request, "student/ForgotPassword.html", context)
 
 def confirm(request):
     if request.method == "POST":
@@ -174,10 +179,17 @@ def confirm(request):
         except OTP.DoesNotExist:
             messages.error(request, "Mã OTP không hợp lệ.")
     
-    return render(request, 'student/ConfirmForgotPassword.html')
+    categories = Category.objects.all()
+    print(categories)
+    context = {
+        'latest_categories': categories,
+    }
+    return render(request, 'student/ConfirmForgotPassword.html', context)
 
 
 def reset(request, token):
+    categories = Category.objects.all()
+    print(categories)
     context={}
     try:
         OTP_user = OTP.objects.filter(token = token).first()
@@ -193,16 +205,32 @@ def reset(request, token):
             if new_password != confirm_password:
                 messages.error(request, "Xin vui lòng nhập lại")
                 return redirect('reset', token=token)
+            
+            # Kiểm tra kích thước mật khẩu
+            if not 8 <= len(new_password) <= 16:
+                if len(new_password) < 8:
+                    messages.error(request, "Mật khẩu tối thiểu 8 ký tự")
+                elif len(new_password) > 16:
+                    messages.error(request, "Mật khẩu tối đa 16 ký tự")
+                return redirect('reset', token=token)
         
             User_obj = User.objects.get(id=user_id)
             User_obj.set_password(new_password)
             User_obj.save()
             return redirect('success')
-        context = {'user_id': OTP_user.user.id}
+        context = {
+            'user_id': OTP_user.user.id,
+            'latest_categories': categories,
+            }
     except Exception as e:
         print(e)
     return render(request, 'student/ResetPassword.html', context)
 
 def success(request):
-    return render(request, 'student/succsesforgotpassword.html')
+    categories = Category.objects.all()
+    print(categories)
+    context = {
+        'latest_categories': categories,
+    }
+    return render(request, 'student/succsesforgotpassword.html', context)
 

@@ -13,7 +13,7 @@
     <title>VJULIB</title>
   
 </head>
-<body class="p-3 m-0 border-0 bd-example m-0 border-0 font-farmily01 ">
+<body class="p-3 m-0 border-0 bd-example m-0 border-0 font-farmily01 " style=" overflow:hidden">
   <nav class="navbar navbar-expand-lg ">
     <div class="container-fluid">
       <h2 class="navbar-brand ms-5 me-5 font-weight01"> <a class="no-underline" style="color: black;" href="/">VJULIB</a></h2>
@@ -30,35 +30,42 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="#">Giới Thiệu</a>
+            <a class="nav-link" href="/login/">Giới Thiệu</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="/tabrules">Nội Quy</a>
+            <a class="nav-link" href="/login/">Nội Quy</a>
           </li>
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Tủ Sách
+              Thể loại sách
             </a>
             <ul class="dropdown-menu">
               {% for category in latest_categories %}
               <li>
-                <a class="dropdown-item" href="{% url 'category_detail' pk=category.pk %}">
+                <a class="dropdown-item" href="/login/">
                   {{ category.title }}
                 </a>
               </li>
               {% endfor %}
             </ul>
           </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/author/">Tác giả</a>
+          </li>
         </ul>
 
-          <div style="text-align: right; margin-right: 20px;">
-            <button class="btn btn-primary" type="submit">
-              <a href="register" style="text-decoration: none; color: white;">Đăng ký</a>
-            </button>
-            <button class="btn btn-primary" type="submit">
-              <a href="{% url 'login' %}" style="text-decoration: none; color: white;">Đăng nhập</a>
+
+          <div style="text-align: right; margin-right: 30px;">
+            
+              <a href="{% url 'register' %}" style="color: #0F62FE; text-decoration: none; font-weight:600;margin-right: 20px; ">Đăng kí</a>
+            
+            <button class="btn shadow-lg " type="submit">
+              <a href="{% url 'login' %}" style="color: #0F62FE; text-decoration: none; font-weight:600; ">Đăng nhập</a>
+
+
             </button>
           </div>
 
@@ -89,7 +96,7 @@
             </p>
 
             <!-- Button -->
-            <a class="btn btn-outline-primary text-white text-primary-hover mb-7 mb-md-0" href="/login">
+            <a class="btn btn-outline-primary text-white text-primary-hover mb-7 mb-md-0" href="/login/">
               <span class="font-weight03">Đọc Ngay</span>
             </a>
 

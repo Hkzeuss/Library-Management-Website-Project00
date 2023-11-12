@@ -10,13 +10,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'book/bootstrap.css' %}">
   <link rel="stylesheet" href="{% static 'book/styles1.css' %}">
-  <title>Tủ sách</title>
 
 </head>
 <body style="font-family: Montserrat;">
   <nav class="navbar navbar-expand-lg ">
     <div class="container-fluid">
-      <h2 class="navbar-brand ms-5 me-5 font-weight01"> <a class="no-underline" style="color: black;" href="/booklib">VJULIB</a></h2>
+      <h2 class="navbar-brand ms-5 me-5 font-weight01"> <a class="no-underline" style="color: black;" href="/booklib/">VJULIB</a></h2>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -26,20 +25,20 @@
         <ul class="navbar-nav me-auto offset-4 mb-2 mb-lg-0 font-weight01 ">
 
           <li class="nav-item">
-            <a class="nav-link active " aria-current="page" href="/booklib">Trang Chủ</a>
+            <a class="nav-link active " aria-current="page" href="/booklib/">Trang Chủ</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="/introduce">Giới Thiệu</a>
+            <a class="nav-link" href="/introduce/">Giới Thiệu</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="/tabrules">Nội Quy</a>
+            <a class="nav-link" href="/tabrules/">Nội Quy</a>
           </li>
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Tủ Sách
+              Thể loại sách
             </a>
             <ul class="dropdown-menu">
               {% for category in latest_categories %}
@@ -51,19 +50,24 @@
               {% endfor %}
             </ul>
           </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/author/">Tác giả</a>
+          </li>
         </ul>
 
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="d-flex" role="search" method="GET" action="{% url 'booklib' %}">
+          <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search" value="{{ search_book }}">
+        </form>
 
           <li class="nav-item dropdown list-unstyled btn-group">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="{% static 'images/background/library.jpg' %}" alt="..." style="border-radius: 25px; width: 40px; height: 40px; object-fit: cover;">
+            <a class="profile-content nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="{{ user.profile.profile_img.url }}" alt="..." style="border-radius: 25px; width: 30px; height: 30px; object-fit: cover; margin-right:-5px">
             </a>
             <ul class="dropdown-menu dropdown-menu-end" style="font-family: 'Montserrat' ">
               
               <li>
-                <a class="dropdown-item " href="#">
+                <a class="dropdown-item " href="/profile/">
                   <i class='bx bxs-user-circle' style="font-size: 30px; position: relative; top: 7px; color: #1C1E21;"></i>
                   <span style="font-weight: 500;">Trang cá nhân</span>
                   <span style=" width: 10px; height: 10px;border: solid #333; border-width: 0 2px 2px 0; display: inline-block; transform: rotate(-45deg); margin-left: 5px; margin-left: 5.25rem;">
@@ -72,7 +76,7 @@
               </li>
 
               <li>
-                <a class="dropdown-item " href="#">
+                <a class="dropdown-item " href="/editprofile/">
                   <i class='bx bx-cog' style="font-size: 30px; position: relative; top: 7px; color: #1C1E21;"></i> 
                   <span style="font-weight: 500;">Cài đặt & quyền riêng tư </span>
                   <span style=" width: 10px; height: 10px;border: solid #333; border-width: 0 2px 2px 0; display: inline-block; transform: rotate(-45deg); margin-left: 5px;">
@@ -81,143 +85,183 @@
               </li>
               
               <li>
-                <a class="dropdown-item" href="/logout">
+                <a class="dropdown-item" href="/logout/">
                   <i class='bx bx-log-out bx-flip-horizontal' style="font-size: 30px; position: relative; top: 7px; color: #1C1E21;"></i>
                   <span style="font-weight: 500;">Đăng xuất</span>
                 </a>
               </li>
             </ul>
           </li>
-        </form>
           
         </div>
       </div>
     </div>
 </nav>
 
-  <header data-jarallax data-speed=".8">
-    <div class="d-flex flex-column min-vh-100 bg-black-50 pt-10 pt-md-8 pb-7 pb-md-0">
-      <div class="container my-auto">
-        <div class="row justify-content-center">
-          <div class="col-12 col-md-8 col-lg-6 text-center">
-            <div>
-              <img src="{% static 'images/background/Background_1.jpg' %}" alt="..."  class="child-background"></img>
-            </div>
-        </div>
+<header data-jarallax data-speed=".8">
+  <div class="d-flex flex-column min-vh-100 bg-black-50 pt-10 pt-md-8 pb-7 pb-md-0">
+    <div class="container my-auto">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6 text-center">
+          <div>
+            <img src="{% static 'images/background/Background_1.jpg' %}" alt="..."  class="child-background"></img>
+          </div>
+      </div>
         <div class="font-color01 position-absolute col-md-4 me-7">
-          <h4>Chào mừng bạn đến với <a class="no-underline font-weight01" href="/booklib">VJULIB</a>! Chúng tôi tự hào mang đến cho bạn một kho tài liệu đa dạng và phong phú, được tập hợp và curation một cách kỹ lưỡng để đáp ứng tốt nhất cho nhu cầu của bạn trong việc học tập và nghiên cứu.</h4>  
+          <h4>Chào mừng bạn đến với <a class="no-underline font-weight01" href="/booklib/">VJULIB</a>! Chúng tôi tự hào mang đến cho bạn một kho tài liệu đa dạng và phong phú, được tập hợp và curation một cách kỹ lưỡng để đáp ứng tốt nhất cho nhu cầu của bạn trong việc học tập và nghiên cứu.</h4>  
         </div>
       </div>
     </div>
-  </header>
+  </div>
+</header>
 
-  <section class="mar-1">
-    <div>
-      <h1 class="co-0">Không gian thoáng mát</h1>
-      <div class="row row-cols-1 row-cols-md-3 g-4 ms-5 me-5">
-        <div class="col">
-          <div class="card h-100">
-            <img src="{% static 'images/background/Background_1.jpg' %}" class="card-img-top" alt="...">
-          </div>
+<section class="mar-1">
+  <div>
+    <h1 class="co-0">Không gian thoáng mát</h1>
+    <div class="row row-cols-1 row-cols-md-3 g-4 ms-5 me-5">
+      <div class="col">
+        <div class="card h-100">
+          <img src="{% static 'images/background/Background_1.jpg' %}" class="card-img-top" alt="...">
         </div>
+      </div>
 
-        <div class="col">
-          <div class="card h-100">
-            <img src="{% static 'images/background/Background_2.jpg' %}" class="card-img-top" alt="...">
-          </div>
+      <div class="col">
+        <div class="card h-100">
+          <img src="{% static 'images/background/Background_2.jpg' %}" class="card-img-top" alt="...">
         </div>
+      </div>
 
-        <div class="col">
-          <div class="card h-100">
-            <img src="{% static 'images/background/Background_3.jpg' %}" class="card-img-top" alt="...">
-          </div>
+      <div class="col">
+        <div class="card h-100">
+          <img src="{% static 'images/background/Background_3.jpg' %}" class="card-img-top" alt="...">
         </div>
       </div>
     </div>
-    <div>
-      <br><br>
-        <div class="te-de">
-          {% for category in latest_categories %}
-              <a href="{% url 'category_detail' pk=category.pk %}">
-                  <h1 class="co-1">{{ category.category_id }}</h1>
-              </a>
+  </div>
+  <div>
+    {% if search_results %}
+    <br><br>
+      <h1 style="color: black;">Kết quả tìm kiếm cho "{{ search_book }}"</h1>
+      <br>
+      <div class="container">
+        <div class="row row-cols-1 row-cols-md-4 g-4 ms-3 me-3">
+          {% for result in search_results %}
+              <div class="col">
+                  <div class="card h-100">
+                      <a href="{% url 'book_detail' pk=result.pk %}" style="height: 300px;">
+                          <img src="{{ result.img.url }}" class="card-img-top" alt="{{ result.title }}">
+                      </a>
+                      <div class="te-de" style="margin-top: 80px; margin-bottom: 20px;">
+                          <a href="{% url 'book_detail' pk=result.pk %}">
+                              <h5 class="card-title" style="color: black;">{{ result.title }}</h5>
+                              <p class="card-text" style="text-align: left; margin-left: 10px; color: black;">
+                                Tác giả: {{ result.author }}
+                              </p>
+                              <p class="card-text" style="text-align: right; margin-right: 10px; font-size: 14px;font-weight: 600;">
+                                <span style="color: black; ">Số lượng còn lại: </span>
+                                {% if result.amount == 0 %}
+                                  <span style="color: red !important;">{{ result.amount }}</span>
+                                {% else %}
+                                  <span style="color: green !important;">{{ result.amount }}</span>
+                                {% endif %}
+                              </p>
+                          </a>
+                      </div>
+                  </div>
+              </div>
           {% endfor %}
-
-          <div class="container">
-            <div class="row row-cols-1 row-cols-md-4 g-4 ms-3 me-3">
-                {% for book in books %}
-                    <div class="col">
-                        <div class="card h-100">
-                            <a href="{% url 'book_detail' pk=book.pk %}" >
-                              <img src="{{ book.img.url }}" class="card-img-top" alt="{{ book.title }}" style="height: 350px;">
-                            </a>
-                        
-                            <div class="te-de" style="margin-top: 80px; margin-bottom: 20px;">
-                              <a href="{% url 'book_detail' pk=book.pk %}">
-                                  <h5 class="card-title" style="color: black;">{{ book.title }}</h5>
-                                  <p class="card-text" style="text-align: left; margin-left: 10px; color: black;">
-                                    Tác giả: {{ book.author }}
-                                  </p>
-                                  <p class="card-text" style="text-align: right; margin-right: 10px; font-size: 14px; color: black;">
-                                    Trạng thái: {{ book.status }}
-                                  </p>
+        </div>
+      </div>
+      {% elif search_book and not search_results %}
+          <br><br>
+          <h1 style="color: black;">Không tìm thấy kết quả cho "{{ search_book }}"</h1>
+      {% else %}
+        <br><br>
+          <div class="te-de">
+            <h1> Thể loại: {{ category.title }}</h1>
+            <br>
+            <div class="container">
+              <div class="row row-cols-1 row-cols-md-4 g-4 ms-3 me-3">
+                  {% for book in books %}
+                      <div class="col">
+                          <div class="card h-100">
+                              <a href="{% url 'book_detail' pk=book.pk %}" >
+                                <img src="{{ book.img.url }}" class="card-img-top" alt="{{ book.title }}" style="height: 350px;">
                               </a>
+                          
+                              <div class="te-de" style="margin-top: 80px; margin-bottom: 20px;">
+                                <a href="{% url 'book_detail' pk=book.pk %}">
+                                    <h5 class="card-title" style="color: black;">{{ book.title }}</h5>
+                                    <p class="card-text" style="text-align: left; margin-left: 10px; color: black;">
+                                      Tác giả: {{ book.author }}
+                                    </p>
+                                    <p class="card-text" style="text-align: right; margin-right: 10px; font-size: 14px;font-weight: 600;">
+                                      <span style="color: black; ">Số lượng còn lại: </span>
+                                      {% if book.amount == 0  %}
+                                        <span style="color: red !important;">{{ book.amount }}</span>
+                                      {% else %}
+                                        <span style="color: green !important;">{{ book.amount }}</span>
+                                      {% endif %}
+                                    </p>
+                                </a>
+                            </div>
                           </div>
-                        </div>
-                    </div>
-                {% endfor %}
+                      </div>
+                  {% endfor %}
+              </div>
             </div>
           </div>
-        </div>
-    </div>
-  </section>
-  <div id="layoutDefault_footer">
-    <footer class="footer pt-5 pb-5 mt-5 " style="background-color: #D9D9D9;">
-        <div class="container ">
+      {% endif %}
+  </div>
+</section>
 
-            <div class="row gx-5">
-                <div class="col-lg-3">
-                    <h5 class="footer-brand font-weight03">VJU LIBRARY</h5>
-                    <div class="icon-list-social mb-5 mt-3 ">
-                        <a class="icon-list-social-link " href="#!"><i class='bx bxl-instagram-alt' style="font-size: 25px;" ></i></a>
-                        <a class="icon-list-social-link p-xxl-4 " href="#!"><i class='bx bxl-facebook-circle' style="font-size: 25px;"></i></a>
-                        <a class="icon-list-social-link " href="#!"><i class='bx bxl-discord-alt' style="font-size:25px" ></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-9">
-                    <div class="row gx-5 font-weight03">
-                        <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
-                            <a href="/booklib" class="text-uppercase-expanded text-xs mb-4 no-underline">Trang Chủ</a>
-                        </div>
+<div id="layoutDefault_footer">
+  <footer class="footer pt-5 pb-5 mt-5 " style="background-color: #D9D9D9;">
+      <div class="container ">
 
-                        <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
-                            <a href="/introduce" class="text-uppercase-expanded text-xs mb-4 no-underline">Giới Thiệu</a>
-                        </div>
+          <div class="row gx-5">
+              <div class="col-lg-3">
+                  <h5 class="footer-brand font-weight03">VJU LIBRARY</h5>
+                  <div class="icon-list-social mb-5 mt-3 ">
+                      <a class="icon-list-social-link " href="#!"><i class='bx bxl-instagram-alt' style="font-size: 25px;" ></i></a>
+                      <a class="icon-list-social-link p-xxl-4 " href="#!"><i class='bx bxl-facebook-circle' style="font-size: 25px;"></i></a>
+                      <a class="icon-list-social-link " href="#!"><i class='bx bxl-discord-alt' style="font-size:25px" ></i></a>
+                  </div>
+              </div>
+              <div class="col-lg-9">
+                  <div class="row gx-5 font-weight03">
+                      <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+                          <a href="/booklib/" class="text-uppercase-expanded text-xs mb-4 no-underline">Trang Chủ</a>
+                      </div>
 
-                        <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
-                            <a href="/tabrules" class="text-uppercase-expanded text-xs mb-4 no-underline">Nội Quy</a>
-                        </div>
+                      <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+                          <a href="/introduce/" class="text-uppercase-expanded text-xs mb-4 no-underline">Giới Thiệu</a>
+                      </div>
 
-                        <div class="col-lg-3 col-md-6">
-                            <div class="text-uppercase-expanded text-xs mb-4"><a class="no-underline" href="#">Tủ Sách</a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                      <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+                          <a href="/tabrules/" class="text-uppercase-expanded text-xs mb-4 no-underline">Nội Quy</a>
+                      </div>
 
-            <hr class="my-4" />
+                      <div class="col-lg-3 col-md-6">
+                          <div class="text-uppercase-expanded text-xs mb-4"><a class="no-underline" href="#">Tủ Sách</a></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
 
-            <div class="row gx-5 align-items-center">
-                <div class="col-md-6 small font-weight03">Copyright © LIBVJU 2023</div>
-                <div class="col-md-6 text-md-end small">
-                    <a class="no-underline font-weight03" href="#!">Privacy Policy</a>
-                    ·
-                    <a class="no-underline font-weight03" href="#!">Terms &amp; Conditions</a>
-                </div>
-            </div>
+          <hr class="my-4" />
 
-        </div>
-    </footer>
+          <div class="row gx-5 align-items-center">
+              <div class="col-md-6 small font-weight03">Copyright © LIBVJU 2023</div>
+              <div class="col-md-6 text-md-end small">
+                  <a class="no-underline font-weight03" href="#!">Privacy Policy</a>
+                  ·
+                  <a class="no-underline font-weight03" href="#!">Terms &amp; Conditions</a>
+              </div>
+          </div>
+
+      </div>
+  </footer>
 </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>  
 </body>

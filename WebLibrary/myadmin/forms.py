@@ -1,6 +1,7 @@
 from django import forms
 from book.models import Book
 from category.models import Category
+from author.models import Author
 
 
 class CreateBookForm(forms.ModelForm):
@@ -53,6 +54,28 @@ class CreateCategoryForm(forms.ModelForm):
 
     class Meta:
         model = Category
+        fields = ['title', 'img']
+
+        widgets = {
+            'title': forms.TextInput(attrs={
+                'class': 'email text_box ',
+                'placeholder': 'Title ',
+                'id': 'title'}),
+
+            'img': forms.FileInput(attrs={
+                'class': 'email text_box',
+                'id': 'username'}),
+
+        }
+        labels = {
+            'title': '',
+            'img': '',
+        }
+
+class CreateAuthorForm(forms.ModelForm):
+
+    class Meta:
+        model = Author
         fields = ['title', 'img']
 
         widgets = {
