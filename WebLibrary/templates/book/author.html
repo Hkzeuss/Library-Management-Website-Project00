@@ -162,34 +162,30 @@
             {% endfor %}
           </div>
         </div>
-        {% elif search_author and not search_results %}
-          <br><br>
-          <h1 style="color: black;">Không tìm thấy kết quả cho "{{ search_author }}"</h1>
-        {% else %}
-            <br><br>
-              <div class="container" >
-                    <div class="row">
-                      {% for author in latest_authors %}
-                      <div class="col-md-2 col-12">
-                        
-                          <div>
-                            <a href="{% url 'author_detail' pk=author.pk %}">
-                            <img src="{{ author.img.url }}" alt="{{ author.title }}" style="border-radius: 50%; width: 120px; height: 120px;">
-                          </a> 
-                          </div>
-
-                          <div style="text-decoration: none !important; color: black !important; font-size: 14px; justify-content: center;">
-                            <a href="{% url 'author_detail' pk=author.pk %}">
-                              {{ author.title }}
-                            </a>
-                             
-                          </div>
-                        
+      {% elif search_author and not search_results %}
+        <br><br>
+        <h1 style="color: black;">Không tìm thấy kết quả cho "{{ search_author }}"</h1>
+      {% else %}
+        <br><br>
+          <div class="container" >
+              <div class="row">
+                {% for author in latest_authors %}
+                  <div class="col-md-2 col-12">
+                      <div>
+                        <a href="{% url 'author_detail' pk=author.pk %}">
+                          <img src="{{ author.img.url }}" alt="{{ author.title }}" style="border-radius: 50%; width: 120px; height: 120px;">
+                        </a>
                       </div>
-                  {% endfor %}    
-                </div>
-              </div>
-          
+
+                      <div style="font-size: 14px; justify-content: center;">
+                        <a href="{% url 'author_detail' pk=author.pk %}" style="text-decoration: none; color: black !important;">
+                          {{ author.title }}
+                        </a>
+                      </div>
+                  </div>
+                {% endfor %}    
+            </div>
+          </div>
       {% endif %}
   </div>
 </section>
