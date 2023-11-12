@@ -98,15 +98,25 @@
       </div>
   </nav>
 
-  <div class="container">
+  <div class="container ">
     <div class=" col-md-8 mx-auto">
           <form method="post" enctype="multipart/form-data">
-            <div>
+            <div class="d-flex flex-column align-items-center justify-content-center position-relative">
               {% csrf_token %}
-              <label for="id_profile_img"><p class="text-center"><img src="{{ user.profile.profile_img.url }}" alt="User Image" class="img-fit rounded-circle small-avatar mt-g offset-md-8" style="width: 100px; height: 100px;"></p></label>
-              {{ form.profile_img }}
-            </div>
-              <div class="d-flex mt-x offset-md-1">
+              <a href="#imageModal" >
+                  <img src="{{ user.profile.profile_img.url }}" alt="User Image" class="img-fit rounded-circle small-avatar" style="width: 100px; height: 100px;">
+              </a>
+              <label for="id_profile_img" class="text-center position-relative">
+                  <label for="id_profile_img" class="bx bxs-camera position-absolute top-0 end-0" style="cursor: pointer; transform: translate(160%, -100%); font-size: 24px;">
+                      <span style="position: absolute; clip: rect(0, 0, 0, 0); pointer-events: none;">
+                          {{ form.profile_img }}
+                      </span>
+                  </label>
+              </label>
+          </div>
+          
+          <br>
+              <div class="d-flex justify-content-center">
                 <!--Phần nhập Họ Và Tên-->
                 <div class="mb-3">
                  <label for="id_first_name"><input type="text" name="first_name" value="{% if request.user.first_name %}{{request.user.first_name}}{% endif %}" placeholder="Điền họ" style="width: 150px; height: 45px; background-color: #AEC8FB;" class="form-control"></label>
@@ -114,12 +124,14 @@
                 <div class="mb-3 ms-1" style="width: 150px; height: 45px;">
                     <label for="id_last_name"><input type="text" name="last_name" value="{% if request.user.last_name %}{{request.user.last_name}}{% endif %}" placeholder="Điền tên" style="width: 150px; height: 45px; background-color: #AEC8FB;" class="form-control"></label>
                 </div>
-                    <label for="id_desc"><input type="text" name="desc" value="{% if user.profile.desc %}{{user.profile.desc}}{% endif %}" placeholder="Hãy giới thiệu thêm về bản thân nhé!"></label>
               </div>
-            <div class="">
-              <button type="submit" class="mt-2 btn btn-primary" style="width: 150px; height: 45px;">Cập Nhật</button>
-              <button class="mt-2 btn btn-primary ms-1" style="width: 150px; height: 45px; background-color: red;"><a href="/forgot" class="mt-2" style="color: white; text-decoration: none;">Đổi Mật Khẩu</a></button>
-            </div>
+              <div class="d-flex justify-content-center">
+                <label for="id_desc"><input type="text" name="desc" value="{% if user.profile.desc %}{{user.profile.desc}}{% endif %}" placeholder="Hãy giới thiệu thêm về bản thân nhé!" style="width: 300px; height: 45px;" class="form-control"></label>
+              </div>
+              <div class="d-flex justify-content-center">
+                <button type="submit" class="mt-2 btn btn-primary" style="width: 150px; height: 45px;">Cập Nhật</button>
+                <button class="mt-2 btn btn-primary ms-1" style="width: 150px; height: 45px; background-color: red;"><a href="/forgot/" class="mt-2" style="color: white; text-decoration: none;">Đổi Mật Khẩu</a></button>
+              </div>
           </form>
     </div>
 </div>
