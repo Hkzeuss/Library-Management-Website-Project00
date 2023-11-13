@@ -189,14 +189,6 @@
   margin-left: 0.5rem !important;
 }
 
-header {
-  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url('Vju.jpg');
-  background-size: cover;   /* Đảm bảo ảnh đầy khung và không bị cắt */
-  background-position: center center; /* Căn ảnh theo khung */
-  /* them */
-  height: 100vh;
-  
-}
 
 .child-background {
   width: 70%;
