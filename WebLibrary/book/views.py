@@ -116,6 +116,7 @@ def book_detail(request, pk):
         'related_author': related_author,
         'is_book_available': is_book_available,
         'pdf_url': pdf_url,
+        'is_borrowed': False,
     }
 
     if request.method == 'POST':
@@ -135,6 +136,17 @@ def book_detail(request, pk):
                 selected_book.amount -= 1
                 selected_book.save()
                 borrow_instance.save()
+
+                borrowed_books = request.session.get('borrowed_books', [])
+                borrowed_books.append({
+                    'author': str(selected_book.author),
+                    'image': selected_book.img.url,
+                    'book_title': selected_book.title,
+                    'borrow_date': str(borrow_date),
+                    'return_date': str(return_date),
+                })
+                request.session['borrowed_books'] = borrowed_books
+                context['is_borrowed'] = True
                 return redirect('book_detail', pk=pk)
             
     else:
