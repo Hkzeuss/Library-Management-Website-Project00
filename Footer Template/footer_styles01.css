@@ -1,3 +1,9 @@
+footer{ /*Đảm bảo luôn nằm cuối site (cố định), không quan trọng có bao nhiêu nội dung bên trên*/
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
 .site-footer
 {
   background-color:#26272b;
@@ -18,7 +24,8 @@
 .site-footer h6
 {
   color:#fff;
-  font-size:16px;
+  font-size:20px;
+  font-weight: 600;
   text-transform:uppercase;
   margin-top:5px;
   letter-spacing:2px
