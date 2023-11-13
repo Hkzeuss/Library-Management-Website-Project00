@@ -9,6 +9,9 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'student/header_styles1.css' %}">
+    <link rel="stylesheet" href="{% static 'student/base_footer_styles1.css' %}">
     <link rel="stylesheet" href="{% static 'student/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'student/styles11.css' %}">
     <title>Nội Quy </title>
@@ -96,171 +99,179 @@
       </li>
     </form> 
     </div>
-</nav>
+  </nav>
 
-  <header data-jarallax data-speed=".8">
-    <div class="d-flex flex-column min-vh-100 bg-black-50 pt-10 pt-md-8 pb-7 pb-md-0">
-      <div class="container my-auto">
-        <div class="row justify-content-center">
-          <div class="col-12 col-md-8 col-lg-6 text-center">
-            <div>
-              <img src="{% static 'images/background/Background_1.jpg' %}" alt="..."  class="child-background"></img>
-            </div>
+  <header class="header">
+    <div class="header-content">
+        <div class="header-text">
+            <h4>Chào mừng bạn đến với <a class="no-underline font-weight01" href="/booklib/">VJULIB</a>! Chúng tôi tự hào mang đến cho bạn một kho tài liệu đa dạng và phong phú, được tập hợp và curation một cách kỹ lưỡng để đáp ứng tốt nhất cho nhu cầu của bạn trong việc học tập và nghiên cứu.</h4>  
         </div>
-        <div class="font-color01 position-absolute col-md-4 me-7">
-          <h4>Chào mừng bạn đến với <a class="no-underline font-weight01" href="/booklib/">VJULIB</a>! Chúng tôi tự hào mang đến cho bạn một kho tài liệu đa dạng và phong phú, được tập hợp và curation một cách kỹ lưỡng để đáp ứng tốt nhất cho nhu cầu của bạn trong việc học tập và nghiên cứu.</h4>  
+
+        <div class="header-image">
+            <img src="{% static 'images/background/Background_1.jpg' %}" alt="Header Background">
         </div>
-      </div>
     </div>
   </header>
 
-<section>
-    <br><br>
-    <div>
-        <h1 class="text-align-center ">Nội Quy Thư Viện Trường Đại Học Việt Nhật </h1>
+  <section>
+      <br><br>
+      <div>
+          <h1 class="text-align-center ">Nội Quy Thư Viện Trường Đại Học Việt Nhật </h1>
+
+          <div class="co-1 font-weight04 ms-6 ms-7">
+            <p>Điều 1: Thẻ thư viện (Library card)</p>
+                <dt class="font-farmily01 ">Thẻ sinh viên / nhân viên đồng thời là thẻ thư viện để sử dụng các dịch vụ của thư viện.</dt>
+            <p>Điều 2: Giờ mở cửa
+                <dt class="font-farmily01">Thứ Hai – Thứ Sáu: 8h15 – 18h30</dt>
+                <dt class="font-farmily01">Cuối tuần: 8h00 – 12h00, 13h00 – 17h00 </dt>
+            </p>
+
+            <p>Điều 3: Các dịch vụ của Thư viện
+                <dt class="font-farmily01">3.1. Mượn, trả, gia hạn tài liệu;</dt> 
+                <dt lass="font-farmily01">3.2. Hướng dẫn tìm tin và sử dụng thư viện;</dt>
+                <dt class="font-farmily01">3.3. Tìm kiếm và tư vấn thông tin;</dt>
+                <dt class="font-farmily01"> 3.4. Truy cập nguồn tài nguyên điện tử</dt>
+                <dt class="font-farmily01">3.5. Tiếp nhận đề nghị đặt mua tài liệu;</dt>
+                <dt class="font-farmily01"> 3.6. Mượn liên thư viện;</dt>
+                <dt class="font-farmily01"> 3.7. Phòng học nhóm.</dt>
+            </p>  
+
+            <p>Điều 4: Các quy định chung khi vào thư viện
+                <dt class="font-farmily01">4.1. Xuất trình thẻ thư viện khi giao dịch với Thư viện. Không dùng thẻ của người khác và không cho người khác mượn thẻ của mình;</dt>
+                <dt class="font-farmily01"> 4.2. Giữ gìn trật tự, đi nhẹ, nói khẽ;</dt>
+                <dt class="font-farmily01">4.3. Giữ gìn vệ sinh chung: không hút thuốc lá, không viết, vẽ lên mặt bàn, không ngồi gác chân lên ghế, bỏ rác đúng nơi quy định;</dt>
+                <dt class="font-farmily01">4.4. Không được mang vào thư viện đồ ăn, uống, chất độc hại, chất cháy nổ,...;</dt>
+                <dt class="font-farmily01">4.5. Tắt chuông điện thoại, không nói chuyện điện thoại trong thư viện;</dt>
+                <dt class="font-farmily01"> 4.6. Không viết bút chì, bút mực hoặc sử dụng bút đánh dấu lên sách;</dt>
+                <dt class="font-farmily01"> 4.7. Không gập hoặc làm nhàu nát, rách sách;</li>
+                <dt class="font-farmily01">4.8. Không để sách bị ẩm ướt, mốc hoặc hư hỏng dưới bất kỳ hình thức nào.</dt>
+            </p> 
+
+            <p>Điều 5: Quy định khi mượn/trả tài liệu
+                <dt class="">5.1. Sau khi đọc sách xong, bạn đọc đặt sách về khu vực đã được quy định, không tự ý xếp sách lên giá;</dt>
+                <dt class="font-farmily01">5.2. Không mang bất cứ tài liệu nào ra khỏi thư viện khi chưa làm thủ tục mượn về;</dt>
+                <dt class="font-farmily01">5.3. Đối với giáo trình, tài liệu học tập: Mỗi sinh viên được mượn 1 bộ giáo trình, tài liệu dùng cho kỳ học hiện tại theo danh sách lớp của phòng Đào tạo. Những tài liệu giáo trình này, bạn đọc được gia hạn tối đa 1 tuần khi có lý do hợp lý;</dt>
+                <dt class="font-farmily01">5.4. Đối với sách giáo trình được mượn như tài liệu tham khảo, hạn trả áp dụng như đối với sách tham khảo thông thường;</dt>
+                <dt class="font-farmily01">5.5. Đối với tài liệu tham khảo: Bạn đọc được mượn tối đa 10 tên sách, trong thời hạn 1 tuần/ tài liệu tiếng Việt, 2 tuần/ tài liệu ngoại văn và được gia hạn 4 lần;</dt>
+                <dt class="font-farmily01">5.6. Người mượn có trách nhiệm:</li>
+                <dt class="font-farmily01">5.6.1 Kiểm tra và xác nhận quá trình giao dịch với thủ thư ngay tại quầy;</dt>
+                <dt class="font-farmily01">5.6.2 Kiểm tra tình trạng thực tế của tài liệu đã được ghi mượn trước khi mang ra khỏi thư viện, đồng thời giữ gìn, bảo quản tài liệu trong thời gian mượn. Khi phát hiện hư hỏng, người mượn cuối cùng của tài liệu đó sẽ chịu trách nhiệm bồi thường theo quy định.</dt>
+            </p> 
+
+            <p  >Điều 6: Xử lý vi phạm nội quy thư viện
+                <dt class="font-farmily01"> 6.1 Bạn đọc vi phạm các quy định tại Điều 4, 5 tùy theo mức độ và lần vi phạm có thể bị nhắc nhở, khiển trách và mời ra khỏi thư viện; lập biên bản cảnh cáo, tạm ngừng sử dụng các dịch vụ thư viện hoặc sẽ bị tước quyền sử dụng các dịch vụ thư viện vĩnh viễn, tạm thời đình chỉ học tập hoặc buộc thôi học;</dt>
+                <dt class="font-farmily01">6.2 Trường hợp làm hư hại (như long bìa, nhàu nát, bôi bẩn, viết, vẽ, mất trang...) hoặc mất tài liệu, bạn đọc phải bồi thường thiệt hại tương đương với giá trị của tài liệu;</dt>
+                <dt class="font-farmily01">6.3 Trường hợp mượn tài liệu quá hạn sẽ phải chịu tiền phạt là: 5.000 đồng/ngày/1 cuốn kể cả ngày nghỉ</dt>
+                <dt class="font-farmily01">6.4 Trong bất cứ trường hợp vi phạm nào, bạn đọc phải đền bù thiệt hại theo quy định.</dt>
+            </p>
+            <dd class="offset-9">PHÒNG THÔNG TIN - THƯ VIỆN</dd>
+      </div>
+
+      <br><br>
+      <div>
+        <h1 class="text-align-center "> LIBRARY REGULATIONS </h1>
         <div class="co-1 font-weight04 ms-6 ms-7">
-        <p>Điều 1: Thẻ thư viện (Library card)</p>
-            <dt class="font-farmily01 ">Thẻ sinh viên / nhân viên đồng thời là thẻ thư viện để sử dụng các dịch vụ của thư viện.</dt>
-        <p  >Điều 2: Giờ mở cửa
-            <dt class="font-farmily01">Thứ Hai – Thứ Sáu: 8h15 – 18h30</dt>
-            <dt class="font-farmily01">Cuối tuần: 8h00 – 12h00, 13h00 – 17h00 </dt>
-        </p>
-        <p>Điều 3: Các dịch vụ của Thư viện
-            <dt class="font-farmily01">3.1. Mượn, trả, gia hạn tài liệu;</dt> 
-            <dt lass="font-farmily01">3.2. Hướng dẫn tìm tin và sử dụng thư viện;</dt>
-            <dt class="font-farmily01">3.3. Tìm kiếm và tư vấn thông tin;</dt>
-            <dt class="font-farmily01"> 3.4. Truy cập nguồn tài nguyên điện tửrulecl;</dt>
-            <dt class="font-farmily01">3.5. Tiếp nhận đề nghị đặt mua tài liệu;</dt>
-            <dt class="font-farmily01"> 3.6. Mượn liên thư viện;</dt>
-            <dt class="font-farmily01"> 3.7. Phòng học nhóm.</dt>
-        </p>    
-        <p>Điều 4: Các quy định chung khi vào thư viện
-            <dt class="font-farmily01">4.1. Xuất trình thẻ thư viện khi giao dịch với Thư viện. Không dùng thẻ của người khác và không cho người khác mượn thẻ của mình;</dt>
-            <dt class="font-farmily01"> 4.2. Giữ gìn trật tự, đi nhẹ, nói khẽ;</dt>
-            <dt class="font-farmily01">4.3. Giữ gìn vệ sinh chung: không hút thuốc lá, không viết, vẽ lên mặt bàn, không ngồi gác chân lên ghế, bỏ rác đúng nơi quy định;</dt>
-            <dt class="font-farmily01">4.4. Không được mang vào thư viện đồ ăn, uống, chất độc hại, chất cháy nổ,...;</dt>
-            <dt class="font-farmily01">4.5. Tắt chuông điện thoại, không nói chuyện điện thoại trong thư viện;</dt>
-            <dt class="font-farmily01"> 4.6. Không viết bút chì, bút mực hoặc sử dụng bút đánh dấu lên sách;</dt>
-            <dt class="font-farmily01"> 4.7. Không gập hoặc làm nhàu nát, rách sách;</li>
-            <dt class="font-farmily01">4.8. Không để sách bị ẩm ướt, mốc hoặc hư hỏng dưới bất kỳ hình thức nào.</dt>
-        </p>    
-        <p>Điều 5: Quy định khi mượn/trả tài liệu
-            <dt class="">5.1. Sau khi đọc sách xong, bạn đọc đặt sách về khu vực đã được quy định, không tự ý xếp sách lên giá;</dt>
-            <dt class="font-farmily01">5.2. Không mang bất cứ tài liệu nào ra khỏi thư viện khi chưa làm thủ tục mượn về;</dt>
-            <dt class="font-farmily01">5.3. Đối với giáo trình, tài liệu học tập: Mỗi sinh viên được mượn 1 bộ giáo trình, tài liệu dùng cho kỳ học hiện tại theo danh sách lớp của phòng Đào tạo. Những tài liệu giáo trình này, bạn đọc được gia hạn tối đa 1 tuần khi có lý do hợp lý;</dt>
-            <dt class="font-farmily01">5.4. Đối với sách giáo trình được mượn như tài liệu tham khảo, hạn trả áp dụng như đối với sách tham khảo thông thường;</dt>
-            <dt class="font-farmily01">5.5. Đối với tài liệu tham khảo: Bạn đọc được mượn tối đa 10 tên sách, trong thời hạn 1 tuần/ tài liệu tiếng Việt, 2 tuần/ tài liệu ngoại văn và được gia hạn 4 lần;</dt>
-            <dt class="font-farmily01">5.6. Người mượn có trách nhiệm:</li>
-            <dt class="font-farmily01">5.6.1 Kiểm tra và xác nhận quá trình giao dịch với thủ thư ngay tại quầy;</dt>
-            <dt class="font-farmily01">5.6.2 Kiểm tra tình trạng thực tế của tài liệu đã được ghi mượn trước khi mang ra khỏi thư viện, đồng thời giữ gìn, bảo quản tài liệu trong thời gian mượn. Khi phát hiện hư hỏng, người mượn cuối cùng của tài liệu đó sẽ chịu trách nhiệm bồi thường theo quy định.</dt>
-        </p>    
-        <p  >Điều 6: Xử lý vi phạm nội quy thư viện
-            <dt class="font-farmily01"> 6.1 Bạn đọc vi phạm các quy định tại Điều 4, 5 tùy theo mức độ và lần vi phạm có thể bị nhắc nhở, khiển trách và mời ra khỏi thư viện; lập biên bản cảnh cáo, tạm ngừng sử dụng các dịch vụ thư viện hoặc sẽ bị tước quyền sử dụng các dịch vụ thư viện vĩnh viễn, tạm thời đình chỉ học tập hoặc buộc thôi học;</dt>
-            <dt class="font-farmily01">6.2 Trường hợp làm hư hại (như long bìa, nhàu nát, bôi bẩn, viết, vẽ, mất trang...) hoặc mất tài liệu, bạn đọc phải bồi thường thiệt hại tương đương với giá trị của tài liệu;</dt>
-            <dt class="font-farmily01">6.3 Trường hợp mượn tài liệu quá hạn sẽ phải chịu tiền phạt là: 5.000 đồng/ngày/1 cuốn kể cả ngày nghỉ</dt>
-            <dt class="font-farmily01">6.4 Trong bất cứ trường hợp vi phạm nào, bạn đọc phải đền bù thiệt hại theo quy định.</dt>
-        </p>
-        <dd class="offset-9">PHÒNG THÔNG TIN - THƯ VIỆN</dd>
-      
-    </div>
-    </div>
+            <p>Article 1: How to get library card? </p>
+                <dt class="font-farmily01">Your student ID card is your Library card. Use your Student or Staff ID card to access Library services and resources.</dt>
+            
+                <p>Article 2: Opening hours </p>
+                <dt class="font-farmily01"> Monday - Friday: 8:15 – 18:30</dt>
+                <dt class="font-farmily01">Weekend: 8:00 – 12:00, 13:00 – 17:00 </dt>
 
-    <br><br>
-    <div>
-      <h1 class="text-align-center "> LIBRARY REGULATIONS </h1>
-    <div class="co-1 font-weight04 ms-6 ms-7">
-      <p>Article 1: How to get library card? </p>
-          <dt class="font-farmily01">Your student ID card is your Library card. Use your Student or Staff ID card to access Library services and resources.</dt>
-      <p>Article 2: Opening hours </p>
-          <dt class="font-farmily01"> Monday - Friday: 8:15 – 18:30</dt>
-          <dt class="font-farmily01">Weekend: 8:00 – 12:00, 13:00 – 17:00 </dt>
-      <p>Article 3: Library services: </p>
-          <dt class="font-farmily01">3.1 Circulation; </dt>
-          <dt class="font-farmily01"> 3.2 Seeking information;</dt>
-          <dt class="font-farmily01">3.3 Information consulting; </dt>
-          <dt class="font-farmily01">3.4 “Log - on - to e-resource”; </dt>
-          <dt class="font-farmily01">3.5 Request materials; </dt>
-          <dt class="font-farmily01">3.6 Interlibrary loan; </dt>
-          <dt class="font-farmily01">3.7 Group work rooms. </dt>
-      <p>Article 4: General regulations </p>
-          <dt class="font-farmily01">4.1 Patrons must present a valid card to enter library. Cards are non-transferrable; </dt>
-          <dt class="font-farmily01"> 4.2 Loud conversation is forbidden throughout the Library; </dt>
-          <dt class="font-farmily01">4.3 Please consciously keep the library clean, no smoking, no graffiti, no littering ...; </dt>
-          <dt class="font-farmily01">4.4 Food, drink, toxic and explosive substances in the Library are forbidden; </dt>
-          <dt class="font-farmily01">4.5 Please keep quiet in the library and set the mobile phone or computer and other equipment in silent mode. Do not talk to other via phone; </dt>
-          <dt class="font-farmily01"> 4.6 Do not use pencils, pens or highlighters in the book; </dt>
-          <dt class="font-farmily01"> 4.7 Do not bend or tear the pages of the book; </dt>
-          <dt class="font-farmily01">4.8 Do not let it get wet or mouldy or damaged in any way. </dt>
-      <p>Article 5: Circulation policies </p>
-          <dt class="font-farmily01">5.1 Place books on designed area after finishing. Do not arrange books on shelf freely; </dt>
-          <dt class="font-farmily01">5.2 Materials may not be taken out of the FPT university library without permission of the Librarian; </dt>
-          <dt class="font-farmily01">5.3 Textbook for semester/block: Textbook are delivered according to academic calendar. Textbooks can only be renewed up to 1 week when you having suitable reasons; </dt>
-          <dt class="font-farmily01">5.4 Textbook for reference purposes: 1 week after new block start, patrons can borrow textbooks as reference books; </dt>
-          <dt class="font-farmily01">5.5 Reference book: Patrons can borrow up to 10 titles, loan period is 1 week for mother tongue books and 2 weeks for foreign language books, you can renew up to 4 times; </dt>
-          <dt class="font-farmily01">5.6 Patrons should: </dt>
-          <dt class="font-farmily01"> 5.6.1 Check list of books borrowed and confirm with librarian; </dt>
-          <dt class="font-farmily01">5.6.2 Make sure book condition notes at the end of your borrowed books are updated. You are responsible for the condition of everything while it is on loan to you. Please take good care of books or you pay for the damage according to the regulation.</dt>
-      <p>Article 6: Fines and penalty </p>
-      
-          <dt class="font-farmily01">6.1 Patrons who violate regulations mentioned in article 4 and 5 may get reminded, punished or requested to leave the library based on the violation level. Librarian may take the initial to write violation report, stop providing library services to those who break the law. In the worst situation, those students may get expelled from the university; </dt>
-          <dt class="font-farmily01"> 6.2 Damaged items which can be used will occur an amount depend on how serious of damage. The book is lost or damaged beyond repair, you have to buy this book;</dt>
-          <dt class="font-farmily01">6.3 Overdue books will be fined 5000 VNĐ/1 item/1 day including day off;</dt>
-          <dt class="font-farmily01">6.4 In any situation, patrons have to compensate for damage as prescribed </dt>
-          <dd class="offset-8">INFORMATION AND LIBRARY CENTER</dd>
-        </div>
-          
-    </div>
-</section>
+            <p>Article 3: Library services: </p>
+                <dt class="font-farmily01">3.1 Circulation; </dt>
+                <dt class="font-farmily01"> 3.2 Seeking information;</dt>
+                <dt class="font-farmily01">3.3 Information consulting; </dt>
+                <dt class="font-farmily01">3.4 “Log - on - to e-resource”; </dt>
+                <dt class="font-farmily01">3.5 Request materials; </dt>
+                <dt class="font-farmily01">3.6 Interlibrary loan; </dt>
+                <dt class="font-farmily01">3.7 Group work rooms. </dt>
 
-  <div id="layoutDefault_footer">
-    <footer class="footer pt-5 pb-5 mt-5 " style="background-color: #D9D9D9;">
-        <div class="container ">
+            <p>Article 4: General regulations </p>
+                <dt class="font-farmily01">4.1 Patrons must present a valid card to enter library. Cards are non-transferrable; </dt>
+                <dt class="font-farmily01"> 4.2 Loud conversation is forbidden throughout the Library; </dt>
+                <dt class="font-farmily01">4.3 Please consciously keep the library clean, no smoking, no graffiti, no littering ...; </dt>
+                <dt class="font-farmily01">4.4 Food, drink, toxic and explosive substances in the Library are forbidden; </dt>
+                <dt class="font-farmily01">4.5 Please keep quiet in the library and set the mobile phone or computer and other equipment in silent mode. Do not talk to other via phone; </dt>
+                <dt class="font-farmily01"> 4.6 Do not use pencils, pens or highlighters in the book; </dt>
+                <dt class="font-farmily01"> 4.7 Do not bend or tear the pages of the book; </dt>
+                <dt class="font-farmily01">4.8 Do not let it get wet or mouldy or damaged in any way. </dt>
 
-            <div class="row gx-5">
-                <div class="col-lg-3">
-                    <h5 class="footer-brand font-weight03">VJU LIBRARY</h5>
-                    <div class="icon-list-social mb-5 mt-3 ">
-                        <a class="icon-list-social-link " href="#!"><i class='bx bxl-instagram-alt' style="font-size: 25px;" ></i></a>
-                        <a class="icon-list-social-link p-xxl-4 " href="#!"><i class='bx bxl-facebook-circle' style="font-size: 25px;"></i></a>
-                        <a class="icon-list-social-link " href="#!"><i class='bx bxl-discord-alt' style="font-size:25px" ></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-9">
-                    <div class="row gx-5 font-weight03">
-                        <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
-                            <a href="/booklib/" class="text-uppercase-expanded text-xs mb-4 no-underline">Trang Chủ</a>
-                        </div>
+            <p>Article 5: Circulation policies </p>
+                <dt class="font-farmily01">5.1 Place books on designed area after finishing. Do not arrange books on shelf freely; </dt>
+                <dt class="font-farmily01">5.2 Materials may not be taken out of the FPT university library without permission of the Librarian; </dt>
+                <dt class="font-farmily01">5.3 Textbook for semester/block: Textbook are delivered according to academic calendar. Textbooks can only be renewed up to 1 week when you having suitable reasons; </dt>
+                <dt class="font-farmily01">5.4 Textbook for reference purposes: 1 week after new block start, patrons can borrow textbooks as reference books; </dt>
+                <dt class="font-farmily01">5.5 Reference book: Patrons can borrow up to 10 titles, loan period is 1 week for mother tongue books and 2 weeks for foreign language books, you can renew up to 4 times; </dt>
+                <dt class="font-farmily01">5.6 Patrons should: </dt>
+                <dt class="font-farmily01"> 5.6.1 Check list of books borrowed and confirm with librarian; </dt>
+                <dt class="font-farmily01">5.6.2 Make sure book condition notes at the end of your borrowed books are updated. You are responsible for the condition of everything while it is on loan to you. Please take good care of books or you pay for the damage according to the regulation.</dt>
+           
+              <p>Article 6: Fines and penalty </p>
+                <dt class="font-farmily01">6.1 Patrons who violate regulations mentioned in article 4 and 5 may get reminded, punished or requested to leave the library based on the violation level. Librarian may take the initial to write violation report, stop providing library services to those who break the law. In the worst situation, those students may get expelled from the university; </dt>
+                <dt class="font-farmily01"> 6.2 Damaged items which can be used will occur an amount depend on how serious of damage. The book is lost or damaged beyond repair, you have to buy this book;</dt>
+                <dt class="font-farmily01">6.3 Overdue books will be fined 5000 VNĐ/1 item/1 day including day off;</dt>
+                <dt class="font-farmily01">6.4 In any situation, patrons have to compensate for damage as prescribed </dt>
+                <dd class="offset-8">INFORMATION AND LIBRARY CENTER</dd>
+            </div>     
+      </div>
+  </section>
 
-                        <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
-                            <a href="/introduce/" class="text-uppercase-expanded text-xs mb-4 no-underline">Giới Thiệu</a>
-                        </div>
-
-                        <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
-                            <a href="/tabrules/" class="text-uppercase-expanded text-xs mb-4 no-underline">Nội Quy</a>
-                        </div>
-
-                        <div class="col-lg-3 col-md-6">
-                            <div class="text-uppercase-expanded text-xs mb-4"><a class="no-underline" href="#">Tủ Sách</a></div>
-                        </div>
-                    </div>
-                </div>
+  <footer class="site-footer" style="font-family:Montserrat;">
+    <div class="container">
+      <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <h6>VJULIB</h6>
+                <p class="text-justify">Chào mừng bạn đến với <a href="#" style="font-weight:600; color:#fff">VJULIB</a>! Chúng tôi tự hào mang đến cho bạn một kho tài liệu đa dạng và phong phú, được tập hợp và curation một cách kỹ lưỡng để đáp ứng tốt nhất cho nhu cầu của bạn trong việc học tập và nghiên cứu.</p>
             </div>
 
-            <hr class="my-4" />
-
-            <div class="row gx-5 align-items-center">
-                <div class="col-md-6 small font-weight03">Copyright © LIBVJU 2023</div>
-                <div class="col-md-6 text-md-end small">
-                    <a class="no-underline font-weight03" href="#!">Privacy Policy</a>
-                    ·
-                    <a class="no-underline font-weight03" href="#!">Terms &amp; Conditions</a>
-                </div>
+            <div class="col-xs-6 col-md-3">
+                <h6>THỂ LOẠI</h6>
+                <ul class="footer-links">
+                    <li><a href="#">Sách Chính Trị</a></li>
+                    <li><a href="#">Sách Lịch Sử</a></li>
+                    <li><a href="#">Sách Kinh Tế</a></li>
+                    <li><a href="#">Đồ Án Tốt Nghiệp</a></li>
+                    <li><a href="#">Sách Theo Tác Giả</a></li>
+                    <li><a href="#">Tất Cả Thể Loại</a></li>
+                </ul>
             </div>
 
-        </div>
-    </footer>
-</div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
+            <div class="col-xs-6 col-md-3">
+                <h6>LIÊN KẾT</h6>
+                <ul class="footer-links">
+                    <li><a href="http://scanfcode.com/about/">Nội Quy</a></li>
+                    <li><a href="http://scanfcode.com/contact/">Giới Thiệu</a></li>
+                    <li><a href="https://www.gstatic.com/policies/terms/pdf/20220105/it7r24p9/google_terms_of_service_en.pdf">Chính Sách Bảo Mật</a></li>
+                    <li><a href="https://www.facebook.com/vnu.vju">Liên Hệ Với Chúng Tôi</a></li>
+                    <li><a href="https://vju.ac.vn/vi/about-vju-vn/message-from-the-rector-vn/">Thông Điệp Từ Hiệu Trưởng</a></li>
+                </ul>
+            </div>
+      </div>
+      <hr>
+    </div>
 
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-6 col-xs-12">
+          <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by 
+          <a href="https://vju.ac.vn/vi/truong-dai-hoc-viet-nhat/" style="color: #fff;">VNU Vietnam Japan University</a>.
+          </p>
+        </div>
+
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <ul class="social-icons">
+             <li><a class="facebook" href="https://www.facebook.com/vnu.vju"><i class="fa fa-facebook"></i></a></li>
+             <li><a class="youtube" href="https://www.youtube.com/watch?v=owddI614-Ac"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+             <li><a class="email" href="mailto:admission@vju.ac.vn"><i class="fa fa-envelope-o" aria-hidden="true"></i></a></li>
+             <li><a class="call" href="tel:+84966954736"><i class="fa fa-phone" aria-hidden="true"></i></a></li>   
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </footer>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
 </body>
 </html>

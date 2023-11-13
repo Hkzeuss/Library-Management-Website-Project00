@@ -1,0 +1,50 @@
+/* styles.css */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    background-image: url('BGN.jpg');
+}
+
+.header {
+    background-size: cover;
+    background-position: center center;
+    height: 100vh; /* Chiều cao là 100% chiều cao của viewport */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 500px;
+}
+
+
+.header-content {
+    display: flex;
+    max-width: 1000px; /* Giới hạn chiều rộng tối đa của header-content */
+    width: 100%;
+}
+
+.header-image,
+.header-text {
+    flex: 1; /* Mỗi phần tử chiếm 1 nửa header */
+    text-align: center;
+}
+
+.header-text{
+    font-size: 20px;
+    color: #fff;
+    font-weight: 300;
+}
+
+.header-image img {
+    max-width: 80%;
+    height: auto; /* Đảm bảo hình ảnh tự căn chỉnh trong header */
+}
+
+/* Đáp ứng co giãn */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column; /* Chuyển sang kiểu dọc trên màn hình nhỏ */
+    }
+}
