@@ -28,7 +28,7 @@ class Book(models.Model):
     description = models.TextField()
     img = models.ImageField(default='book/images/Background_1.jpg', upload_to='book/images/', null=True, blank=True)
     pdf = models.FileField(upload_to='book/pdfs/', null=True, blank=True)
-    amount = models.IntegerField(validators=[MinValueValidator(0)])
+    amount = models.IntegerField(validators=[MinValueValidator(0)], default='0')
 
     def __str__(self):
         return self.title

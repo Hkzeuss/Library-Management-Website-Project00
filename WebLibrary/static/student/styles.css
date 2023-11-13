@@ -123,10 +123,10 @@ header {
   }   
 .profile-name{
     color:black;
-    padding: 8px 15px;
-    top: -5px;
     width: 200px;
     height: 20px;
+    margin-right: 20px !important;
+    
 }
 .profile-avatar{
     width: 50px;
