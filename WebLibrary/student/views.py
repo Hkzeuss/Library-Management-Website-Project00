@@ -32,6 +32,11 @@ def homefanpage(request):
 
 @user_passes_test(lambda u: not u.is_authenticated, login_url='homefanpage')
 def loginPage(request):
+    categories = Category.objects.all()
+    print(categories)
+    context = {
+        'latest_categories': categories,
+    }
     if request.method == "POST":
         form = LoginForm(request.POST)  
         if form.is_valid():
@@ -50,7 +55,9 @@ def loginPage(request):
     else:
         form = LoginForm()
 
-    return render(request, "student/Login.html", {"form": form})
+    context['form'] = form
+
+    return render(request, "student/Login.html", context)
 
 def register(request):
     if request.method == 'POST':

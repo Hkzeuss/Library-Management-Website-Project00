@@ -15,15 +15,26 @@ from django.urls import reverse
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import get_object_or_404
 from student.forms import StudentForm
+from category.models import Category
+
 
 # Create your views here.
 
 def profile(request):
+    categories = Category.objects.all()
+    context = {
+            'latest_categories': categories,
+        }
     user = request.user
-    return render(request, 'student/Profile.html', {'user':user})
+    context['user'] = user
+    return render(request, 'student/Profile.html', context)
 
 @login_required(login_url='login')
 def edit_profile(request):
+    categories = Category.objects.all()
+    context = {
+            'latest_categories': categories,
+        }
     if request.method == "POST":
         form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
         if form.is_valid():
@@ -51,4 +62,6 @@ def edit_profile(request):
     else:
         form = ProfileForm(instance=request.user.profile)
 
-    return render(request, 'student/EditProfile.html', {'form': form})
+    context['form'] = form
+
+    return render(request, 'student/EditProfile.html', context)

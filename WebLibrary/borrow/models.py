@@ -8,6 +8,7 @@ class Borrow(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE, default=1)
     borrow_date = models.DateField()
     return_date = models.DateField()
+    is_returned = models.BooleanField(default=False)
 
     def __str__(self):
         user_username = self.user.username if self.user else "username"
