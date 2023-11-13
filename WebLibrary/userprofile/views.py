@@ -16,15 +16,25 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import get_object_or_404
 from student.forms import StudentForm
 from category.models import Category
+from author.models import Author
 
 
 # Create your views here.
 
 def profile(request):
     categories = Category.objects.all()
+
+    borrowed_books = request.session.get('borrowed_books', [])
+
+    for book in borrowed_books:
+        author_title = book.get('author', '')
+        author = get_object_or_404(Author, title=author_title)
+        book['author'] = author
+
     context = {
-            'latest_categories': categories,
-        }
+        'latest_categories': categories,
+        'borrowed_books': borrowed_books,
+    }
     user = request.user
     context['user'] = user
     return render(request, 'student/Profile.html', context)
