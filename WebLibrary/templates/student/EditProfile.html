@@ -13,10 +13,10 @@
     <link rel="stylesheet" href="{% static 'student/styles.css' %}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <title>VJULIB</title>
+    <title>Cài Đặt & Quyền Riêng Tư</title>
   
 </head>
-<body class="p-3 m-0 border-0 bd-example m-0 border-0 font-farmily01" style="background-color: #FFF0F0 ;">
+<body class="font-farmily01" style="background-color: #FFF0F0 ;">
     <nav class="navbar navbar-expand-lg ">
       <div class="container-fluid">
         <h2 class="navbar-brand ms-5 font-weight01"> <a class="no-underline" style="color: black;" href="/booklib/">VJULIB</a></h2>
@@ -61,10 +61,12 @@
           </ul>
           
         </div>
-        <form class="d-flex" role="search">
+        
+      </div>
+      <form class="d-flex" role="search">
             {% csrf_token %}
             <li class="nav-item dropdown list-unstyled btn-group">
-              <p class="profile-name font-weight03">{{request.user.first_name}} {{request.user.last_name}}</p>
+              <p class=" font-weight03" style="margin-right: 5px; width: 150px; margin-top: 15px;">{{request.user.first_name}} {{request.user.last_name}}</p>
               <a class="profile-content nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="{{ user.profile.profile_img.url }}" alt="..." style="border-radius: 25px; width: 30px; height: 30px; object-fit: cover; margin-right:-5px">
               </a>
@@ -97,7 +99,6 @@
               </ul>
             </li>
           </form> 
-      </div>
   </nav>
 
   <div style="margin-top: 5rem !important;">

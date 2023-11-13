@@ -91,12 +91,6 @@ html, body {
     font-family: 'Monsterrat';
 }
 
-header {
-    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)), url('Vju.jpg');
-    background-size: cover; /* Đảm bảo ảnh đầy khung và không bị cắt */
-    background-position: center center; /* Căn ảnh theo khung */
-}
-
 .alert {
     padding: 15px;
     margin-bottom: 20px;

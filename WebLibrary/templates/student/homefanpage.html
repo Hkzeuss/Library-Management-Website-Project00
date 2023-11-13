@@ -14,7 +14,7 @@
     <title>VJULIB</title>
   
 </head>
-<body class="p-3 m-0 border-0 bd-example m-0 border-0 font-farmily01 ">
+<body class="font-farmily01 ">
   <nav class="navbar navbar-expand-lg ">
     <div class="container-fluid">
       <h2 class="navbar-brand ms-5 font-weight01"> <a class="no-underline" style="color: black;" href="/booklib/">VJULIB</a></h2>
@@ -58,9 +58,11 @@
           </li>
         </ul>
       </div>
-      <form class="d-flex" role="search">
-          <li class="nav-item dropdown list-unstyled btn-group">
-            <p class="profile-name font-weight03">{{request.user.first_name}} {{request.user.last_name}}</p>
+      
+    </div>
+    <form class="d-flex" role="search">
+        <li class="nav-item dropdown list-unstyled btn-group">
+          <p class=" font-weight03" style="margin-right: 5px; width: 150px; ">{{request.user.first_name}} {{request.user.last_name}}</p>
             <a class="profile-content nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <img src="{{ user.profile.profile_img.url }}" alt="..." style="border-radius: 25px; width: 30px; height: 30px; object-fit: cover; margin-right:-5px">
             </a>
@@ -93,7 +95,6 @@
             </ul>
           </li>
         </form>
-    </div>
 </nav>
 
 <header data-jarallax data-speed=".8">
