@@ -4,7 +4,7 @@ from django.urls import reverse
 from book.models import Book
 
 class Borrow(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, default=None)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, default= 2)
     book = models.ForeignKey(Book, on_delete=models.CASCADE, default=1)
     borrow_date = models.DateField()
     return_date = models.DateField()
