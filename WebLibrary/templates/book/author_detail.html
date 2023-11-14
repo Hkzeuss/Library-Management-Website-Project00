@@ -8,9 +8,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'book/bootstrap.css' %}">
-  <link rel="stylesheet" href="{% static 'book/styles1.css' %}">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{% static 'student/header_styles1.css' %}">
+  <link rel="stylesheet" href="{% static 'student/base_footer_styles1.css' %}">
+  <link rel="stylesheet" href="{% static 'student/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'book/styles10.css' %}">
+  <title>Tác Giả</title>
 </head>
 <body style="font-family: Montserrat;">
   <nav class="navbar navbar-expand-lg ">
@@ -95,24 +98,19 @@
           </li>
       </div>
     </div>
-</nav>
+  </nav>
 
-<header data-jarallax data-speed=".8">
-  <div class="d-flex flex-column min-vh-100 bg-black-50 pt-10 pt-md-8 pb-7 pb-md-0">
-    <div class="container my-auto">
-      <div class="row justify-content-center">
-        <div class="col-12 col-md-8 col-lg-6 text-center">
-          <div>
-            <img src="{% static 'images/background/Background_1.jpg' %}" alt="..."  class="child-background"></img>
-          </div>
-      </div>
-        <div class="font-color01 position-absolute col-md-4 me-7">
-          <h4>Chào mừng bạn đến với <a class="no-underline font-weight01" href="/booklib/">VJULIB</a>! Chúng tôi tự hào mang đến cho bạn một kho tài liệu đa dạng và phong phú, được tập hợp và curation một cách kỹ lưỡng để đáp ứng tốt nhất cho nhu cầu của bạn trong việc học tập và nghiên cứu.</h4>  
+  <header class="header">
+    <div class="header-content">
+        <div class="header-text">
+            <h4>Chào mừng bạn đến với <a class="no-underline font-weight01" href="/booklib/">VJULIB</a>! Chúng tôi tự hào mang đến cho bạn một kho tài liệu đa dạng và phong phú, được tập hợp và curation một cách kỹ lưỡng để đáp ứng tốt nhất cho nhu cầu của bạn trong việc học tập và nghiên cứu.</h4>  
         </div>
-      </div>
+
+        <div class="header-image">
+            <img src="{% static 'images/background/Background_1.jpg' %}" alt="Header Background">
+        </div>
     </div>
-  </div>
-</header>
+  </header>
 
   <section class="mar-1">
     <div>
@@ -213,54 +211,60 @@
         {% endif %}
     </div>
   </section>
-  <div id="layoutDefault_footer">
-    <footer class="footer pt-5 pb-5 mt-5 " style="background-color: #D9D9D9;">
-        <div class="container ">
 
-            <div class="row gx-5">
-                <div class="col-lg-3">
-                    <h5 class="footer-brand font-weight03">VJU LIBRARY</h5>
-                    <div class="icon-list-social mb-5 mt-3 ">
-                        <a class="icon-list-social-link " href="#!"><i class='bx bxl-instagram-alt' style="font-size: 25px;" ></i></a>
-                        <a class="icon-list-social-link p-xxl-4 " href="#!"><i class='bx bxl-facebook-circle' style="font-size: 25px;"></i></a>
-                        <a class="icon-list-social-link " href="#!"><i class='bx bxl-discord-alt' style="font-size:25px" ></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-9">
-                    <div class="row gx-5 font-weight03">
-                        <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
-                            <a href="/booklib/" class="text-uppercase-expanded text-xs mb-4 no-underline">Trang Chủ</a>
-                        </div>
-
-                        <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
-                            <a href="/introduce/" class="text-uppercase-expanded text-xs mb-4 no-underline">Giới Thiệu</a>
-                        </div>
-
-                        <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
-                            <a href="/tabrules/" class="text-uppercase-expanded text-xs mb-4 no-underline">Nội Quy</a>
-                        </div>
-
-                        <div class="col-lg-3 col-md-6">
-                            <div class="text-uppercase-expanded text-xs mb-4"><a class="no-underline" href="#">Tủ Sách</a></div>
-                        </div>
-                    </div>
-                </div>
+  <footer class="site-footer mt-4" style="font-family:Montserrat;">
+    <div class="container">
+      <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <h6>VJULIB</h6>
+                <p class="text-justify">Chào mừng bạn đến với <a href="#" style="font-weight:600; color:#fff">VJULIB</a>! Chúng tôi tự hào mang đến cho bạn một kho tài liệu đa dạng và phong phú, được tập hợp và curation một cách kỹ lưỡng để đáp ứng tốt nhất cho nhu cầu của bạn trong việc học tập và nghiên cứu.</p>
             </div>
 
-            <hr class="my-4" />
-
-            <div class="row gx-5 align-items-center">
-                <div class="col-md-6 small font-weight03">Copyright © LIBVJU 2023</div>
-                <div class="col-md-6 text-md-end small">
-                    <a class="no-underline font-weight03" href="#!">Privacy Policy</a>
-                    ·
-                    <a class="no-underline font-weight03" href="#!">Terms &amp; Conditions</a>
-                </div>
+            <div class="col-xs-6 col-md-3">
+                <h6>THỂ LOẠI</h6>
+                <ul class="footer-links">
+                    <li><a href="#">Sách Chính Trị</a></li>
+                    <li><a href="#">Sách Lịch Sử</a></li>
+                    <li><a href="#">Sách Kinh Tế</a></li>
+                    <li><a href="#">Đồ Án Tốt Nghiệp</a></li>
+                    <li><a href="#">Sách Theo Tác Giả</a></li>
+                    <li><a href="#">Tất Cả Thể Loại</a></li>
+                </ul>
             </div>
 
+            <div class="col-xs-6 col-md-3">
+                <h6>LIÊN KẾT</h6>
+                <ul class="footer-links">
+                    <li><a href="http://scanfcode.com/about/">Nội Quy</a></li>
+                    <li><a href="http://scanfcode.com/contact/">Giới Thiệu</a></li>
+                    <li><a href="https://www.gstatic.com/policies/terms/pdf/20220105/it7r24p9/google_terms_of_service_en.pdf">Chính Sách Bảo Mật</a></li>
+                    <li><a href="https://www.facebook.com/vnu.vju">Liên Hệ Với Chúng Tôi</a></li>
+                    <li><a href="https://vju.ac.vn/vi/about-vju-vn/message-from-the-rector-vn/">Thông Điệp Từ Hiệu Trưởng</a></li>
+                </ul>
+            </div>
+      </div>
+      <hr>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-6 col-xs-12">
+          <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by 
+          <a href="https://vju.ac.vn/vi/truong-dai-hoc-viet-nhat/" style="color: #fff;">VNU Vietnam Japan University</a>.
+          </p>
         </div>
-    </footer>
-</div>
+
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <ul class="social-icons">
+             <li><a class="facebook" href="https://www.facebook.com/vnu.vju"><i class="fa fa-facebook"></i></a></li>
+             <li><a class="youtube" href="https://www.youtube.com/watch?v=owddI614-Ac"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+             <li><a class="email" href="mailto:admission@vju.ac.vn"><i class="fa fa-envelope-o" aria-hidden="true"></i></a></li>
+             <li><a class="call" href="tel:+84966954736"><i class="fa fa-phone" aria-hidden="true"></i></a></li>   
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>  
 </body>
 </html>
