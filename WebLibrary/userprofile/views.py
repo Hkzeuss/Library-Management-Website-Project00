@@ -33,7 +33,6 @@ def profile(request):
         'latest_categories': categories,
         'borrowed_books': borrowed_books,
     }
-
     user = request.user
     context['user'] = user
     return render(request, 'student/Profile.html', context)
