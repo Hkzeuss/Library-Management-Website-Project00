@@ -16,7 +16,7 @@
     <title>Cài Đặt & Quyền Riêng Tư</title>
   
 </head>
-<body class="font-farmily01" style="background-color: #FFF0F0 ;">
+<body class="font-farmily01" style="background-color: #fff ;">
   <nav class="navbar navbar-expand-lg ">
       <div class="container-fluid">
         <h2 class="navbar-brand ms-5 font-weight01"> <a class="no-underline" style="color: black;" href="/booklib/">VJULIB</a></h2>
@@ -120,14 +120,14 @@
             <div class="d-flex justify-content-center">
               {% csrf_token %}
               <div class="mb-3">
-              <label for="id_first_name"><input type="text" name="first_name" value="{% if request.user.first_name %}{{request.user.first_name}}{% endif %}" placeholder="Điền họ" style="width: 150px; height: 45px; background-color: #AEC8FB;" class="form-control"></label>
+              <label for="id_first_name"><input type="text" name="first_name" value="{% if request.user.first_name %}{{request.user.first_name}}{% endif %}" placeholder="Điền họ" style="width: 150px; height: 45px; background-color: #d7d7d7;" class="form-control"></label>
               </div>
               <div class="mb-3 ms-1" style="width: 150px; height: 45px;">
-                  <label for="id_last_name"><input type="text" name="last_name" value="{% if request.user.last_name %}{{request.user.last_name}}{% endif %}" placeholder="Điền tên" style="width: 150px; height: 45px; background-color: #AEC8FB;" class="form-control"></label>
+                  <label for="id_last_name"><input type="text" name="last_name" value="{% if request.user.last_name %}{{request.user.last_name}}{% endif %}" placeholder="Điền tên" style="width: 150px; height: 45px; background-color: #d7d7d7;" class="form-control"></label>
               </div>
             </div>
             <div class="d-flex justify-content-center">
-              <label for="id_desc"><input type="text" name="desc" value="{% if user.profile.desc %}{{user.profile.desc}}{% endif %}" placeholder="Hãy giới thiệu về bản thân mình thêm nhé!" style="width: 300px; height: 45px; background-color: #AEC8FB;" class="form-control"></label>
+              <label for="id_desc"><input type="text" name="desc" value="{% if user.profile.desc %}{{user.profile.desc}}{% endif %}" placeholder="Hãy giới thiệu về bản thân mình thêm nhé!" style="width: 300px; height: 45px; background-color: #d7d7d7;" class="form-control"></label>
             </div>
             <div class="d-flex justify-content-center">
               <button type="submit" class="mt-2 btn btn-primary" style="width: 150px; height: 45px;">Cập Nhật</button>
