@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{% static 'student/base_footer_styles.css' %}">
     <link rel="stylesheet" href="{% static 'student/styles.css' %}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <title>VJULIB</title>
+    <title>Trang Cá Nhân</title>
   
 </head>
 <body style="font-family: Montserrat;">
@@ -57,7 +57,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="/author/">Tác giả</a>
+            <a class="nav-link" href="/author/">Tác Giả</a>
           </li>
         </ul>
         
@@ -127,40 +127,41 @@
 
   <h5 class="ms-5">Tên Sách Đã Mượn</h5>
   <br>
-  <br>
-  <br>
+  
   <div class="container">
-            <div class="row row-cols-1 row-cols-md-4 g-4 ms-3 me-3">
-                {% for book in related_books|slice:":4" %}
-                  {% if book != selected_book %}
-                    <div class="col">
-                        <div class="card h-100">
-                            <a href="{% url 'book_detail' pk=book.pk %}" >
-                                <img src="{{ book.img.url }}" class="card-img-top" alt="{{ book.title }}" style="height: 350px;">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-4 g-4 ms-3 me-3">
+            {% for borrow_instance in borrowed_books %}
+                <div class="col">
+                    <div class="card h-100">
+                        <a href="#">
+                            <img src="{{ borrow_instance.book.img.url }}" class="card-img-top" alt="{{ borrow_instance.book.title }}" style="height: 350px;">
+                        </a>
+                        <div class="te-de" style="margin-top: 40px; margin-bottom: 10px;">
+                            <a href="#" style="text-decoration: none !important;">
+                                <h5 class="card-title" style="color: black; text-align: center;">{{ borrow_instance.book.title }}</h5>
+                                <p class="card-text" style="text-align: left; color: black; margin: 0 10px;">
+                                    Tác giả: {{ borrow_instance.book.author }}
+                                </p>
+                                <p class="card-text" style="text-align: left; margin: 0 10px; color: black;">
+                                    Ngày mượn: {{ borrow_instance.borrow_date }}
+                                </p>
+                                <p class="card-text" style="text-align: left; margin-left: 10px; color: black;">
+                                    Ngày trả: {{ borrow_instance.return_date }}
+                                </p>
                             </a>
-                            <div class="te-de" style="margin-top: 40px; margin-bottom: 10px;">
-                              <a href="{% url 'book_detail' pk=book.pk %}">
-                                  <h5 class="card-title" style="color: black;">{{ book.title }}</h5>
-                                  <p class="card-text" style="text-align: left; margin-left: 10px; color: black;">
-                                    Tác giả: {{ book.author }}
-                                  </p>
-                                  <p class="card-text" style="text-align: right; margin-right: 10px; font-size: 14px;font-weight: 600;">
-                                    <span style="color: black; ">Số lượng còn lại: </span>
-                                    {% if book.amount == 0  %}
-                                      <span style="color: red !important;">{{ book.amount }}</span>
-                                    {% else %}
-                                      <span style="color: green !important;">{{ book.amount }}</span>
-                                    {% endif %}
-                                  </p>
-                              </a>
-                            </div>
+                            <p class="card-text" style="text-align: right; margin-right: 10px; color: green; font-size: 14px; font-weight: 600;">
+                                Đã mượn
+                            </p>
                         </div>
                     </div>
-                  {% endif %}
-                {% endfor %}
-            </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
   </div>
-
+  <br>
+  <br>
 
   <footer class="site-footer mt-5">
     <div class="container">

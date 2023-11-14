@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="{% static 'student/base_footer_styles.css' %}">
   <link rel="stylesheet" href="{% static 'book/bootstrap.css' %}">
   <link rel="stylesheet" href="{% static 'book/styles1.css' %}">
+  <title>Thông Tin Chi Tiết Sách</title>
 
 </head>
 <body style="font-family: Montserrat;">
@@ -54,12 +55,9 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="/author/">Tác giả</a>
+            <a class="nav-link" href="/author/">Tác Giả</a>
           </li>
         </ul>
-
-       
-
           <li class="nav-item dropdown list-unstyled btn-group">
             <a class="profile-content nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <img src="{{ user.profile.profile_img.url }}" alt="..." style="border-radius: 25px; width: 30px; height: 30px; object-fit: cover; margin-right:-5px">
@@ -148,7 +146,9 @@
                 <p>Ngày xuất bản: {{ selected_book.Publication_date }}</p>
 
                 
-                <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" _msttexthash="5148819" _msthash="338" {% if not is_book_available %}disabled style="background-color: #F02E2E;"{% endif %}>Mượn Sách</button>
+                <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" _msttexthash="5148819" _msthash="338" {% if not is_book_available %}disabled style="background-color: #F02E2E;"{% endif %}>
+                  Mượn Sách
+                </button>
                 <div class="modal fade" id="exampleModalToggle" aria-labelledby="exampleModalToggleLabel" tabindex="-1" style="display: none;" _mstvisible="0" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" _mstvisible="1">
                     <div class="modal-content" _mstvisible="2">
@@ -203,7 +203,7 @@
         </div>
       </div>
     </div>
-    <html><br>
+    <br><br>
       <h3 class="fo-w">Có thể bạn quan tâm</h3>
         <div class="container">
             <div class="row row-cols-1 row-cols-md-4 g-4 ms-3 me-3">
