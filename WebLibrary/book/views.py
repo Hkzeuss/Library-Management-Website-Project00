@@ -171,6 +171,7 @@ def author_detail(request, pk):
         }
 
     return render(request, 'book/author_detail.html', context)
+
 def view_pdf(request, pk):
     # Lấy thông tin chi tiết của sách với primary key là pk
     selected_book = get_object_or_404(Book, pk=pk)
