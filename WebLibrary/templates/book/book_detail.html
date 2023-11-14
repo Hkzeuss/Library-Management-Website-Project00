@@ -19,14 +19,14 @@
 <body style="font-family: Montserrat;">
   <nav class="navbar navbar-expand-lg ">
     <div class="container-fluid">
-      <h2 class="navbar-brand ms-5 me-5 font-weight01"> <a class="no-underline" style="color: black;" href="/booklib/">VJULIB</a></h2>
+      <h2 class="navbar-brand ms-5 font-weight01"> <a class="no-underline" style="color: black;" href="/booklib/">VJULIB</a></h2>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto offset-4 mb-2 mb-lg-0 font-weight01 ">
+        <ul class="navbar-nav  mb-2 mb-lg-0 font-weight01 " style="margin-left: 26.005% !important;">
 
           <li class="nav-item">
             <a class="nav-link active " aria-current="page" href="/booklib/">Trang Chủ</a>
@@ -59,6 +59,9 @@
             <a class="nav-link" href="/author/">Tác Giả</a>
           </li>
         </ul>
+        </div>
+      </div>
+      <p class=" font-weight03" style="margin-right: 5px; width: 200px; margin-bottom: -5px;">{{request.user.first_name}} {{request.user.last_name}}</p>
           <li class="nav-item dropdown list-unstyled btn-group">
             <a class="profile-content nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <img src="{{ user.profile.profile_img.url }}" alt="..." style="border-radius: 25px; width: 30px; height: 30px; object-fit: cover; margin-right:-5px">
@@ -91,9 +94,6 @@
               </li>
             </ul>
           </li>
-          
-        </div>
-      </div>
     </div>
   </nav>
 
@@ -140,11 +140,10 @@
                 <p>Số trang: {{ selected_book.page }}</p>
                 <p>Số lượng: {{ selected_book.amount }}</p>
                 <p>Ngày xuất bản: {{ selected_book.Publication_date }}</p>
-
                 
-                <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" _msttexthash="5148819" _msthash="338" {% if not is_book_available %}disabled style="background-color: #F02E2E;"{% endif %}>
-                  Mượn Sách
-                </button>
+                <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" {% if not is_book_available or is_book_borrowed %}disabled style="background-color: #F02E2E;"{% endif %}>
+                  {% if is_book_borrowed %}Đã Mượn{% else %}Mượn Sách{% endif %}
+                </button>              
                 <div class="modal fade" id="exampleModalToggle" aria-labelledby="exampleModalToggleLabel" tabindex="-1" style="display: none;" _mstvisible="0" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" _mstvisible="1">
                     <div class="modal-content" _mstvisible="2">
@@ -152,7 +151,7 @@
                         <h1 class="modal-title fs-5" id="exampleModalToggleLabel" _msttexthash="1767636" _msthash="330" _mstvisible="4">Vui Lòng Lên Lịch Mượn Sách</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng" _mstaria-label="59709" _msthash="331" _mstvisible="4"></button>
                       </div>
-                      <form method="post" action="">
+                      <form method="post" action="{% url 'book_detail' pk=selected_book.pk %}" id="bookForm">
                         {% csrf_token %}
                         {% if not is_book_available %}
                             <div class="alert alert-danger" role="alert">
@@ -185,6 +184,11 @@
                               <div class="text-danger">{{ error }}</div>
                           {% endfor %}
                       </div>
+                      {% if error_message %}
+                          <div class="alert alert-danger" role="alert">
+                              <div class="fontcolor">{{ error_message }}</div>
+                          </div>
+                      {% endif %}
                         <div class="modal-footer" _mstvisible="3">
                             <button class="btn btn-primary" type="submit" _msttexthash="5143346" _msthash="333" _mstvisible="4">
                                 Xác Nhận

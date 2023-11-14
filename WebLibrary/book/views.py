@@ -10,6 +10,7 @@ from django.contrib import messages
 from datetime import datetime, timedelta
 from borrow.forms import BorrowForm
 from borrow.models import Borrow
+from django.http import JsonResponse
 
 
 def tabrules(request):
@@ -113,33 +114,38 @@ def book_detail(request, pk):
     }
 
     if request.method == 'POST':
-        form = BorrowForm(request.POST)
-        if form.is_valid():
-            borrow_instance = form.save(commit=False)
-            borrow_instance.user = request.user
-            borrow_instance.book = selected_book
+        if Borrow.objects.filter(user=request.user, book=selected_book).exists():
+            messages.error(request, 'Bạn đã mượn sách này rồi.')
+        else:
+            form = BorrowForm(request.POST)
+            if form.is_valid():
+                borrow_instance = form.save(commit=False)
+                borrow_instance.user = request.user
+                borrow_instance.book = selected_book
 
-            # Lấy dữ liệu từ form
-            borrow_date = form.cleaned_data['borrow_date']
-            return_date = form.cleaned_data['return_date']
+                # Lấy dữ liệu từ form
+                borrow_date = form.cleaned_data['borrow_date']
+                return_date = form.cleaned_data['return_date']
 
-            # Kiểm tra điều kiện ngày trả lớn hơn ngày mượn và không cách nhau quá 7 ngày
-            if return_date <= borrow_date or return_date - borrow_date > timedelta(days=7):
-                messages.error(request, 'Ngày trả không hợp lệ. Vui lòng kiểm tra lại.')
-            else:
-                selected_book.amount -= 1
-                selected_book.save()
-                borrow_instance.save()
+                # Kiểm tra điều kiện ngày trả lớn hơn ngày mượn và không cách nhau quá 7 ngày
+                if return_date <= borrow_date or return_date - borrow_date > timedelta(days=7):
+                    context['error_message'] = 'Ngày trả không hợp lệ. Vui lòng kiểm tra lại.'
+                else:
+                    selected_book.amount -= 1
+                    selected_book.save()
+                    borrow_instance.save()
 
-                borrowed_books = Borrow.objects.filter(user=request.user)
-                context['borrowed_books'] = borrowed_books
-                context['is_borrowed'] = True
-                return redirect('book_detail', pk=pk)
+                    borrowed_books = Borrow.objects.filter(user=request.user)
+                    context['borrowed_books'] = borrowed_books
+                    context['is_borrowed'] = True
+                    context['error_message'] = None
+                    return redirect('book_detail', pk=pk)
             
     else:
         form = BorrowForm()
 
     context['form'] = form
+    context['is_book_borrowed'] = Borrow.objects.filter(user=request.user, book=selected_book).exists()
 
     return render(request, 'book/book_detail.html', context)
 

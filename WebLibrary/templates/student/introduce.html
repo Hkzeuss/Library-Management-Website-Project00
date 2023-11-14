@@ -58,8 +58,8 @@
             <a class="nav-link" href="/author/">Tác Giả</a>
           </li>
         </ul>
-
         </div>
+        
       <p class=" font-weight03" style="margin-right: 5px; width: 150px; margin-bottom: -5px;">{{request.user.first_name}} {{request.user.last_name}}</p>
       <form class="d-flex" role="search" method="post" action="{% url 'profile' %}" >
       {% csrf_token %}
