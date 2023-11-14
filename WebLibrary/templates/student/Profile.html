@@ -134,11 +134,11 @@
             {% for borrow_instance in borrowed_books %}
                 <div class="col">
                     <div class="card h-100">
-                        <a href="#">
+                        <a href="{% url 'book_detail' pk=borrow_instance.book.pk %}">
                             <img src="{{ borrow_instance.book.img.url }}" class="card-img-top" alt="{{ borrow_instance.book.title }}" style="height: 350px;">
                         </a>
                         <div class="te-de" style="margin-top: 40px; margin-bottom: 10px;">
-                            <a href="#" style="text-decoration: none !important;">
+                            <a href="{% url 'book_detail' pk=borrow_instance.book.pk %}" style="text-decoration: none !important;">
                                 <h5 class="card-title" style="color: black; text-align: center;">{{ borrow_instance.book.title }}</h5>
                                 <p class="card-text" style="text-align: left; color: black; margin: 0 10px;">
                                     Tác giả: {{ borrow_instance.book.author }}
