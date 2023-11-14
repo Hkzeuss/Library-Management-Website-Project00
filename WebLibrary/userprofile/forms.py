@@ -1,4 +1,3 @@
-
 from .models import Profile
 from django.forms.models import ModelForm
 from django.forms.widgets import FileInput

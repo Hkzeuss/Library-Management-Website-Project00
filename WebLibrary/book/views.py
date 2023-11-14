@@ -6,9 +6,10 @@ from author.models import Author
 from django.db.models import Q
 from django.contrib import messages
 from django.http import HttpResponse
-from borrow.forms import Borrow
 from django.contrib import messages
 from datetime import datetime, timedelta
+from borrow.forms import BorrowForm
+from borrow.models import Borrow
 
 
 def tabrules(request):
@@ -93,18 +94,10 @@ def book_detail(request, pk):
     else:
         is_book_available = True
 
-    # Lấy thông tin chi tiết của thể loại của sách đã chọn
     category = selected_book.category
-
-    # Lấy các sách cùng thể loại với sách đã chọn
     related_books = Book.objects.filter(category=category)
-
     categories = Category.objects.all()
-
     authors = Author.objects.all()
-
-    print(categories)
-    print(authors)
     pdf_url = selected_book.pdf.url
 
  
@@ -120,9 +113,10 @@ def book_detail(request, pk):
     }
 
     if request.method == 'POST':
-        form = Borrow(request.POST)
+        form = BorrowForm(request.POST)
         if form.is_valid():
             borrow_instance = form.save(commit=False)
+            borrow_instance.user = request.user
             borrow_instance.book = selected_book
 
             # Lấy dữ liệu từ form
@@ -137,20 +131,13 @@ def book_detail(request, pk):
                 selected_book.save()
                 borrow_instance.save()
 
-                borrowed_books = request.session.get('borrowed_books', [])
-                borrowed_books.append({
-                    'author': str(selected_book.author),
-                    'image': selected_book.img.url,
-                    'book_title': selected_book.title,
-                    'borrow_date': str(borrow_date),
-                    'return_date': str(return_date),
-                })
-                request.session['borrowed_books'] = borrowed_books
+                borrowed_books = Borrow.objects.filter(user=request.user)
+                context['borrowed_books'] = borrowed_books
                 context['is_borrowed'] = True
                 return redirect('book_detail', pk=pk)
             
     else:
-        form = Borrow()
+        form = BorrowForm()
 
     context['form'] = form
 

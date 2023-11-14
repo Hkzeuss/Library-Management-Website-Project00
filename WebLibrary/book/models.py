@@ -30,6 +30,7 @@ class Book(models.Model):
     pdf = models.FileField(upload_to='book/pdfs/', null=True, blank=True)
     amount = models.IntegerField(validators=[MinValueValidator(0)], default=0)
 
+
     def __str__(self):
         return self.title
 

@@ -17,6 +17,8 @@ from django.shortcuts import get_object_or_404
 from student.forms import StudentForm
 from category.models import Category
 from author.models import Author
+from borrow.models import Borrow
+from book.models import Book
 
 
 # Create your views here.
@@ -24,12 +26,8 @@ from author.models import Author
 def profile(request):
     categories = Category.objects.all()
 
-    borrowed_books = request.session.get('borrowed_books', [])
-
-    for book in borrowed_books:
-        author_title = book.get('author', '')
-        author = get_object_or_404(Author, title=author_title)
-        book['author'] = author
+    # Retrieve borrowed books from the database
+    borrowed_books = Borrow.objects.filter(user=request.user)
 
     context = {
         'latest_categories': categories,
