@@ -290,11 +290,12 @@
     </div>
     <br><br>
       <h3 class="fo-w">Có thể bạn quan tâm</h3>
+      <div style="overflow-x: auto; white-space: nowrap;">
         <div class="container">
-            <div class="row row-cols-1 row-cols-md-4 g-4 ms-3 me-3">
-                {% for book in related_books|slice:":4" %}
+          <div class="d-flex flex-nowrap overflow-auto" >
+                {% for book in related_books %}
                   {% if book != selected_book %}
-                    <div class="col">
+                  <div class="col-md-3" style="flex: 0 0 auto; margin-right: 10px;">
                         <div class="card h-100">
                             <a href="{% url 'book_detail' pk=book.pk %}" >
                                 <img src="{{ book.img.url }}" class="card-img-top" alt="{{ book.title }}" style="height: 350px;">
@@ -321,6 +322,7 @@
                 {% endfor %}
             </div>
         </div>
+      </div>
   </section>
   <footer class="site-footer mt-4" style="font-family:Montserrat;">
     <div class="container">
