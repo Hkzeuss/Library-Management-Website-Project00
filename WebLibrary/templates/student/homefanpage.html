@@ -43,7 +43,7 @@
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Thể loại sách
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu" style="max-height: 170px !important; overflow-y: auto;">
               {% for category in latest_categories %}
               <li>
                 <a class="dropdown-item" href="{% url 'category_detail' pk=category.pk %}">
@@ -62,40 +62,40 @@
       
     </div>
     <form class="d-flex" role="search">
-        <li class="nav-item dropdown list-unstyled btn-group">
-          <p class=" font-weight03" style="margin-right: 5px; width: 150px; ">{{request.user.first_name}} {{request.user.last_name}}</p>
-            <a class="profile-content nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="{{ user.profile.profile_img.url }}" alt="..." style="border-radius: 25px; width: 30px; height: 30px; object-fit: cover; margin-right:-5px">
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end" style="font-family: 'Montserrat' ">
-              
-              <li>
-                <a class="dropdown-item " href="/profile/">
-                  <i class='bx bxs-user-circle' style="font-size: 30px; position: relative; top: 7px; color: #1C1E21;"></i>
-                  <span style="font-weight: 500;">Trang cá nhân</span>
-                  <span style=" width: 10px; height: 10px;border: solid #333; border-width: 0 2px 2px 0; display: inline-block; transform: rotate(-45deg); margin-left: 5px; margin-left: 5.25rem;">
-                  </span>
-                </a>
-              </li>
+      <li class="nav-item dropdown list-unstyled btn-group">
+        <p class=" font-weight03" style="margin-right: 5px; width: 150px; ">{{request.user.first_name}} {{request.user.last_name}}</p>
+          <a class="profile-content nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{{ user.profile.profile_img.url }}" alt="..." style="border-radius: 25px; width: 30px; height: 30px; object-fit: cover; margin-right:-5px">
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" style="font-family: 'Montserrat' ">
+            
+            <li>
+              <a class="dropdown-item " href="/profile/">
+                <i class='bx bxs-user-circle' style="font-size: 30px; position: relative; top: 7px; color: #1C1E21;"></i>
+                <span style="font-weight: 500;">Trang cá nhân</span>
+                <span style=" width: 10px; height: 10px;border: solid #333; border-width: 0 2px 2px 0; display: inline-block; transform: rotate(-45deg); margin-left: 5px; margin-left: 5.25rem;">
+                </span>
+              </a>
+            </li>
 
-              <li>
-                <a class="dropdown-item " href="/editprofile/">
-                  <i class='bx bx-cog' style="font-size: 30px; position: relative; top: 7px; color: #1C1E21;"></i> 
-                  <span style="font-weight: 500;">Cài đặt & quyền riêng tư </span>
-                  <span style=" width: 10px; height: 10px;border: solid #333; border-width: 0 2px 2px 0; display: inline-block; transform: rotate(-45deg); margin-left: 5px;">
-                  </span>
-                </a>
-              </li>
-              
-              <li>
-                <a class="dropdown-item" href="/logout/">
-                  <i class='bx bx-log-out bx-flip-horizontal' style="font-size: 30px; position: relative; top: 7px; color: #1C1E21;"></i>
-                  <span style="font-weight: 500;">Đăng xuất</span>
-                </a>
-              </li>
-            </ul>
-          </li>
-        </form>
+            <li>
+              <a class="dropdown-item " href="/editprofile/">
+                <i class='bx bx-cog' style="font-size: 30px; position: relative; top: 7px; color: #1C1E21;"></i> 
+                <span style="font-weight: 500;">Cài đặt & quyền riêng tư </span>
+                <span style=" width: 10px; height: 10px;border: solid #333; border-width: 0 2px 2px 0; display: inline-block; transform: rotate(-45deg); margin-left: 5px;">
+                </span>
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item" href="/logout/">
+                <i class='bx bx-log-out bx-flip-horizontal' style="font-size: 30px; position: relative; top: 7px; color: #1C1E21;"></i>
+                <span style="font-weight: 500;">Đăng xuất</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+    </form>
 </nav>
   <header data-jarallax data-speed=".8">
     <div class="d-flex flex-column min-vh-100 bg-black-50 pt-10 pt-md-8 pb-7 pb-md-0">
