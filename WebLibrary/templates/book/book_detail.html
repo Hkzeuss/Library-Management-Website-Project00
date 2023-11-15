@@ -97,17 +97,102 @@
     </div>
   </nav>
 
-  <header class="header">
-    <div class="header-content">
-        <div class="header-text">
-            <h4>Chào mừng bạn đến với <a class="no-underline font-weight01" href="/booklib/">VJULIB</a>! Chúng tôi tự hào mang đến cho bạn một kho tài liệu đa dạng và phong phú, được tập hợp và curation một cách kỹ lưỡng để đáp ứng tốt nhất cho nhu cầu của bạn trong việc học tập và nghiên cứu.</h4>  
-        </div>
-
-        <div class="header-image">
-            <img src="{% static 'images/background/Background_1.jpg' %}" alt="Header Background">
-        </div>
+  <!--================================================Carousel================================================-->
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" aria-label="Slide 1" class="active"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4" class=""></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5" class=""></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5" aria-label="Slide 6" class=""></button>
     </div>
-  </header>
+    
+    <!--Slide 1-->
+    <div class="carousel-inner">
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <image href="{% static 'images/background/Library_1.jpg' %}" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"/>
+        </svg>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>VJU LIBRARY</h5>
+          <p>Học hỏi là hành trình không ngừng, nơi mà mỗi bước đi là một cơ hội mới để mở rộng kiến thức.</p>
+        </div>
+      </div>
+
+      <!--Slide 2-->
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Second slide" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <image href="{% static 'images/background/Library_2.jpg' %}" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"/>
+        </svg>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>VJU LIBRARY</h5>
+          <p>Sự hiểu biết không có giới hạn và không bao giờ là thứ có thể mất đi.</p>
+        </div>
+      </div>
+
+      <!--Slide 3-->  
+      <div class="carousel-item active">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Third slide" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <image href="{% static 'images/background/Library_7.jpg' %}" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"/>
+        </svg>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>VJU LIBRARY</h5>
+          <p>Cuốn sách tốt nhất là người bạn tri kỷ, là người nói với bạn những gì bạn không thể nói với bất kỳ ai khác.</p>
+        </div>
+      </div>
+
+      <!--Slide 4-->
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Fourth slide" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <image href="{% static 'images/background/Library_6.jpg' %}" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"/>
+        </svg>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>VJU LIBRARY</h5>
+          <p>Kiên trì là không bao giờ phải nói 'Tôi đã đủ', mà luôn là nói 'Tôi sẽ thử thêm một lần nữa'.</p>
+        </div>
+      </div>
+
+      <!--Slide 5-->
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Fourth slide" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <image href="{% static 'images/background/Library_5.jpg' %}" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"/>
+        </svg>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>VJU LIBRARY</h5>
+          <p>Người ta không cần phải đọc một cuộc sống mới, chỉ cần đọc một cuốn sách hay.</p>
+        </div>
+      </div>
+
+      <!--Slide 6-->
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Fourth slide" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <image href="{% static 'images/background/Library_4.jpg' %}" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"/>
+        </svg>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>VJU LIBRARY</h5>
+          <p>Tầm nhìn chiến lược không chỉ là việc nhìn thấy điều gì có thể, mà còn là việc thấy rõ điều gì cần phải làm.</p>
+        </div>
+      </div>
+    </div>
+        
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <!--================================================Carousel================================================-->
 
   <section class="py-5">
     <div class="container">
@@ -237,6 +322,7 @@
             </div>
         </div>
   </section>
+
   <footer class="site-footer mt-4" style="font-family:Montserrat;">
     <div class="container">
       <div class="row">
@@ -282,6 +368,15 @@
     </div>
   </footer>
 
+  <!--================================================Carousel================================================-->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var myCarousel = new bootstrap.Carousel(document.getElementById('carouselExampleCaptions'), {
+        interval: 3000, // Đặt thời gian chuyển đổi ảnh (đơn vị: mili giây)
+        wrap: true // Nếu đặt là false, khi đến ảnh cuối, nó sẽ dừng lại chứ không quay lại ảnh đầu
+      });
+    });
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>  
 </body>
 </html>
