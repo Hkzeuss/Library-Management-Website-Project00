@@ -6,9 +6,11 @@ from author.models import Author
 from django.db.models import Q
 from django.contrib import messages
 from django.http import HttpResponse
-from borrow.forms import Borrow
 from django.contrib import messages
 from datetime import datetime, timedelta
+from borrow.forms import BorrowForm
+from borrow.models import Borrow
+from django.http import JsonResponse
 
 
 def tabrules(request):
@@ -93,18 +95,10 @@ def book_detail(request, pk):
     else:
         is_book_available = True
 
-    # Lấy thông tin chi tiết của thể loại của sách đã chọn
     category = selected_book.category
-
-    # Lấy các sách cùng thể loại với sách đã chọn
     related_books = Book.objects.filter(category=category)
-
     categories = Category.objects.all()
-
     authors = Author.objects.all()
-
-    print(categories)
-    print(authors)
     pdf_url = selected_book.pdf.url
 
  
@@ -116,31 +110,42 @@ def book_detail(request, pk):
         'related_author': related_author,
         'is_book_available': is_book_available,
         'pdf_url': pdf_url,
+        'is_borrowed': False,
     }
 
     if request.method == 'POST':
-        form = Borrow(request.POST)
-        if form.is_valid():
-            borrow_instance = form.save(commit=False)
-            borrow_instance.book = selected_book
+        if Borrow.objects.filter(user=request.user, book=selected_book).exists():
+            messages.error(request, 'Bạn đã mượn sách này rồi.')
+        else:
+            form = BorrowForm(request.POST)
+            if form.is_valid():
+                borrow_instance = form.save(commit=False)
+                borrow_instance.user = request.user
+                borrow_instance.book = selected_book
 
-            # Lấy dữ liệu từ form
-            borrow_date = form.cleaned_data['borrow_date']
-            return_date = form.cleaned_data['return_date']
+                # Lấy dữ liệu từ form
+                borrow_date = form.cleaned_data['borrow_date']
+                return_date = form.cleaned_data['return_date']
 
-            # Kiểm tra điều kiện ngày trả lớn hơn ngày mượn và không cách nhau quá 7 ngày
-            if return_date <= borrow_date or return_date - borrow_date > timedelta(days=7):
-                messages.error(request, 'Ngày trả không hợp lệ. Vui lòng kiểm tra lại.')
-            else:
-                selected_book.amount -= 1
-                selected_book.save()
-                borrow_instance.save()
-                return redirect('book_detail', pk=pk)
+                # Kiểm tra điều kiện ngày trả lớn hơn ngày mượn và không cách nhau quá 7 ngày
+                if return_date <= borrow_date or return_date - borrow_date > timedelta(days=7):
+                    context['error_message'] = 'Ngày trả không hợp lệ. Vui lòng kiểm tra lại.'
+                else:
+                    selected_book.amount -= 1
+                    selected_book.save()
+                    borrow_instance.save()
+
+                    borrowed_books = Borrow.objects.filter(user=request.user)
+                    context['borrowed_books'] = borrowed_books
+                    context['is_borrowed'] = True
+                    context['error_message'] = None
+                    return redirect('book_detail', pk=pk)
             
     else:
-        form = Borrow()
+        form = BorrowForm()
 
     context['form'] = form
+    context['is_book_borrowed'] = Borrow.objects.filter(user=request.user, book=selected_book).exists()
 
     return render(request, 'book/book_detail.html', context)
 
@@ -172,6 +177,7 @@ def author_detail(request, pk):
         }
 
     return render(request, 'book/author_detail.html', context)
+
 def view_pdf(request, pk):
     # Lấy thông tin chi tiết của sách với primary key là pk
     selected_book = get_object_or_404(Book, pk=pk)

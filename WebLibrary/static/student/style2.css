@@ -1,8 +1,8 @@
-.font-farmily01{ /*Thêm*/
+.font-farmily01{
     font-family: 'Montserrat', sans-serif;;
   }
   
-  .font-weight01{ /*Thêm*/
+  .font-weight01{
     font-weight: bold;
   }
   
@@ -41,17 +41,17 @@
   }
   
   .btn-custom-color {
-    background-color: #F02E2E; /* Thêm */
-    color: #fff; /* màu font */
+    background-color: #F02E2E;
+    color: #fff;
     transition: background-color 0.3s, color 0.3s;
   }
   
   .btn-custom-color:hover {
-    background-color: #FF0000; /* Màu khi nhấn */
-    color: #fff; /* Màu font khi nhấn */
+    background-color: #FF0000;
+    color: #fff;
   }
   
-  .no-underline { /*Bỏ gạch chân*/
+  .no-underline {
     text-decoration: none;
   }
   
@@ -87,10 +87,10 @@
     margin-top: 9rem !important;
   }
   
-  .mt-01 { /*Thêm*/
+  .mt-01 {
     margin-top: 10rem !important;
   }
-  .mt-02 { /*Thêm*/
+  .mt-02 {
     margin-top: 15rem !important;
   }
   
@@ -153,20 +153,20 @@
   }
 
   .btn-custom-color {
-    background-color: #F02E2E; /* Thêm */
-    color: #fff; /* màu font */
+    background-color: #F02E2E;
+    color: #fff;
     transition: background-color 0.3s, color 0.3s;
   }
   
   .btn-custom-color:hover {
-    background-color: #FF0000; /* Màu khi nhấn */
-    color: #fff; /* Màu font khi nhấn */
+    background-color: #FF0000;
+    color: #fff;
   }
 
 
 
 .btn-font {
-    color: #080808; /* Màu chữ */
+    color: #080808;
     font-size: 20px;
     font-weight: 900;
     height: 60px;

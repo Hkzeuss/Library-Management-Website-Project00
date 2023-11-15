@@ -1,0 +1,164 @@
+body {
+    font-family: "Montserrat";
+    margin: 0; 
+}
+
+.nav-tab-1 {
+    position: absolute;
+    top: 34px;
+    left: 3%;
+    line-height: 16px;
+    padding: 4.9px 15.1px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    font-size: 25px;
+}
+
+.nav-tab-2 {
+    position: absolute;
+    top: 34px;
+    left: 40%;
+    line-height: 16px;
+    cursor: pointer;
+    text-decoration: none; 
+    color: black;
+    font-size: 20px;
+}
+
+.nav-tab-3 {
+    position: absolute;
+    top: 20px;
+    left: 80%;
+    line-height: 16px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+
+.nav-tab-2 a ,.nav-tab-3 a{
+    margin-right: 16px;
+    text-decoration: none;
+}
+
+.nav-tab-1 a, .nav-tab-2 a{
+    color: black;
+}
+
+.nav-tab-2 a:last-child ,.nav-tab-3 a:last-child{
+    margin-right: 0;
+}
+
+.register {
+    background-color: #fff;
+    color: #0a95ff;
+    padding: 8px 15px;
+    top: -5px;
+    width: 110px;
+    height: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.login {
+    background-color: #fff;
+    color: #0a95ff;
+    padding: 8px 15px;
+    width: 110px;
+    height: 20px;
+    border-radius: 10px;
+    text-align: center;
+    top: 100px;
+}
+
+.images {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.images img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow:auto ; 
+    font-family: 'Monsterrat';
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+  }
+  
+  .alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+  }
+.rule{
+    color:#f00b16; /*thêm*/
+    font-weight: bold;
+}
+.rule-01{
+    padding-left: 60rem;
+}
+.fontcolor{
+    color: red !important;
+    text-align: center !important;
+    margin-bottom: 10px !important;
+  }   
+.profile-name{
+    color:black;
+    width: 200px;
+    height: 20px;
+    margin-right: 20px !important;
+    
+}
+.profile-avatar{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.next-icon{
+    width: 10px;
+    height: 10px;
+    border: solid #333;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    transform: rotate(-45deg);
+    margin-left: 5px;
+  }
+  
+  .next-icon-ma{
+    margin-left: 5.25rem;
+  }
+  .profile-content {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Khoảng cách giữa các phần tử con */
+  }
+  .rounded-circle {
+    width: 100px; /* Điều chỉnh kích thước theo nhu cầu của bạn */
+    height: 100px;
+    border-radius: 50%; /* Để tạo hình ảnh tròn */
+    overflow: hidden; /* Đảm bảo hình ảnh không bị tràn ra khỏi khung hình tròn */
+}
+
+.col-md-01 {
+    flex: 0 0 auto;
+    width: 15%;
+  }
+
+  .img-fit {
+    object-fit: cover; /* Đảm bảo rằng hình ảnh nằm trong hình tròn mà không bị méo */
+    width: 100%;
+    height: 100%;
+}
