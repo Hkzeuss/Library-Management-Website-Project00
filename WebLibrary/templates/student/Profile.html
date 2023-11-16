@@ -39,7 +39,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/introduce/">Giới Thiệu</a>
                     </li>
-
+        
                     <li class="nav-item">
                         <a class="nav-link" href="/tabrules/">Nội Quy</a>
                     </li>
@@ -49,7 +49,7 @@
                             Thể loại sách
                         </a>
                         <ul class="dropdown-menu" style="max-height: 170px !important; overflow-y: auto;">
-                            {% for category in latest_categories %}
+                            {% for category in latest_categories|dictsort:"title" %}
                             <li>
                                 <a class="dropdown-item" href="{% url 'category_detail' pk=category.pk %}">
                                     {{ category.title }}
@@ -130,14 +130,17 @@
     <h5 class="ms-5">Sách Đã Mượn</h5>
     <br>
     <div class="container">
-        <div class="row row-cols-1 row-cols-md-4 g-4 ms-3 me-3">
+        <div class="row row-cols-1 row-cols-md-4 g-4">
             {% for borrow_instance in borrowed_books %}
                 <div class="col">
                     <div class="card h-100">
                         <a href="{% url 'book_detail' pk=borrow_instance.book.pk %}">
-                            <img src="{{ borrow_instance.book.img.url }}" class="card-img-top" alt="{{ borrow_instance.book.title }}" style="height: 350px;">
+                            <svg class="bd-placeholder-img card-img-top" width="100%" height="350" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="none" focusable="false">
+                                <title>Placeholder</title>
+                                <image href="{{ borrow_instance.book.img.url }}" width="100%" height="100%" preserveAspectRatio="none"/>
+                              </svg>
                         </a>
-                        <div class="te-de" style="margin-top: 40px; margin-bottom: 10px;">
+                        <div class="card-body">
                             <a href="{% url 'book_detail' pk=borrow_instance.book.pk %}" style="text-decoration: none !important;">
                                 <h5 class="card-title" style="color: black; text-align: center;">{{ borrow_instance.book.title }}</h5>
                                 <p class="card-text" style="text-align: left; color: black; margin: 0 10px;">
@@ -150,6 +153,9 @@
                                     Ngày trả: {{ borrow_instance.return_date }}
                                 </p>
                             </a>
+                        </div>
+
+                        <div class="card-footer">
                             <p class="card-text" style="text-align: right; margin-right: 10px; color: green; font-size: 14px; font-weight: 600;">
                                 Đã mượn
                             </p>

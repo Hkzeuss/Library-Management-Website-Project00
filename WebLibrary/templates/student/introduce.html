@@ -18,18 +18,32 @@
 <body style="font-family: Montserrat;">
   <nav class="navbar navbar-expand-lg ">
     <div class="container-fluid">
-      <h2 class="navbar-brand ms-5 font-weight01"> <a class="no-underline" style="color: black;" href="/booklib/">VJULIB</a></h2>
+      <h2 class="navbar-brand ms-5 font-weight01">
+        {% if user_authenticated %}
+          <a class="no-underline" style="color: black;" href="/booklib/">VJULIB</a>
+        {% else %}
+          <a class="no-underline" style="color: black;" href="/login/">VJULIB</a>
+        {% endif %}
+      </h2>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav  mb-2 mb-lg-0 font-weight01 " style="margin-left: 26.005% !important;">
+        <ul class="navbar-nav offset-4 mb-2 mb-lg-0 font-weight01 " style="margin-left: 26.005% !important;">
 
-          <li class="nav-item">
-            <a class="nav-link active " aria-current="page" href="/booklib/">Trang Chủ</a>
-          </li>
+          {% if user_authenticated %}
+            <!-- Đối với người dùng đã đăng nhập -->
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/booklib/">Trang Chủ</a>
+            </li>
+          {% else %}
+            <!-- Đối với người dùng chưa đăng nhập -->
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'login' %}">Trang Chủ</a>
+            </li>
+          {% endif %}
 
           <li class="nav-item">
             <a class="nav-link" href="/introduce/">Giới Thiệu</a>
@@ -44,60 +58,89 @@
               Thể loại sách
             </a>
             <ul class="dropdown-menu" style="max-height: 170px !important; overflow-y: auto;">
-              {% for category in latest_categories %}
-              <li>
-                <a class="dropdown-item" href="{% url 'category_detail' pk=category.pk %}">
-                  {{ category.title }}
-                </a>
-              </li>
-              {% endfor %}
+              {% if user_authenticated %}
+                <!-- Đối với người dùng đã đăng nhập -->
+                {% for category in latest_categories|dictsort:"title" %}
+                  <li>
+                    <a class="dropdown-item" href="{% url 'category_detail' pk=category.pk %}">
+                      {{ category.title }}
+                    </a>
+                  </li>
+                {% endfor %}
+              {% else %}
+                {% for category in latest_categories|dictsort:"title" %}
+                  <!-- Đối với người dùng chưa đăng nhập -->
+                  <li>
+                    <a class="dropdown-item" href="{% url 'login' %}">
+                      {{ category.title }}
+                    </a>
+                  </li>
+                  {% endfor %}  
+              {% endif %}
             </ul>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="/author/">Tác Giả</a>
+            {% if user_authenticated %}
+              <!-- Đối với người dùng đã đăng nhập -->
+              <a class="nav-link" href="{% url 'author' %}">Tác Giả</a>
+            {% else %}
+              <!-- Đối với người dùng chưa đăng nhập -->
+              <a class="nav-link" href="{% url 'login' %}">Tác Giả</a>
+            {% endif %}
           </li>
         </ul>
-        </div>
-        
-      <p class=" font-weight03" style="margin-right: 5px; width: 150px; margin-bottom: -5px;">{{request.user.first_name}} {{request.user.last_name}}</p>
-      <form class="d-flex" role="search" method="post" action="{% url 'profile' %}" >
-      {% csrf_token %}
-      <li class="nav-item dropdown list-unstyled btn-group">
-        <a class="profile-content nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="{{ user.profile.profile_img.url }}" alt="..." style="border-radius: 25px; width: 30px; height: 30px; object-fit: cover; margin-right:-5px">
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end" style="font-family: 'Montserrat' ">
-          
-          <li>
-            <a class="dropdown-item " href="/profile/">
-              <i class='bx bxs-user-circle' style="font-size: 30px; position: relative; top: 7px; color: #1C1E21;"></i>
-              <span style="font-weight: 500;">Trang cá nhân</span>
-              <span style=" width: 10px; height: 10px;border: solid #333; border-width: 0 2px 2px 0; display: inline-block; transform: rotate(-45deg); margin-left: 5px; margin-left: 5.25rem;">
-              </span>
-            </a>
-          </li>
 
-          <li>
-            <a class="dropdown-item " href="/editprofile/">
-              <i class='bx bx-cog' style="font-size: 30px; position: relative; top: 7px; color: #1C1E21;"></i> 
-              <span style="font-weight: 500;">Cài đặt & quyền riêng tư </span>
-              <span style=" width: 10px; height: 10px;border: solid #333; border-width: 0 2px 2px 0; display: inline-block; transform: rotate(-45deg); margin-left: 5px;">
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            <a class="dropdown-item" href="/logout/">
-              <i class='bx bx-log-out bx-flip-horizontal' style="font-size: 30px; position: relative; top: 7px; color: #1C1E21;"></i>
-              <span style="font-weight: 500;">Đăng xuất</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-    </form> 
+        </div>
+      {% if user_authenticated %}
+        <p class=" font-weight03" style="margin-right: 5px; width: 150px; margin-bottom: -5px;">{{request.user.first_name}} {{request.user.last_name}}</p>
+        <form class="d-flex" role="search" method="post" action="{% url 'profile' %}" >
+        {% csrf_token %}
+        <li class="nav-item dropdown list-unstyled btn-group">
+          <a class="profile-content nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{{ user.profile.profile_img.url }}" alt="..." style="border-radius: 25px; width: 30px; height: 30px; object-fit: cover; margin-right:-5px">
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" style="font-family: 'Montserrat' ">
+            
+            <li>
+              <a class="dropdown-item " href="/profile/">
+                <i class='bx bxs-user-circle' style="font-size: 30px; position: relative; top: 7px; color: #1C1E21;"></i>
+                <span style="font-weight: 500;">Trang cá nhân</span>
+                <span style=" width: 10px; height: 10px;border: solid #333; border-width: 0 2px 2px 0; display: inline-block; transform: rotate(-45deg); margin-left: 5px; margin-left: 5.25rem;">
+                </span>
+              </a>
+            </li>
+
+            <li>
+              <a class="dropdown-item " href="/editprofile/">
+                <i class='bx bx-cog' style="font-size: 30px; position: relative; top: 7px; color: #1C1E21;"></i> 
+                <span style="font-weight: 500;">Cài đặt & quyền riêng tư </span>
+                <span style=" width: 10px; height: 10px;border: solid #333; border-width: 0 2px 2px 0; display: inline-block; transform: rotate(-45deg); margin-left: 5px;">
+                </span>
+              </a>
+            </li>
+            
+            <li>
+              <a class="dropdown-item" href="/logout/">
+                <i class='bx bx-log-out bx-flip-horizontal' style="font-size: 30px; position: relative; top: 7px; color: #1C1E21;"></i>
+                <span style="font-weight: 500;">Đăng xuất</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        </form> 
+      {% else %}
+        <div style="text-align: right; margin-right: 30px;">
+                
+          <a href="{% url 'register' %}" style="color: #0F62FE; text-decoration: none; font-weight:600;margin-right: 20px; ">Đăng kí</a>
+        
+        <button class="btn shadow-lg " type="submit">
+          <a href="{% url 'login' %}" style="color: #0F62FE; text-decoration: none; font-weight:600; ">Đăng nhập</a>
+
+        </button>
+        </div>
+      {% endif %}
     </div>
-    
   </nav>
 
   <!--================================================Carousel================================================-->
@@ -198,58 +241,54 @@
   <!--================================================Carousel================================================-->
 
   <div class="container">
-    <div class="row flex-column flex-md-row">
-        <div class="mt-3 "> 
-            <p class="font-size-x text-align-center font-weight01">Giới Thiệu Thư Viện Trường Đại Học Việt Nhật</p>
-        </div>
+    <br>
+        <p style="font-size: 45px; text-align: center; font-weight: bold;">Giới Thiệu Thư Viện Trường Đại Học Việt Nhật</p>
 
-    </div>
-
-    <div class="xyz">
-        <p class="font-size-x1">Thư viện trường ĐH Việt Nhật thuộc ĐHQGHN (VJU-VNU) được chính thức thành lập theo quyết định số 1029/QĐ-ĐHVJU ngày 09/12/2015 của Hiệu trưởng trường ĐH Việt Nhật. Chức năng và nhiệm vụ của thư viện như sau:</p>
-        <p class="font-size-x1"> <strong>Chức năng:</strong> Là phòng học liệu tích hợp được xây dựng và phát triển nhằm hỗ trợ hiệu quả việc giảng dạy, nghiên cứu và các hoạt động thông tin học thuật tới đội ngũ giảng viên, nhân viên và sinh viên VJU.</p>
+        <p style="font-weight: 500 !important;">Thư viện trường ĐH Việt Nhật thuộc ĐHQGHN (VJU-VNU) được chính thức thành lập theo quyết định số 1029/QĐ-ĐHVJU ngày 09/12/2015 của Hiệu trưởng trường ĐH Việt Nhật. Chức năng và nhiệm vụ của thư viện như sau:</p>
+        <p> <strong>Chức năng:</strong> Là phòng học liệu tích hợp được xây dựng và phát triển nhằm hỗ trợ hiệu quả việc giảng dạy, nghiên cứu và các hoạt động thông tin học thuật tới đội ngũ giảng viên, nhân viên và sinh viên VJU.</p>
         
-        <div class="font-size-x1 ">
-          <p class="font-weight01 margin-bottom-x">Nhiệm vụ:</p>
-          <p class="margin-bottom-x">- Thu thập, bổ sung, xử lý, thông báo, cung cấp tài liệu, thông tin về các lĩnh vực khoa học nhằm hỗ trợ hiệu quả cho việc giảng dạy, nghiên cứu, học tập và các hoạt động học thuật của đội ngũ giảng viên, nhân viên và sinh viên;</p>
-          <p class="margin-bottom-x">- Đảm bảo cung cấp thông tin cho người dùng tin một cách đầy đủ, chính xác, đúng đối tượng, điều tra, đánh giá đúng nhu cầu tin của giảng viên, cán bộ nghiên cứu, học viên cao học, nghiên cứu sinh và sinh viên;</p>
-          <p class="margin-bottom-x">- Tham mưu, lập kế hoạch dài hạn, ngắn hạn cho giám đốc cơ sở đào tạo về công tác thông tin tư liệu;</p>
-          <p class="margin-bottom-x">- Tổ chức sắp xếp, lưu trữ, bảo quản kho tư liệu của cơ sở bao gồm tất cả các loại hình ấn phẩm và vật mang tin;</p>
-          <p class="margin-bottom-x">- Xây dựng hệ thống tra cứu tin thích hợp nhằm phục vụ và phổ biến thông tin cho toàn thể người dùng tin;</p>
-          <p class="margin-bottom-x">- Thu thập, lưu chiểu những ấn phẩm do Nhà trường xuất bản, các luận văn, đồ án tốt nghiệp;</p>
-          <p class="margin-bottom-x">- Phát triển quan hệ trao đổi, hợp tác trực tiếp với các trung tâm thông tin - thư viện, các tổ chức khoa học, các trường đại học trong và ngoài nước.</p>
-          <p class="margin-bottom-x">Bộ sưu tập</p>
-          <p class="margin-bottom-x">- Thư viện đang quản lý gần 5.000 tên sách với hơn 15.000 bản sách;</p>
-        </div>  
+        <span><strong>Nhiệm vụ:</strong></span>
+          <ul>
+              <li>Thu thập, xử lý, và cung cấp thông tin hỗ trợ giảng dạy, nghiên cứu, và học tập.</li>
+              <li>Đảm bảo cung cấp thông tin chính xác và đầy đủ cho giảng viên, cán bộ nghiên cứu, và sinh viên.</li>
+              <li>Tham mưu và lập kế hoạch cho công tác thông tin tư liệu.</li>
+              <li>Tổ chức lưu trữ và quản lý kho tư liệu.</li>
+              <li>Xây dựng hệ thống tra cứu tin phục vụ người dùng.</li>
+              <li>Thu thập và lưu chiểu ấn phẩm của Nhà trường và các luận văn, đồ án tốt nghiệp.</li>
+              <li>Phát triển quan hệ hợp tác với các tổ chức và trường đại học khác.</li>
+          </ul>
+          <p><strong>Bộ sưu tập:</strong> Thư viện quản lý gần 5.000 tên sách với hơn 15.000 bản sách.</p>
 
-      <div class="font-size-x1">
-        <p class="font-weight01 margin-bottom-x abc">- 4 cơ sở dữ liệu (CSDL):</p>
-        <p class="margin-bottom-x">*CSDL thư mục (opac): Tra cứu sách giáo trình và tham khảo (sách giấy) có trong thư viện; hướng dẫn xem tại link <a href="https://library.vju.vn/Pages/Index/10">https://library.vju.vn/Pages/Index/10</a></p>
-        <p class="margin-bottom-x abc">*CSDL nội sinh (Dspace): Tra cứu đồ án tốt nghiệp của sinh viên các khóa; tài nguyên môn học, bài báo khoa học,...;Hướng dẫn xem tại link: <a href="https://library.vju.edu.vn/Pages/Index/13">https://library.vju.edu.vn/Pages/Index/13</a></p>
-        <p class="margin-bottom-x abc">*CSDL sách trực tuyến Books24x7: Đây là CSDL trường ĐH Việt Nhật mua quyền truy cập hàng năm. CSDL này gồm tài liệu thuộc các chủ đề như: Công nghệ thông tin, Kỹ thuật, Kinh tế, tài chính,... hướng dẫn xem tại link: <a href="https://library.vju.edu.vn/Pages/Index/11">https://library.vju.edu.vn/Pages/Index/11</a></p>
-        <p class="margin-bottom-x abc">*Cổng truy cập nguồn tin điện tử VISTA: Cổng thông tin này có thể giúp bạn đọc tiếp cận tài liệu ở một số cơ sở dữ liệu nổi tiếng. Các CSDL bao gồm:  </p>     
-      </div>
+        <span><strong>4 cơ sở dữ liệu (CSDL)</strong>:</span>
+          <ul>
+            <li>CSDL thư mục (opac): Tra cứu sách giáo trình và tham khảo có trong thư viện; <a href="https://library.vju.vn/Pages/Index/10" style="text-decoration: none;">Xem tại đây</a></li>
+            <li>CSDL nội sinh (Dspace): Tra cứu đồ án tốt nghiệp, tài nguyên môn học, bài báo khoa học; <a href="https://library.vju.edu.vn/Pages/Index/13" style="text-decoration: none;">Xem tại đây</a></li>
+            <li>CSDL sách trực tuyến Books24x7: Tài liệu về Công nghệ thông tin, Kỹ thuật, Kinh tế, tài chính; <a href="https://library.vju.edu.vn/Pages/Index/11" style="text-decoration: none;">Xem tại đây</a></li>
+            <li>Cổng truy cập nguồn tin điện tử VISTA: Đọc tiếp cận tài liệu từ các CSDL nổi tiếng.</li>
+          </ul>
 
-      <div class="font-size-x1">
-        <p class="margin-bottom-x abc">-<strong class="red-bold-text"> Sciencedirect</strong> - <a href="https://www.sciencedirect.com/">https://www.sciencedirect.com/</a></p>
-        <p class="margin-bottom-x">-<strong class="red-bold-text"> Springer</strong> - <a href="https://link.springer.com/">https://link.springer.com/</a></p>
-        <p class="margin-bottom-x">-<strong class="red-bold-text"> Proquest</strong> - <a href="https://www.proquest.com/">https://www.proquest.com/</a></p>
-        <p class="margin-bottom-x">-<strong class="red-bold-text"> IEEE</strong> - <a href="https://ieeexplore.ieee.org/Xplore/home.jsp">https://ieeexplore.ieee.org/Xplore/home.jsp</a></p>
-    </div>
+        <p><strong style="color: red;">- Sciencedirect</strong> - <a href="https://www.sciencedirect.com/">https://www.sciencedirect.com/</a></p>
+        <p><strong style="color: red;">- Springer</strong> - <a href="https://link.springer.com/">https://link.springer.com/</a></p>
+        <p><strong style="color: red;">- Proquest</strong> - <a href="https://www.proquest.com/">https://www.proquest.com/</a></p>
+        <p><strong style="color: red;">- IEEE</strong> - <a href="https://ieeexplore.ieee.org/Xplore/home.jsp">https://ieeexplore.ieee.org/Xplore/home.jsp</a></p>
+
     
-    <p class="font-size-x1 abc">Đối với nguồn tin này, bạn đọc cần khai thác thông qua thủ thư tại thư viện
-    Ngoài ra còn rất nhiều loại báo, tạp chí cùng các tài liệu với nhiều loại hình như: CD-Rom; DVD, hộp linh kiện điện tử,...</p>
-    
-    <div class="font-size-x1">
-      <p class="margin-bottom-x">Thư viện thành viên:</p>
-          <p class="ml-10 margin-bottom-x">- Thư viện VJU Hà Nội (Tên viết tắt: VJULIB)</p>
-          <p class="ml-11 margin-bottom-x">Địa chỉ: Phòng 107 Trường ĐH Việt Nhật, Đường Lưu Hữu Phước, phường Cầu Diễn, quận Nam Từ Liêm, Hà Nội</p>
-          <p class="ml-11 margin-bottom-x">Email: <a href="thuvien_vju_hoalac@vju.edu.vn">thuvien_vju_hoalac@vju.edu.vn</a></p>
-          <p class="ml-11 margin-bottom-x">ĐT: 02466.805.912</p>
-          <p class="ml-11 margin-bottom-x">Fanpage: <a href="https://www.facebook.com/thuvienvju">https://www.facebook.com/thuvienvju</a></p>
-          <p class="ml-11 margin-bottom-x">Website: <a href="https://library.vju.edu.vn/">https://library.vju.edu.vn/</a></p>
-      </div>
-    </div>
+        <span>Đối với nguồn tin này, bạn đọc cần khai thác thông qua thủ thư tại thư viện</span>
+        <p>Ngoài ra còn rất nhiều loại báo, tạp chí cùng các tài liệu với nhiều loại hình như: CD-Rom; DVD, hộp linh kiện điện tử,...</p>
+        
+        <span><strong>Thành viên thành viên:</strong></span>
+        <ul>
+            <li>Thư viện VJU Hà Nội (Tên viết tắt: VJULIB)</li>
+            <li>Địa chỉ:
+              <a href="https://www.google.com/maps/place/Tr%C6%B0%E1%BB%9Dng+%C4%90%E1%BA%A1i+h%E1%BB%8Dc+Vi%E1%BB%87t+Nh%E1%BA%ADt+(VJU)/@21.0329765,105.759668,17z/data=!3m1!4b1!4m6!3m5!1s0x3135ab8cbffec76b:0x971b711a01a86fd3!8m2!3d21.0329765!4d105.7622429!16s%2Fg%2F11b6_hy47c?entry=ttu" style="text-decoration: none;">
+                Phòng 107 Trường ĐH Việt Nhật, Đường Lưu Hữu Phước, phường Cầu Diễn, quận Nam Từ Liêm, Hà Nội
+              </a>
+            </li>
+            <li>Email: <a href="mailto:thuvien_vju_hoalac@vju.edu.vn">thuvien_vju_hoalac@vju.edu.vn</a></li>
+            <li>Điện Thoại: <a href="tel:02466805912" style="text-decoration: none;">02466.805.912</a></li>
+            <li>Fanpage: <a href="https://www.facebook.com/thuvienvju">https://www.facebook.com/thuvienvju</a></li>
+            <li>Website: <a href="https://library.vju.edu.vn/">https://library.vju.edu.vn/</a></li>
+        </ul>
   </div>
 
 <footer class="site-footer" style="font-family:Montserrat;">

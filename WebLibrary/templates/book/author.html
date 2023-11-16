@@ -44,7 +44,7 @@
               Thể loại sách
             </a>
             <ul class="dropdown-menu" style="max-height: 170px !important; overflow-y: auto;">
-              {% for category in latest_categories %}
+              {% for category in latest_categories|dictsort:"title" %}
               <li>
                 <a class="dropdown-item" href="{% url 'category_detail' pk=category.pk %}">
                   {{ category.title }}
@@ -59,7 +59,7 @@
           </li>
         </ul>
         </div>
-        <form class="d-flex" role="search" method="GET" action="{% url 'booklib' %}">
+        <form class="d-flex" role="search" method="GET" action="{% url 'author' %}">
           <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search" value="{{ search_author }}">
         </form>
 
@@ -201,40 +201,62 @@
       {% if search_results %}
         <h1 style="color: black;">Kết quả tìm kiếm cho "{{ search_author }}"</h1>
         <div class="container">
-          <div class="row row-cols-1 row-cols-md-4 g-4 ms-3 me-3">
+          <div class="row">
             {% for result in search_results %}
-                <div class="col">
-                    <div class="card h-100">
-                        <a href="{% url 'author_detail' pk=result.pk %}" style="height: 300px;">
-                            <img src="{{ result.img.url }}" class="card-img-top" alt="{{ result.title }}">
+                <div class="col-md-2 col-6 mb-5">
+                    <div>
+                        <a href="{% url 'author_detail' pk=result.pk %}">
+                            <img src="{{ result.img.url }}" alt="{{ result.title }}" style="border-radius: 50%; width: 120px; height: 120px;">
                         </a>
-                        <div class="te-de" style="margin-top: 80px; margin-bottom: 20px;">
-                            <a href="{% url 'author_detail' pk=result.pk %}">
-                                <h5 class="card-title" style="color: black;">{{ result.title }}</h5>
-                            </a>
-                        </div>
                     </div>
+
+                    <div style="font-size: 14px; justify-content: center;">
+                        <a href="{% url 'author_detail' pk=result.pk %}" style="text-decoration: none; color: black !important;">
+                            {{ result.title }}
+                        </a>
+                    </div>
+                    
                 </div>
             {% endfor %}
           </div>
         </div>
+        
+          <span style="text-align: center; border-radius: 50%; margin: 0 5px; text-decoration: none;">
+            {% if latest_authors.has_previous %}
+                <a href="?page={{ latest_authors.previous_page_number }}" style="margin-left: 10px; text-decoration: none;">&laquo;</a>
+            {% endif %}
+        
+            {% for i in latest_authors.paginator.page_range %}
+                {% if latest_authors.number == i %}
+                    <span class="current" style="margin-left: 10px; border: 1px solid black; border-radius: 50%; padding: 5px 10px; background-color: #0d6efd; text-decoration: none; color: white;">
+                        {{ i }}
+                    </span>
+                {% else %}
+                    <a href="?page={{ i }}" style="margin-left: 10px; border: 1px solid black; border-radius: 50%; padding: 5px 10px; text-decoration: none;">{{ i }}</a>
+                {% endif %}
+            {% endfor %}
+        
+            {% if latest_authors.has_next %}
+                <a href="?page={{ latest_authors.next_page_number }}" style="margin-left: 10px; text-decoration: none;">&raquo;</a>
+            {% endif %}
+        </span>
       {% elif search_author and not search_results %}
         <br><br>
         <h1 style="color: black;">Không tìm thấy kết quả cho "{{ search_author }}"</h1>
       {% else %}
         <br><br>
-          <div class="container" >
+          <div class="container">
               <div class="row">
-                {% for author in latest_authors %}
-                  <div class="col-md-2 col-12">
+                {% for author in latest_authors|dictsort:"title" %}
+                  <div class="col-md-2 col-6 mb-5">
                       <div>
                         <a href="{% url 'author_detail' pk=author.pk %}">
                           <img src="{{ author.img.url }}" alt="{{ author.title }}" style="border-radius: 50%; width: 120px; height: 120px;">
                         </a>
                       </div>
 
-                      <div style="font-size: 14px; justify-content: center;">
-                        <a href="{% url 'author_detail' pk=author.pk %}" style="text-decoration: none; color: black !important;">
+                      <div style="font-size: 14px; justify-content: center; ">
+                        <a href="{% url 'author_detail' pk=author.pk %}" style="text-decoration: none; color: black !important; word-wrap: break-word;">
                           {{ author.title }}
                         </a>
                       </div>
@@ -242,8 +264,36 @@
                 {% endfor %}    
             </div>
           </div>
+          
+          <span style="text-align: center; border-radius: 50%; margin: 0 5px; text-decoration: none;">
+            {% if latest_authors.has_previous %}
+                <a href="?page={{ latest_authors.previous_page_number }}" style="margin-left: 10px; text-decoration: none;">&laquo;</a>
+            {% endif %}
+        
+            {% for i in latest_authors.paginator.page_range %}
+                {% if latest_authors.number == i %}
+                    <span style="margin-left: 10px; border: 1px solid black; border-radius: 50%; padding: 5px 10px; background-color: #0d6efd; text-decoration: none; color: white;">
+                        {{ i }}
+                    </span>
+                {% else %}
+                    {% if latest_authors.paginator.num_pages > 5 %}
+                        {% if i == 1 or i == latest_authors.paginator.num_pages or i == latest_authors.number or i == latest_authors.previous_page_number or i == latest_authors.next_page_number %}
+                            <a href="?page={{ i }}" style="margin-left: 10px; border: 1px solid black; border-radius: 50%; padding: 5px 10px; text-decoration: none;">{{ i }}</a>
+                        {% elif i == latest_authors.previous_page_number|add:"-1" or i == latest_authors.next_page_number|add:"1" %}
+                            <span style="margin-left: 10px;">...</span>
+                        {% endif %}
+                    {% else %}
+                        <a href="?page={{ i }}" style="margin-left: 10px; border: 1px solid black; border-radius: 50%; padding: 5px 10px; text-decoration: none;">{{ i }}</a>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        
+            {% if latest_authors.has_next %}
+                <a href="?page={{ latest_authors.next_page_number }}" style="margin-left: 10px; text-decoration: none;">&raquo;</a>
+            {% endif %}
+        </span>
       {% endif %}
-  </div>
+    </div>
   </section>
 
 
