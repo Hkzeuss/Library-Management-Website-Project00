@@ -101,6 +101,7 @@
           </form> 
   </nav>
 
+<<<<<<< HEAD
   <div style="margin-top: 5rem !important;">
       <div class=" col-md-8 mx-auto">
         <form method="post" enctype="multipart/form-data">
@@ -125,6 +126,34 @@
               <div class="mb-3 ms-1" style="width: 150px; height: 45px;">
                   <label for="id_last_name"><input type="text" name="last_name" value="{% if request.user.last_name %}{{request.user.last_name}}{% endif %}" placeholder="Điền tên" style="width: 150px; height: 45px; background-color: #d7d7d7;" class="form-control"></label>
               </div>
+=======
+  <div class="container align-items-center d-flex ml-x">
+    <div>
+        <div class=" col-md-8">
+            <div class="user-details me-5">
+              <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <p class="text-center"><img src="{{ user.profile.profile_img.url }}" alt="User Image" class="img-fit rounded-circle small-avatar mt-g offset-md-8" style="width: 100px; height: 100px;"></p>
+                <div class="d-flex justify-content-between mt-x offset-md-1 ml-y">
+                  <div class="mb-3">
+                    <label class="form-label"></label>
+                    <input type="text" placeholder="Nhập Họ" style="width: 150px; height: 45px; background-color: #AEC8FB;" class="form-control" id="first_name" name="first_name">
+                  </div>
+                  <div class="mb-3 ms-1" style="width: 150px; height: 45px;">
+                    <label for="last_name" class="form-label"></label>
+                    <input type="text" placeholder="Nhập Tên" style="width: 150px; height: 45px; background-color: #AEC8FB;" class="form-control" id="last_name" name="last_name">
+                  </div>
+                </div>
+                <div class="mb-3 offset-md-1 ml-y" style="margin-top: -31px">
+                  <label for="introduction" class="form-label"></label>
+                  <textarea placeholder="Giới Thiệu Bản Thân" style="width: 305px; height: 45px; background-color: #FFFFFF;" class="form-control" id="introduction" name="introduction"></textarea>
+                </div>
+                <div class="d-inline-flex justify-content-between mt-c offset-md-1 ml-y">
+                  <button type="submit" class="mt-2 btn btn-primary" style="width: 150px; height: 45px;">Cập Nhật</button>
+                <button class="mt-2 btn btn-primary ms-1" style="width: 150px; height: 45px; background-color: red;"><a href="/forgot" class="mt-2" style="color: white; text-decoration: none;">Đổi Mật Khẩu</a></button>
+                </div>
+              </form>
+>>>>>>> e5e37b7f5cc7e999bc5fa7ba687d507c6b178a3b
             </div>
             <div class="d-flex justify-content-center">
               <label for="id_desc"><input type="text" name="desc" value="{% if user.profile.desc %}{{user.profile.desc}}{% endif %}" placeholder="Hãy giới thiệu về bản thân mình thêm nhé!" style="width: 300px; height: 45px; background-color: #d7d7d7;" class="form-control"></label>
@@ -143,6 +172,61 @@
             </div>
         </form>
   </div>
+<<<<<<< HEAD
+=======
+  
+  <br>
+  <h5 class="ms-5 mt-a">Tên Sách Đã Mượn</h5>
+  <div id="layoutDefault_footer">
+    <footer class="footer pt-5 pb-5 mt-5 " style="background-color: #D9D9D9;">
+        <div class="container ">
+
+            <div class="row gx-5">
+                <div class="col-lg-3">
+                    <h5 class="footer-brand font-weight03">VJU LIBRARY</h5>
+                    <div class="icon-list-social mb-5 mt-3 ">
+                        <a class="icon-list-social-link " href="#!"><i class='bx bxl-instagram-alt' style="font-size: 25px;" ></i></a>
+                        <a class="icon-list-social-link p-xxl-4 " href="#!"><i class='bx bxl-facebook-circle' style="font-size: 25px;"></i></a>
+                        <a class="icon-list-social-link " href="#!"><i class='bx bxl-discord-alt' style="font-size:25px" ></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="row gx-5 font-weight03">
+                        <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+                            <a href="#" class="text-uppercase-expanded text-xs mb-4 no-underline">Trang Chủ</a>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+                            <a href="#" class="text-uppercase-expanded text-xs mb-4 no-underline">Giới Thiệu</a>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+                            <a href="#" class="text-uppercase-expanded text-xs mb-4 no-underline">Nội Quy</a>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6">
+                            <div class="text-uppercase-expanded text-xs mb-4"><a class="no-underline" href="#">Tủ Sách</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-4" />
+
+            <div class="row gx-5 align-items-center">
+                <div class="col-md-6 small font-weight03">Copyright © LIBVJU 2023</div>
+                <div class="col-md-6 text-md-end small">
+                    <a class="no-underline font-weight03" href="#!">Privacy Policy</a>
+                    ·
+                    <a class="no-underline font-weight03" href="#!">Terms &amp; Conditions</a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+</div>
+
+>>>>>>> e5e37b7f5cc7e999bc5fa7ba687d507c6b178a3b
   
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   <script>
