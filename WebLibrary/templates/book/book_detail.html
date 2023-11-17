@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="{% static 'student/base_footer_styles1.css' %}">
   <link rel="stylesheet" href="{% static 'student/bootstrap.css' %}">
   <link rel="stylesheet" href="{% static 'book/styles10.css' %}">
+  <link rel="icon" href="{% static 'images/logo/logo.png' %}">
   <title>Thông Tin Sách</title>
 
 </head>
@@ -44,8 +45,8 @@
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Thể loại sách
             </a>
-            <ul class="dropdown-menu">
-              {% for category in latest_categories %}
+            <ul class="dropdown-menu" style="max-height: 170px !important; overflow-y: auto;">
+              {% for category in latest_categories|dictsort:"title" %}
               <li>
                 <a class="dropdown-item" href="{% url 'category_detail' pk=category.pk %}">
                   {{ category.title }}
@@ -194,134 +195,102 @@
   </div>
   <!--================================================Carousel================================================-->
 
-  <section class="py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-5 mb-06">
-            <div class="user-image me-06">
-                <img src="{{ selected_book.img.url }}" alt="{{ selected_book.title }}" style=" height: 500px; width: 400px; margin-right: 0;">
-            </div>
-        </div>
-        
-        <div class=" col-md-7">
-            <div class=" me-5" style="text-align: left; padding-left: 50px;">
-              <h1>{{ selected_book.title }}</h1>
-                {% if related_author %}
-                    <h4>By: 
-                        <a href="{% url 'author_detail' pk=related_author.pk %}" style="text-decoration: none;">{{ related_author.title }}</a>
-                    </h4>
-                {% endif %}
-              <h4>Tóm tắt</h4>
-                <p>{{ selected_book.description }}</p>
+  <!--================================================================================================-->
+  <div class="container mt-5">
+    <div class="row">
+      <!-- Phần bên trái - Hình ảnh sách -->
+      <div class="col-md-6 custom-height align-items-center ">
+        <img src="{{ selected_book.img.url }}" alt="{{ selected_book.title }}" class="img-fluid img-rectangle">
+      </div>
+  
+      <!-- Phần bên phải - Thông tin sách -->
+      <div class="col-md-6 align-items-center">
+        <div class=" me-5 " style="text-align: left; padding-left: 50px;">
+          <h1>{{ selected_book.title }}</h1>
+            {% if related_author %}
+                <h4>By: 
+                    <a href="{% url 'author_detail' pk=related_author.pk %}" style="text-decoration: none;">{{ related_author.title }}</a>
+                </h4>
+            {% endif %}
+          <h4>Tóm tắt</h4>
+            <p>{{ selected_book.description }}</p>
 
-              <h4>Thông tin sách</h4>
-                {% if related_author %}
-                    <p>Tác giả: 
-                        <a href="{% url 'author_detail' pk=related_author.pk %}" style="text-decoration: none;">{{ related_author.title }}</a>
-                    </p>
-                {% endif %}
-                <p>Dịch giả: {{ selected_book.translater }}</p>
-                <p>Nhà xuất bản: {{ selected_book.publisher }}</p>
-                <p>Số trang: {{ selected_book.page }}</p>
-                <p>Số lượng: {{ selected_book.amount }}</p>
-                <p>Ngày xuất bản: {{ selected_book.Publication_date }}</p>
-                
-                <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" {% if not is_book_available or is_book_borrowed %}disabled style="background-color: #F02E2E;"{% endif %}>
-                  {% if is_book_borrowed %}Đã Mượn{% else %}Mượn Sách{% endif %}
-                </button>              
-                <div class="modal fade" id="exampleModalToggle" aria-labelledby="exampleModalToggleLabel" tabindex="-1" style="display: none;" _mstvisible="0" aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-centered" _mstvisible="1">
-                    <div class="modal-content" _mstvisible="2">
-                      <div class="modal-header" _mstvisible="3">
-                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel" _msttexthash="1767636" _msthash="330" _mstvisible="4">Vui Lòng Lên Lịch Mượn Sách</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng" _mstaria-label="59709" _msthash="331" _mstvisible="4"></button>
-                      </div>
-                      <form method="post" action="{% url 'book_detail' pk=selected_book.pk %}" id="bookForm">
-                        {% csrf_token %}
-                        {% if not is_book_available %}
-                            <div class="alert alert-danger" role="alert">
-                              {% for message in messages %}
-                              <div class="fontcolor">{{message}}</div>
-                              {% endfor %}
-                            </div>
-                        {% endif %}
-                        <div class="modal-body" _msttexthash="1948674" _msthidden="1" _msthash="336">
-                        Họ Và Tên: {{request.user.first_name}} {{request.user.last_name}}
-                        <br>
-                        Mã Sinh Viên: {{ request.user.username }}
-                        <br>
-                        Email: {{request.user.email}}
-                        <br>
-                        Tên Sách - Tác Giả: {{ selected_book.title }} - {{ selected_book.author }}
-                        </div>
-                        <hr>
-                        <div class="modal-body" _msttexthash="28926456" _msthash="332" _mstvisible="3">
-                          Nhập Thời Gian Mượn Sách:
-                          <input type="date" name="borrow_date" style="float: right; margin-right: 50px;" value="{% if form.is_bound %}{{ form.data.borrow_date }}{% endif %}" placeholder="YYYY-MM-DD">
-                          {% for error in form.borrow_date.errors %}
-                              <div class="text-danger">{{ error }}</div>
-                          {% endfor %}
-                      </div>
-                      <div class="modal-body" _msttexthash="28926456" _msthash="332" _mstvisible="3">
-                          Nhập Thời Gian Trả Sách:
-                          <input type="date" name="return_date" style="float: right; margin-right: 50px;" value="{% if form.is_bound %}{{ form.data.return_date }}{% endif %}" placeholder="YYYY-MM-DD">
-                          {% for error in form.return_date.errors %}
-                              <div class="text-danger">{{ error }}</div>
-                          {% endfor %}
-                      </div>
-                      {% if error_message %}
-                          <div class="alert alert-danger" role="alert">
-                              <div class="fontcolor">{{ error_message }}</div>
-                          </div>
-                      {% endif %}
-                        <div class="modal-footer" _mstvisible="3">
-                            <button class="btn btn-primary" type="submit" _msttexthash="5143346" _msthash="333" _mstvisible="4">
-                                Xác Nhận
-                            </button>
-                        </div>
-                    </form>
-                    </div>
+          <h4>Thông tin sách</h4>
+            {% if related_author %}
+                <p>Tác giả: 
+                    <a href="{% url 'author_detail' pk=related_author.pk %}" style="text-decoration: none;">{{ related_author.title }}</a>
+                </p>
+            {% endif %}
+            <p>Dịch giả: {{ selected_book.translater }}</p>
+            <p>Nhà xuất bản: {{ selected_book.publisher }}</p>
+            <p>Số trang: {{ selected_book.page }}</p>
+            <p>Số lượng: {{ selected_book.amount }}</p>
+            <p>Ngày xuất bản: {{ selected_book.Publication_date }}</p>
+            
+            <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" {% if not is_book_available or is_book_borrowed %}disabled style="background-color: #F02E2E;"{% endif %}>
+              {% if is_book_borrowed %}Đã Mượn{% else %}Mượn Sách{% endif %}
+            </button>              
+            <div class="modal fade" id="exampleModalToggle" aria-labelledby="exampleModalToggleLabel" tabindex="-1" style="display: none;" _mstvisible="0" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" _mstvisible="1">
+                <div class="modal-content" _mstvisible="2">
+                  <div class="modal-header" _mstvisible="3">
+                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel" _msttexthash="1767636" _msthash="330" _mstvisible="4">Vui Lòng Lên Lịch Mượn Sách</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng" _mstaria-label="59709" _msthash="331" _mstvisible="4"></button>
                   </div>
+                  <form method="post" action="{% url 'book_detail' pk=selected_book.pk %}" id="bookForm">
+                    {% csrf_token %}
+                    {% if not is_book_available %}
+                        <div class="alert alert-danger" role="alert">
+                          {% for message in messages %}
+                          <div class="fontcolor">{{message}}</div>
+                          {% endfor %}
+                        </div>
+                    {% endif %}
+                    <div class="modal-body" _msttexthash="1948674" _msthidden="1" _msthash="336">
+                    Họ Và Tên: {{request.user.first_name}} {{request.user.last_name}}
+                    <br>
+                    Mã Sinh Viên: {{ request.user.username }}
+                    <br>
+                    Email: {{request.user.email}}
+                    <br>
+                    Tên Sách - Tác Giả: {{ selected_book.title }} - {{ selected_book.author }}
+                    </div>
+                    <hr>
+                    <div class="modal-body" _msttexthash="28926456" _msthash="332" _mstvisible="3">
+                      Nhập Thời Gian Mượn Sách:
+                      <input type="date" name="borrow_date" style="float: right; margin-right: 50px;" value="{% if form.is_bound %}{{ form.data.borrow_date }}{% endif %}" placeholder="YYYY-MM-DD">
+                      {% for error in form.borrow_date.errors %}
+                          <div class="text-danger">{{ error }}</div>
+                      {% endfor %}
+                  </div>
+                  <div class="modal-body" _msttexthash="28926456" _msthash="332" _mstvisible="3">
+                      Nhập Thời Gian Trả Sách:
+                      <input type="date" name="return_date" style="float: right; margin-right: 50px;" value="{% if form.is_bound %}{{ form.data.return_date }}{% endif %}" placeholder="YYYY-MM-DD">
+                      {% for error in form.return_date.errors %}
+                          <div class="text-danger">{{ error }}</div>
+                      {% endfor %}
+                  </div>
+                  {% if error_message %}
+                      <div class="alert alert-danger" role="alert">
+                          <div class="fontcolor">{{ error_message }}</div>
+                      </div>
+                  {% endif %}
+                    <div class="modal-footer" _mstvisible="3">
+                        <button class="btn btn-primary" type="submit" _msttexthash="5143346" _msthash="333" _mstvisible="4">
+                            Xác Nhận
+                        </button>
+                    </div>
+                </form>
                 </div>
-                <button style="background-color: white; color: black; width: 100px; border-radius: 5px; height: 38px;"><a href="{{ pdf_url }}" target="_blank" style="text-decoration: none;">Xem sách</a></button>  
+              </div>
             </div>
+            <button style="background-color: white; color: black; width: 100px; border-radius: 5px; height: 38px;"><a href="{{ pdf_url }}" target="_blank" style="text-decoration: none;">Xem sách</a></button>  
         </div>
+        <!-- Các thông tin khác về sách -->
       </div>
     </div>
-    <br><br>
-      <h3 class="fo-w">Có thể bạn quan tâm</h3>
-        <div class="container">
-            <div class="row row-cols-1 row-cols-md-4 g-4 ms-3 me-3">
-                {% for book in related_books|slice:":4" %}
-                  {% if book != selected_book %}
-                    <div class="col">
-                        <div class="card h-100">
-                            <a href="{% url 'book_detail' pk=book.pk %}" >
-                                <img src="{{ book.img.url }}" class="card-img-top" alt="{{ book.title }}" style="height: 350px;">
-                            </a>
-                            <div class="te-de" style="margin-top: 40px; margin-bottom: 10px;">
-                              <a href="{% url 'book_detail' pk=book.pk %}">
-                                  <h5 class="card-title" style="color: black;">{{ book.title }}</h5>
-                                  <p class="card-text" style="text-align: left; margin-left: 10px; color: black;">
-                                    Tác giả: {{ book.author }}
-                                  </p>
-                                  <p class="card-text" style="text-align: right; margin-right: 10px; font-size: 14px;font-weight: 600;">
-                                    <span style="color: black; ">Số lượng còn lại: </span>
-                                    {% if book.amount == 0  %}
-                                      <span style="color: red !important;">{{ book.amount }}</span>
-                                    {% else %}
-                                      <span style="color: green !important;">{{ book.amount }}</span>
-                                    {% endif %}
-                                  </p>
-                              </a>
-                            </div>
-                        </div>
-                    </div>
-                  {% endif %}
-                {% endfor %}
-            </div>
-        </div>
-  </section>
+  </div>
+  <!--================================================================================================-->
 
   <footer class="site-footer mt-4" style="font-family:Montserrat;">
     <div class="container">

@@ -11,21 +11,27 @@ from datetime import datetime, timedelta
 from borrow.forms import BorrowForm
 from borrow.models import Borrow
 from django.http import JsonResponse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.utils import timezone
 
 
 def tabrules(request):
     categories = Category.objects.all()
+    user_authenticated = request.user.is_authenticated
     print(categories)
     context = {
         'latest_categories': categories,
+        'user_authenticated': user_authenticated,
     }
     return render(request, 'student/tabrules.html', context)
 
 def introduce(request):
+    user_authenticated = request.user.is_authenticated
     categories = Category.objects.all()
     print(categories)
     context = {
         'latest_categories': categories,
+        'user_authenticated': user_authenticated,
     }
     return render(request, "student/introduce.html", context)
 
@@ -38,23 +44,46 @@ def booklib(request):
     if search_book:
         # Tìm kiếm theo tên sách hoặc tác giả
         books = books.filter(Q(title__icontains=search_book) | Q(author__title__icontains=search_book))
+        paginator = Paginator(books, 28)
+        page = request.GET.get('page')
+
+        try:
+            books_paginated = paginator.page(page)
+        except PageNotAnInteger:
+            # Nếu page không phải là số nguyên, trả về trang đầu tiên
+            books_paginated = paginator.page(1)
+        except EmptyPage:
+            # Nếu page lớn hơn số lượng trang, trả về trang cuối cùng
+            books_paginated = paginator.page(paginator.num_pages)
         # Truyền dữ liệu tìm kiếm vào template
         context = {
-            
+            'books': books_paginated,
             'search_results': books,
             'search_book': search_book,
             'latest_categories': categories,
+            'latest_categorie': categories,
         }
     else:
+        paginator = Paginator(categories, 5)
+        page = request.GET.get('page')
+
+        try:
+            categories_paginated = paginator.page(page)
+        except PageNotAnInteger:
+            # Nếu page không phải là số nguyên, trả về trang đầu tiên
+            categories_paginated = paginator.page(1)
+        except EmptyPage:
+            # Nếu page lớn hơn số lượng trang, trả về trang cuối cùng
+            categories_paginated = paginator.page(paginator.num_pages)
         # Truyền dữ liệu danh mục vào template nếu không có tìm kiếm
         context = {
             'books': books,
-            'latest_categories': categories,
+            'latest_categories': categories_paginated,
+            'latest_categorie': categories,
         }
 
     # Render template với dữ liệu đã lấy
     return render(request, 'book/home.html', context)
-
 
 def category_detail(request, pk):
     # Lấy thông tin chi tiết của loại sách với primary key là pk
@@ -67,17 +96,41 @@ def category_detail(request, pk):
     if search_book:
         # Tìm kiếm theo tên sách hoặc tác giả
         books = books.filter(Q(title__icontains=search_book) | Q(author__title__icontains=search_book))
+        paginator = Paginator(books, 28)
+        page = request.GET.get('page')
+
+        try:
+            books_paginated = paginator.page(page)
+        except PageNotAnInteger:
+            # Nếu page không phải là số nguyên, trả về trang đầu tiên
+            books_paginated = paginator.page(1)
+        except EmptyPage:
+            # Nếu page lớn hơn số lượng trang, trả về trang cuối cùng
+            books_paginated = paginator.page(paginator.num_pages)
         # Truyền dữ liệu tìm kiếm vào template
         context = {
-            
+            'books': books_paginated,
             'search_results': books,
             'search_book': search_book,
             'latest_categories': categories,
         }
     else:
+        # Phân trang cho sách
+        paginator = Paginator(books, 28)
+        page = request.GET.get('page')
+
+        try:
+            books_paginated = paginator.page(page)
+        except PageNotAnInteger:
+            # Nếu page không phải là số nguyên, trả về trang đầu tiên
+            books_paginated = paginator.page(1)
+        except EmptyPage:
+            # Nếu page lớn hơn số lượng trang, trả về trang cuối cùng
+            books_paginated = paginator.page(paginator.num_pages)
+
         context = {
             'category': category,
-            'books': books,
+            'books': books_paginated,
             'latest_categories': categories,
         }
 
@@ -127,9 +180,9 @@ def book_detail(request, pk):
                 borrow_date = form.cleaned_data['borrow_date']
                 return_date = form.cleaned_data['return_date']
 
-                # Kiểm tra điều kiện ngày trả lớn hơn ngày mượn và không cách nhau quá 7 ngày
-                if return_date <= borrow_date or return_date - borrow_date > timedelta(days=7):
-                    context['error_message'] = 'Ngày trả không hợp lệ. Vui lòng kiểm tra lại.'
+                # Kiểm tra điều kiện ngày trả lớn hơn hoặc bằng ngày mượn và không cách nhau quá 7 ngày
+                if return_date <= borrow_date or return_date - borrow_date > timedelta(days=7) or borrow_date < timezone.now().date():
+                    context['error_message'] = 'Ngày mượn hoặc ngày trả không hợp lệ. Vui lòng kiểm tra lại.'
                 else:
                     selected_book.amount -= 1
                     selected_book.save()
@@ -159,19 +212,43 @@ def author_detail(request, pk):
     if search_book:
         # Tìm kiếm theo tên sách hoặc tác giả
         books = books.filter(Q(title__icontains=search_book) | Q(author__title__icontains=search_book))
+        paginator = Paginator(books, 28)
+        page = request.GET.get('page')
+
+        try:
+            books_paginated = paginator.page(page)
+        except PageNotAnInteger:
+            # Nếu page không phải là số nguyên, trả về trang đầu tiên
+            books_paginated = paginator.page(1)
+        except EmptyPage:
+            # Nếu page lớn hơn số lượng trang, trả về trang cuối cùng
+            books_paginated = paginator.page(paginator.num_pages)
         # Truyền dữ liệu tìm kiếm vào template
         context = {
-            
+            'books': books_paginated,
             'search_results': books,
             'search_book': search_book,
             'latest_categories': categories,
         }
 
     else:
+        # Phân trang cho sách
+        paginator = Paginator(books, 28)
+        page = request.GET.get('page')
+
+        try:
+            books_paginated = paginator.page(page)
+        except PageNotAnInteger:
+            # Nếu page không phải là số nguyên, trả về trang đầu tiên
+            books_paginated = paginator.page(1)
+        except EmptyPage:
+            # Nếu page lớn hơn số lượng trang, trả về trang cuối cùng
+            books_paginated = paginator.page(paginator.num_pages)
+
         context = {
             'latest_authors': authors,
             'author': author,
-            'books': books,
+            'books': books_paginated,
             'latest_authors': authors,
             'latest_categories': categories,
         }
@@ -192,25 +269,43 @@ def view_pdf(request, pk):
         return response
     
 def author(request):
-    # Lấy tất cả các sách và các danh mục từ database
     authors = Author.objects.all()
     categories = Category.objects.all()
 
     search_author = request.GET.get('search', '')
     if search_author:
         # Tìm kiếm theo tiêu đề của tác giả
-        authors = authors.filter(title__icontains=search_author)
+        authors = authors.filter(Q(title__icontains=search_author))
+        paginator = Paginator(authors, 60)
+        page = request.GET.get('page')
+
+        try:
+            authors_paginated = paginator.page(page)
+        except PageNotAnInteger:
+            authors_paginated = paginator.page(1)
+        except EmptyPage:
+            authors_paginated = paginator.page(paginator.num_pages)
         # Truyền dữ liệu tìm kiếm vào template
         context = {
+
             'search_results': authors,
             'search_author': search_author,
-            'latest_authors': authors,
+            'latest_authors': authors_paginated,
             'latest_categories': categories,
         }
     else:
-        # Truyền dữ liệu danh mục vào template nếu không có tìm kiếm
+        paginator = Paginator(authors, 60)
+        page = request.GET.get('page')
+
+        try:
+            authors_paginated = paginator.page(page)
+        except PageNotAnInteger:
+            authors_paginated = paginator.page(1)
+        except EmptyPage:
+            authors_paginated = paginator.page(paginator.num_pages)
+
         context = {
-            'latest_authors': authors,
+            'latest_authors': authors_paginated,
             'latest_categories': categories,
         }
 

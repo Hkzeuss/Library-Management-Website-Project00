@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{% static 'student/styles33.css' %}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="icon" href="{% static 'images/logo/logo.png' %}">
     <title>Cài Đặt & Quyền Riêng Tư</title>
   
 </head>
@@ -44,8 +45,8 @@
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Thể loại sách
               </a>
-              <ul class="dropdown-menu">
-                {% for category in latest_categories %}
+              <ul class="dropdown-menu" style="max-height: 170px !important; overflow-y: auto;">
+                {% for category in latest_categories|dictsort:"title" %}
                 <li>
                   <a class="dropdown-item" href="{% url 'category_detail' pk=category.pk %}">
                     {{ category.title }}

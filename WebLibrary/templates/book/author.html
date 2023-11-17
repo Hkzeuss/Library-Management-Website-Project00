@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="{% static 'student/base_footer_styles1.css' %}">
   <link rel="stylesheet" href="{% static 'student/bootstrap.css' %}">
   <link rel="stylesheet" href="{% static 'book/styles10.css' %}">
+  <link rel="icon" href="{% static 'images/logo/logo.png' %}">
   <title>Tác Giả</title>
 </head>
 <body style="font-family: Montserrat;">
@@ -43,8 +44,8 @@
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Thể loại sách
             </a>
-            <ul class="dropdown-menu">
-              {% for category in latest_categories %}
+            <ul class="dropdown-menu" style="max-height: 170px !important; overflow-y: auto;">
+              {% for category in latest_categories|dictsort:"title" %}
               <li>
                 <a class="dropdown-item" href="{% url 'category_detail' pk=category.pk %}">
                   {{ category.title }}
@@ -59,7 +60,7 @@
           </li>
         </ul>
         </div>
-        <form class="d-flex" role="search" method="GET" action="{% url 'booklib' %}">
+        <form class="d-flex" role="search" method="GET" action="{% url 'author' %}">
           <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search" value="{{ search_author }}">
         </form>
 
@@ -99,142 +100,165 @@
     </div>
   </nav>
 
- <!--================================================Carousel================================================-->
- <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" aria-label="Slide 1" class="active"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4" class=""></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5" class=""></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5" aria-label="Slide 6" class=""></button>
-  </div>
+  <!--================================================Carousel================================================-->
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" aria-label="Slide 1" class="active"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4" class=""></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5" class=""></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5" aria-label="Slide 6" class=""></button>
+    </div>
+    
+    <!--Slide 1-->
+    <div class="carousel-inner">
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <image href="{% static 'images/background/Library_1.jpg' %}" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"/>
+        </svg>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>VJU LIBRARY</h5>
+          <p>Học hỏi là hành trình không ngừng, nơi mà mỗi bước đi là một cơ hội mới để mở rộng kiến thức.</p>
+        </div>
+      </div>
   
-  <!--Slide 1-->
-  <div class="carousel-inner">
-    <div class="carousel-item">
-      <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice" focusable="false">
-        <title>Placeholder</title>
-        <image href="{% static 'images/background/Library_1.jpg' %}" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"/>
-      </svg>
-      <div class="carousel-caption d-none d-md-block">
-        <h5>VJU LIBRARY</h5>
-        <p>Học hỏi là hành trình không ngừng, nơi mà mỗi bước đi là một cơ hội mới để mở rộng kiến thức.</p>
+      <!--Slide 2-->
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Second slide" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <image href="{% static 'images/background/Library_2.jpg' %}" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"/>
+        </svg>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>VJU LIBRARY</h5>
+          <p>Sự hiểu biết không có giới hạn và không bao giờ là thứ có thể mất đi.</p>
+        </div>
+      </div>
+  
+      <!--Slide 3-->  
+      <div class="carousel-item active">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Third slide" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <image href="{% static 'images/background/Library_7.jpg' %}" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"/>
+        </svg>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>VJU LIBRARY</h5>
+          <p>Cuốn sách tốt nhất là người bạn tri kỷ, là người nói với bạn những gì bạn không thể nói với bất kỳ ai khác.</p>
+        </div>
+      </div>
+  
+      <!--Slide 4-->
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Fourth slide" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <image href="{% static 'images/background/Library_6.jpg' %}" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"/>
+        </svg>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>VJU LIBRARY</h5>
+          <p>Kiên trì là không bao giờ phải nói 'Tôi đã đủ', mà luôn là nói 'Tôi sẽ thử thêm một lần nữa'.</p>
+        </div>
+      </div>
+  
+      <!--Slide 5-->
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Fourth slide" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <image href="{% static 'images/background/Library_5.jpg' %}" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"/>
+        </svg>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>VJU LIBRARY</h5>
+          <p>Người ta không cần phải đọc một cuộc sống mới, chỉ cần đọc một cuốn sách hay.</p>
+        </div>
+      </div>
+  
+      <!--Slide 6-->
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Fourth slide" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <title>Placeholder</title>
+          <image href="{% static 'images/background/Library_4.jpg' %}" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"/>
+        </svg>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>VJU LIBRARY</h5>
+          <p>Tầm nhìn chiến lược không chỉ là việc nhìn thấy điều gì có thể, mà còn là việc thấy rõ điều gì cần phải làm.</p>
+        </div>
       </div>
     </div>
-
-    <!--Slide 2-->
-    <div class="carousel-item">
-      <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Second slide" preserveAspectRatio="xMidYMid slice" focusable="false">
-        <title>Placeholder</title>
-        <image href="{% static 'images/background/Library_2.jpg' %}" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"/>
-      </svg>
-      <div class="carousel-caption d-none d-md-block">
-        <h5>VJU LIBRARY</h5>
-        <p>Sự hiểu biết không có giới hạn và không bao giờ là thứ có thể mất đi.</p>
-      </div>
-    </div>
-
-    <!--Slide 3-->  
-    <div class="carousel-item active">
-      <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Third slide" preserveAspectRatio="xMidYMid slice" focusable="false">
-        <title>Placeholder</title>
-        <image href="{% static 'images/background/Library_7.jpg' %}" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"/>
-      </svg>
-      <div class="carousel-caption d-none d-md-block">
-        <h5>VJU LIBRARY</h5>
-        <p>Cuốn sách tốt nhất là người bạn tri kỷ, là người nói với bạn những gì bạn không thể nói với bất kỳ ai khác.</p>
-      </div>
-    </div>
-
-    <!--Slide 4-->
-    <div class="carousel-item">
-      <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Fourth slide" preserveAspectRatio="xMidYMid slice" focusable="false">
-        <title>Placeholder</title>
-        <image href="{% static 'images/background/Library_6.jpg' %}" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"/>
-      </svg>
-      <div class="carousel-caption d-none d-md-block">
-        <h5>VJU LIBRARY</h5>
-        <p>Kiên trì là không bao giờ phải nói 'Tôi đã đủ', mà luôn là nói 'Tôi sẽ thử thêm một lần nữa'.</p>
-      </div>
-    </div>
-
-    <!--Slide 5-->
-    <div class="carousel-item">
-      <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Fourth slide" preserveAspectRatio="xMidYMid slice" focusable="false">
-        <title>Placeholder</title>
-        <image href="{% static 'images/background/Library_5.jpg' %}" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"/>
-      </svg>
-      <div class="carousel-caption d-none d-md-block">
-        <h5>VJU LIBRARY</h5>
-        <p>Người ta không cần phải đọc một cuộc sống mới, chỉ cần đọc một cuốn sách hay.</p>
-      </div>
-    </div>
-
-    <!--Slide 6-->
-    <div class="carousel-item">
-      <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Fourth slide" preserveAspectRatio="xMidYMid slice" focusable="false">
-        <title>Placeholder</title>
-        <image href="{% static 'images/background/Library_4.jpg' %}" width="100%" height="100%" preserveAspectRatio="xMidYMid slice"/>
-      </svg>
-      <div class="carousel-caption d-none d-md-block">
-        <h5>VJU LIBRARY</h5>
-        <p>Tầm nhìn chiến lược không chỉ là việc nhìn thấy điều gì có thể, mà còn là việc thấy rõ điều gì cần phải làm.</p>
-      </div>
-    </div>
+        
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+  
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
-      
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
+  <!--================================================Carousel================================================-->
 
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-<!--================================================Carousel================================================-->
+  <section class="mar-1">
 
-  <section class="mar-1">   
     <div>
       {% if search_results %}
         <h1 style="color: black;">Kết quả tìm kiếm cho "{{ search_author }}"</h1>
         <div class="container">
-          <div class="row row-cols-1 row-cols-md-4 g-4 ms-3 me-3">
+          <div class="row">
             {% for result in search_results %}
-                <div class="col">
-                    <div class="card h-100">
-                        <a href="{% url 'author_detail' pk=result.pk %}" style="height: 300px;">
-                            <img src="{{ result.img.url }}" class="card-img-top" alt="{{ result.title }}">
+                <div class="col-md-2 col-6 mb-5">
+                    <div>
+                        <a href="{% url 'author_detail' pk=result.pk %}">
+                            <img src="{{ result.img.url }}" alt="{{ result.title }}" style="border-radius: 50%; width: 120px; height: 120px;">
                         </a>
-                        <div class="te-de" style="margin-top: 80px; margin-bottom: 20px;">
-                            <a href="{% url 'author_detail' pk=result.pk %}">
-                                <h5 class="card-title" style="color: black;">{{ result.title }}</h5>
-                            </a>
-                        </div>
                     </div>
+
+                    <div style="font-size: 14px; justify-content: center;">
+                        <a href="{% url 'author_detail' pk=result.pk %}" style="text-decoration: none; color: black !important;">
+                            {{ result.title }}
+                        </a>
+                    </div>
+                    
                 </div>
             {% endfor %}
           </div>
         </div>
+        
+          <span style="text-align: center; border-radius: 50%; margin: 0 5px; text-decoration: none;">
+            {% if latest_authors.has_previous %}
+                <a href="?page={{ latest_authors.previous_page_number }}" style="margin-left: 10px; text-decoration: none;">&laquo;</a>
+            {% endif %}
+        
+            {% for i in latest_authors.paginator.page_range %}
+                {% if latest_authors.number == i %}
+                    <span class="current" style="margin-left: 10px; border: 1px solid black; border-radius: 50%; padding: 5px 10px; background-color: #0d6efd; text-decoration: none; color: white;">
+                        {{ i }}
+                    </span>
+                {% else %}
+                    <a href="?page={{ i }}" style="margin-left: 10px; border: 1px solid black; border-radius: 50%; padding: 5px 10px; text-decoration: none;">{{ i }}</a>
+                {% endif %}
+            {% endfor %}
+        
+            {% if latest_authors.has_next %}
+                <a href="?page={{ latest_authors.next_page_number }}" style="margin-left: 10px; text-decoration: none;">&raquo;</a>
+            {% endif %}
+        </span>
       {% elif search_author and not search_results %}
         <br><br>
         <h1 style="color: black;">Không tìm thấy kết quả cho "{{ search_author }}"</h1>
       {% else %}
         <br><br>
-          <div class="container" >
+          <div class="container">
               <div class="row">
-                {% for author in latest_authors %}
-                  <div class="col-md-2 col-12">
+                {% for author in latest_authors|dictsort:"title" %}
+                  <div class="col-md-2 col-6 mb-5">
                       <div>
                         <a href="{% url 'author_detail' pk=author.pk %}">
                           <img src="{{ author.img.url }}" alt="{{ author.title }}" style="border-radius: 50%; width: 120px; height: 120px;">
                         </a>
                       </div>
 
-                      <div style="font-size: 14px; justify-content: center;">
-                        <a href="{% url 'author_detail' pk=author.pk %}" style="text-decoration: none; color: black !important;">
+                      <div style="font-size: 14px; justify-content: center; ">
+                        <a href="{% url 'author_detail' pk=author.pk %}" style="text-decoration: none; color: black !important; word-wrap: break-word;">
                           {{ author.title }}
                         </a>
                       </div>
@@ -242,8 +266,36 @@
                 {% endfor %}    
             </div>
           </div>
+          
+          <span style="text-align: center; border-radius: 50%; margin: 0 5px; text-decoration: none;">
+            {% if latest_authors.has_previous %}
+                <a href="?page={{ latest_authors.previous_page_number }}" style="margin-left: 10px; text-decoration: none;">&laquo;</a>
+            {% endif %}
+        
+            {% for i in latest_authors.paginator.page_range %}
+                {% if latest_authors.number == i %}
+                    <span style="margin-left: 10px; border: 1px solid black; border-radius: 50%; padding: 5px 10px; background-color: #0d6efd; text-decoration: none; color: white;">
+                        {{ i }}
+                    </span>
+                {% else %}
+                    {% if latest_authors.paginator.num_pages > 5 %}
+                        {% if i == 1 or i == latest_authors.paginator.num_pages or i == latest_authors.number or i == latest_authors.previous_page_number or i == latest_authors.next_page_number %}
+                            <a href="?page={{ i }}" style="margin-left: 10px; border: 1px solid black; border-radius: 50%; padding: 5px 10px; text-decoration: none;">{{ i }}</a>
+                        {% elif i == latest_authors.previous_page_number|add:"-1" or i == latest_authors.next_page_number|add:"1" %}
+                            <span style="margin-left: 10px;">...</span>
+                        {% endif %}
+                    {% else %}
+                        <a href="?page={{ i }}" style="margin-left: 10px; border: 1px solid black; border-radius: 50%; padding: 5px 10px; text-decoration: none;">{{ i }}</a>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        
+            {% if latest_authors.has_next %}
+                <a href="?page={{ latest_authors.next_page_number }}" style="margin-left: 10px; text-decoration: none;">&raquo;</a>
+            {% endif %}
+        </span>
       {% endif %}
-  </div>
+    </div>
   </section>
 
 
