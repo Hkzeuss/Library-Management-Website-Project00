@@ -279,7 +279,7 @@
           <br><br>
           <div class="te-de">
             <a href="{% url 'category_detail' pk=category.pk %}">
-              <h1 style="color: black;">{{ category.title }}</h1>
+              <h1 style="color: black;"><strong>{{ category.title }}</strong></h1>
             </a>
 
             {% if category.books.all %}

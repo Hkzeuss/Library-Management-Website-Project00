@@ -180,10 +180,11 @@ def book_detail(request, pk):
                 borrow_date = form.cleaned_data['borrow_date']
                 return_date = form.cleaned_data['return_date']
 
-                # Kiểm tra điều kiện ngày trả lớn hơn hoặc bằng ngày mượn và không cách nhau quá 7 ngày
+
+                # Kiểm tra điều kiện ngày trả lớn hơn ngày mượn và không cách nhau quá 7 ngày
                 if return_date <= borrow_date or return_date - borrow_date > timedelta(days=7) or borrow_date < timezone.now().date():
-                    context['error_message'] = 'Ngày mượn hoặc ngày trả không hợp lệ. Vui lòng kiểm tra lại.'
-                else:
+                    context['error_message'] = 'Ngày trả không hợp lệ. Vui lòng kiểm tra lại.'
+
                     selected_book.amount -= 1
                     selected_book.save()
                     borrow_instance.save()

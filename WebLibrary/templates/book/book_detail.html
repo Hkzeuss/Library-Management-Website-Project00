@@ -292,6 +292,47 @@
   </div>
   <!--================================================================================================-->
 
+  <br><br>
+      <h3 style="text-align: center;"> <strong>Có thể bạn quan tâm</strong></h3>
+      <div style="overflow-x: auto; white-space: nowrap;">
+        <div class="container">
+          <div class="d-flex flex-nowrap overflow-auto" >
+                {% for book in related_books %}
+                  {% if book != selected_book %}
+                  <div class="col-md-3" style="flex: 0 0 auto; margin-right: 10px;">
+                      <div class="card h-100">
+                        <a href="{% url 'book_detail' pk=book.pk %}">
+                          <svg class="bd-placeholder-img card-img-top" width="100%" height="350" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="none" focusable="false">
+                            <title>Placeholder</title>
+                            <image href="{{ book.img.url }}" width="100%" height="100%" preserveAspectRatio="none"/>
+                          </svg>
+                        </a>
+                        <div class="card-body">
+                          <a href="{% url 'book_detail' pk=book.pk %}" style="text-decoration: none;">
+                            <h5 class="card-title" style="color: black;">{{ book.title }}</h5>
+                            <p class="card-text" style="text-align: left; margin-left: 10px; color: black;">
+                              Tác giả: {{ book.author }}
+                            </p>
+                          </a>
+                        </div>
+                        <div class="card-footer">
+                          <p class="card-text" style="text-align: right; margin-right: 10px; font-size: 14px;font-weight: 600;">
+                              <span style="color: black; ">Số lượng còn lại: </span>
+                              {% if book.amount == 0 %}
+                                <span style="color: red !important;">{{ book.amount }}</span>
+                              {% else %}
+                                <span style="color: green !important;">{{ book.amount }}</span>
+                              {% endif %}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+      </div>
+
   <footer class="site-footer mt-4" style="font-family:Montserrat;">
     <div class="container">
       <div class="row">
