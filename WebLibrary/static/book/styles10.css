@@ -175,3 +175,29 @@ margin-right: 50%;
 .next-icon-ma{
   margin-left: 5.25rem;
 }
+
+/*========================================*/
+.custom-height {
+  height: 500px;
+  width: 300px; /* Đặt chiều cao mong muốn */
+  overflow: hidden; /* Nếu chiều cao của hình ảnh vượt quá chiều cao của cột, ẩn phần dư thừa */
+}
+
+.img-fit {
+  object-fit: contain; /* Hoặc object-fit: contain tùy thuộc vào yêu cầu */
+  width: 100%;
+  height: 100%;
+}
+
+/* Chỉnh sửa hình ảnh thành hình chữ nhật */
+.img-rectangle {
+  width: 100%;
+  height: auto; /* Tự động tính chiều cao để giữ tỷ lệ khung hình */
+}
+
+.center-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
