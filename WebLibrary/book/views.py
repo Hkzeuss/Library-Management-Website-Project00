@@ -12,7 +12,7 @@ from borrow.forms import BorrowForm
 from borrow.models import Borrow
 from django.http import JsonResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from django.utils import timezone
 
 
 def tabrules(request):
@@ -180,9 +180,9 @@ def book_detail(request, pk):
                 borrow_date = form.cleaned_data['borrow_date']
                 return_date = form.cleaned_data['return_date']
 
-                # Kiểm tra điều kiện ngày trả lớn hơn ngày mượn và không cách nhau quá 7 ngày
-                if return_date <= borrow_date or return_date - borrow_date > timedelta(days=7):
-                    context['error_message'] = 'Ngày trả không hợp lệ. Vui lòng kiểm tra lại.'
+                # Kiểm tra điều kiện ngày trả lớn hơn hoặc bằng ngày mượn và không cách nhau quá 7 ngày
+                if return_date <= borrow_date or return_date - borrow_date > timedelta(days=7) or borrow_date < timezone.now().date():
+                    context['error_message'] = 'Ngày mượn hoặc ngày trả không hợp lệ. Vui lòng kiểm tra lại.'
                 else:
                     selected_book.amount -= 1
                     selected_book.save()

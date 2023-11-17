@@ -199,13 +199,13 @@
   <div class="container mt-5">
     <div class="row">
       <!-- Phần bên trái - Hình ảnh sách -->
-      <div class="col-md-6 custom-height">
+      <div class="col-md-6 custom-height align-items-center ">
         <img src="{{ selected_book.img.url }}" alt="{{ selected_book.title }}" class="img-fluid img-rectangle">
       </div>
   
       <!-- Phần bên phải - Thông tin sách -->
-      <div class="col-md-6">
-        <div class=" me-5" style="text-align: left; padding-left: 50px;">
+      <div class="col-md-6 align-items-center">
+        <div class=" me-5 " style="text-align: left; padding-left: 50px;">
           <h1>{{ selected_book.title }}</h1>
             {% if related_author %}
                 <h4>By: 

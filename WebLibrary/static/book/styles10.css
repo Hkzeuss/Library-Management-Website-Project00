@@ -194,3 +194,10 @@ margin-right: 50%;
   width: 100%;
   height: auto; /* Tự động tính chiều cao để giữ tỷ lệ khung hình */
 }
+
+.center-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
