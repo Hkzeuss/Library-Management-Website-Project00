@@ -12,6 +12,7 @@ from borrow.forms import BorrowForm
 from borrow.models import Borrow
 from django.http import JsonResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.utils import timezone
 
 
 
@@ -181,7 +182,7 @@ def book_detail(request, pk):
                 return_date = form.cleaned_data['return_date']
 
                 # Kiểm tra điều kiện ngày trả lớn hơn ngày mượn và không cách nhau quá 7 ngày
-                if return_date <= borrow_date or return_date - borrow_date > timedelta(days=7):
+                if return_date <= borrow_date or return_date - borrow_date > timedelta(days=7) or borrow_date < timezone.now().date():
                     context['error_message'] = 'Ngày trả không hợp lệ. Vui lòng kiểm tra lại.'
                 else:
                     selected_book.amount -= 1
