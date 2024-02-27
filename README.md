@@ -2,7 +2,7 @@
 ## VNU Vietnam Japan University – VNU-VJU
 ## Final Project: Library Management Website
 ### Team 4:
-   - Hoang Tien Trung Kien (21110088) - DEV/PO/SM/PO/QA - Hkzeuss
+   - Hoang Tien Trung Kien (21110088) - DEV/PO/SM/QA - Hkzeuss
    - Pham Quoc Huy (21110084) - DEV/UI/QA - SakaiKuniteru
    - Chu Tuan Viet (21110112) - DEV - yukioreki1302
    - Pham Quang Manh (21110091) - DEV - manh0107
